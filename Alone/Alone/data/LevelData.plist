@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>field</key>
+	<dict>
+		<key>1</key>
+		<dict>
+			<key>repeatScore</key>
+			<integer>20</integer>
+			<key>completeScore</key>
+			<integer>100</integer>
+			<key>completed</key>
+			<integer>0</integer>
+			<key>bestTime</key>
+			<integer>0</integer>
+			<key>finishTime</key>
+			<integer>0</integer>
+			<key>touchTimes</key>
+			<integer>0</integer>
+			<key>width</key>
+			<integer>6648</integer>
+			<key>height</key>
+			<real>2484</real>
+			<key>objects</key>
+			<array>
+				<dict>
+					<key>destroyable</key>
+					<false/>
+					<key>type</key>
+					<integer>0</integer>
+					<key>x</key>
+					<integer>0</integer>
+					<key>y</key>
+					<integer>0</integer>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+</dict>
+</plist>
