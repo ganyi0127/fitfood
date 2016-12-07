@@ -1,15 +1,24 @@
 //
-//  Box.swift
+//  Object.swift
 //  Alone
 //
-//  Created by YiGan on 01/12/2016.
+//  Created by YiGan on 06/12/2016.
 //  Copyright © 2016 YiGan. All rights reserved.
 //
 
 import SpriteKit
-class Platform: SKSpriteNode {
-    init(){
-        super.init(texture: nil, color: .yellow, size: CGSize(width: 200, height: 50))
+
+class Object: SKSpriteNode {
+    var type: ObjectType!
+    var destroyable = false
+    
+    //MARK:- init
+    init(type: ObjectType){
+        let texName: String = objectNameMap[type]!
+        let tex = atlas.textureNamed(texName)
+        super.init(texture: tex, color: .clear, size: tex.size())
+        
+        self.type = type
         
         config()
         createContents()
@@ -21,11 +30,7 @@ class Platform: SKSpriteNode {
     
     private func config(){
         
-        position = CGPoint(x: win_size.width * 0.3, y: win_size.height / 2)
         zPosition = ZPos.object
-    }
-    
-    private func createContents(){
         
         //添加物理体
         physicsBody = {
@@ -36,5 +41,9 @@ class Platform: SKSpriteNode {
             physics.mass = 0.5
             return physics
         }()
+    }
+    
+    private func createContents(){
+        
     }
 }

@@ -25,8 +25,8 @@ struct Mask{
 
 //MARK:- 层级
 struct ZPos{
-    static let background: CGFloat = 5
-    static let box: CGFloat = 8
+    static let background: CGFloat = 1
+    static let object: CGFloat = 8
     static let cat: CGFloat = 10
     static let menu: CGFloat = 20
 }

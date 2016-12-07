@@ -1,34 +1,23 @@
 //
-//  Button.swift
+//  TextField.swift
 //  Alone
 //
-//  Created by YiGan on 05/12/2016.
+//  Created by YiGan on 06/12/2016.
 //  Copyright © 2016 YiGan. All rights reserved.
 //
 
 import SpriteKit
-enum ButtonType: String{
-    case edit = "edit"
-    case home = "home"
-    case menu = "menu"
-    case pause = "pause"
-    case shop = "shop"
-    case save = "save"
-    case stack = "stack"
-    case delete = "delete"
+//MARK:- inputLevel属性
+enum InputLevelProperty: String{
+    case repeatScore = "重复得分"
+    case completeScore = "完成得分"
+    case finishTime = "限制时间(s)"
+    case touchTimes = "点击次数"
 }
-
-class Button: SKSpriteNode {
+class TextField: SKSpriteNode {
     
-    //按钮状态
-    enum State {
-        case on
-        case off
-    }
-    
-    fileprivate var closure: ((ButtonType)->())?            //点击回调
-    fileprivate var textureMap = [State: SKTexture]()       //贴图
-    fileprivate var type: ButtonType!                       //按钮类型
+    fileprivate var closure: ((InputLevelProperty)->())?            //点击回调
+    fileprivate var type: InputLevelProperty!                       //属性类型
     
     private var label = { () -> SKLabelNode in
         let label = SKLabelNode()
@@ -41,22 +30,13 @@ class Button: SKSpriteNode {
         return label
     }()
     
-    init(type: ButtonType, clicked: ((ButtonType)->())?){
-
-        //添加贴图
-        textureMap[.on] = atlas.textureNamed("button_on")
-        textureMap[.off] = atlas.textureNamed("button_off")
-        
-        super.init(texture: textureMap[.off], color: .clear, size: textureMap[.off]!.size())
+    init(type: InputLevelProperty, clicked: ((InputLevelProperty)->())?){
+        super.init(texture: nil, color: .green, size: CGSize(width: 300, height: 150))
         
         closure = clicked   //设置回调
         self.type = type    //设置类型
         
         label.text = type.rawValue
-        
-        if type == .shop {
-            color = .red
-        }
         
         config()
         createContents()
@@ -80,17 +60,11 @@ class Button: SKSpriteNode {
     }
 }
 
-extension Button{
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        texture = textureMap[.on]
-    }
-    
+extension TextField{
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        texture = textureMap[.off]
         closure?(type)
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        texture = textureMap[.off]
         closure?(type)
     }
 }

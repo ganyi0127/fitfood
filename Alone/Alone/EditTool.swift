@@ -16,6 +16,8 @@ class EditTool: SKSpriteNode {
         return tools
     }()
     
+    //判断是否为点击
+    fileprivate var isClicked = true
     
     //MARK:- init
     init(){
@@ -37,8 +39,6 @@ class EditTool: SKSpriteNode {
     
     private func createContents(){
         
-        let tools = Tools(size: size)
-        
         addChild(tools)
     }
 }
@@ -51,13 +51,48 @@ extension EditTool{
             let curLoc = touch.location(in: self)
             let preLoc = touch.previousLocation(in: self)
             
-            let delta = preLoc.y - curLoc.y
-            
+            //滑动
+            let delta = curLoc.y - preLoc.y
             tools.position.y += delta
             
-            if tools.position.y - tools.size.height > 0{
-                tools.position.y = tools.size.height
+        }
+        
+        isClicked = false
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        //回弹
+        let toolsHeight = tools.calculateAccumulatedFrame().size.height
+        if toolsHeight < size.height {
+            if tools.position.y - size.height / 2 - toolsHeight > -size.height || tools.position.y < size.height / 2{
+                tools.position.y = size.height / 2
             }
+        }else{
+            if tools.position.y - size.height / 2 - toolsHeight > -size.height{
+                tools.position.y = size.height / 2 + toolsHeight - size.height
+            }else if tools.position.y < size.height / 2{
+                tools.position.y = size.height / 2
+            }
+        }
+        
+        touches.forEach(){
+            touch in
+            let location = touch.location(in: self)
+            let nodeList = nodes(at: location)
+            
+            //添加物件
+            if !nodeList.isEmpty{
+                let node = nodeList[0]
+                if node is Toolicon{
+                    if isClicked {
+                        (scene as! EditScene).add(object: (node as! Toolicon).type)
+                    }else{
+                        isClicked = true
+                    }
+                }
+            }
+
         }
     }
 }

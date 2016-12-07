@@ -55,6 +55,7 @@ struct InputLevel {
     var height: CGFloat = 0
     var inputObjectList = [InputObject]()
 }
+
 //MARK:- 关卡管理类
 class LevelData {
     
@@ -76,16 +77,11 @@ class LevelData {
     }()
     
     //MARK:- 读取文件
-    private var data: NSMutableDictionary{
+    private var originData: NSMutableDictionary{
         let fileManager = FileManager.default
         let fileExist = fileManager.fileExists(atPath: documentPath)
         var result: NSMutableDictionary!
         if fileExist {
-            do{
-                try fileManager.removeItem(atPath: localPath)
-            }catch let error{
-                debugPrint("error: ", error)
-            }
             result = NSMutableDictionary(contentsOfFile: documentPath)
         }else{
             result = NSMutableDictionary(contentsOfFile: localPath)
@@ -106,7 +102,7 @@ class LevelData {
 
     //MARK:- 根据关卡获取内容
     func select(world: World = .field, level lev: Int, using: (OutputLevel)->()){
-        guard let level:NSDictionary = (data.value(forKey: world.rawValue) as? NSDictionary)?.value(forKey: "\(lev)") as? NSDictionary else{
+        guard let level:NSDictionary = (originData.value(forKey: world.rawValue) as? NSDictionary)?.value(forKey: "\(lev)") as? NSDictionary else{
             return
         }
         
@@ -159,7 +155,7 @@ class LevelData {
     //修改关卡完成度 stars:完成等级 0:未完成 1:完成 2:完成 3:完美完成
     func complete(world: World = .field, level lev: Int16, stars: Int16, bestfinishTime: Int16, completed: ((Bool)->())? = nil) {
         
-        guard let curWorld: NSMutableDictionary = data.value(forKey: world.rawValue) as? NSMutableDictionary else {
+        guard let curWorld: NSMutableDictionary = originData.value(forKey: world.rawValue) as? NSMutableDictionary else {
             return
         }
         
@@ -169,6 +165,8 @@ class LevelData {
         level.setValue(stars, forKey: "completed")
         level.setValue(bestfinishTime, forKey: "bestfinishTime")
         curWorld.setValue(level, forKey: "\(lev)")
+        
+        let data = originData
         data.setValue(curWorld, forKey: world.rawValue)
         guard data.write(toFile: documentPath, atomically: true) else{
             completed?(false)
@@ -189,7 +187,7 @@ class LevelData {
         level.setValue(inputObject.width, forKey: "width")
         level.setValue(inputObject.height, forKey: "height")
         level.setValue(CompletionStatus.undone.rawValue, forKey: "completed")
-        
+
         let objects = NSMutableArray()
         inputObject.inputObjectList.forEach(){
             inputObject in
@@ -202,10 +200,13 @@ class LevelData {
             objects.add(object)
         }
         level.setValue(objects, forKey: "objects")
-        
-        let curWorld: NSMutableDictionary = data.value(forKey: world.rawValue) as? NSMutableDictionary ?? NSMutableDictionary()
+
+        let curWorld: NSMutableDictionary = originData.value(forKey: world.rawValue) as? NSMutableDictionary ?? NSMutableDictionary()
         curWorld.setValue(level, forKey: "\(lev)")
+
+        let data = originData
         data.setValue(curWorld, forKey: world.rawValue)
+        
         guard data.write(toFile: documentPath, atomically: true) else {
             completed(false)
             return
@@ -214,13 +215,13 @@ class LevelData {
     }
     
     //获取原始关卡
-    func get(world: World, level lev: Int16, using: (InputLevel)->()) {
-        guard let curWorld: NSDictionary = data.value(forKey: world.rawValue) as? NSDictionary else {
-            return
+    func get(world: World, level lev: Int16) -> InputLevel? {
+        guard let curWorld: NSDictionary = originData.value(forKey: world.rawValue) as? NSDictionary else {
+            return nil
         }
         
         guard let curLevel = curWorld.value(forKey: "\(lev)") as? NSDictionary else {
-            return
+            return nil
         }
         
         var inputLevel = InputLevel()
@@ -246,6 +247,39 @@ class LevelData {
             }
         }
         inputLevel.inputObjectList = objectList
-        using(inputLevel)
+        return inputLevel
+    }
+    
+    //MARK:- 获取所有关卡
+    func getAllLevel() -> [World: [Int16: InputLevel]] {
+        var fieldMap = [Int16: InputLevel]()
+        (0..<getLevelsCount(world: .field)).forEach(){
+            index in
+            let level = index + 1
+            let inputLevel = get(world: .field, level: level)
+
+            fieldMap[level] = inputLevel
+        }
+        
+        var castleMap = [Int16: InputLevel]()
+        (0..<getLevelsCount(world: .castle)).forEach(){
+            index in
+            let level = index + 1
+            let inputLevel = get(world: .castle, level: level)
+            castleMap[level] = inputLevel
+        }
+        
+        var worldMap = [World: [Int16: InputLevel]]()
+        worldMap[.field] = fieldMap
+        worldMap[.castle] = castleMap
+        return worldMap
+    }
+    
+    private func getLevelsCount(world: World) -> Int16{
+        guard let curWorld: NSDictionary = originData.value(forKey: world.rawValue) as? NSDictionary else {
+            return 0
+        }
+        
+        return Int16(curWorld.count)
     }
 }

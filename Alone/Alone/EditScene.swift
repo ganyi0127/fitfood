@@ -9,15 +9,20 @@
 import SpriteKit
 class EditScene: SKScene {
     
-    fileprivate let mainCamera = MainCamera()
-    fileprivate var sceneSize: CGSize!
+    fileprivate var mainCamera: MainCamera!
+    fileprivate var sceneSize: CGSize!{
+        didSet{
+            sky.xScale = self.sceneSize.width / sky.size.width * sky.xScale
+            sky.yScale = self.sceneSize.height / sky.size.height * sky.yScale
+        }
+    }
     
     private var pinch: UIPinchGestureRecognizer!
     private var doubleTap: UITapGestureRecognizer!
     private var mainCameraScale: CGFloat = 1        //当前摄像机缩放比率
     
     //天空
-    private lazy var sky: SKSpriteNode = { () -> SKSpriteNode in
+    fileprivate lazy var sky: SKSpriteNode = { () -> SKSpriteNode in
         let sky = SKSpriteNode(texture: atlas.textureNamed("sky"))
         sky.anchorPoint = .zero
         sky.position = .zero
@@ -26,11 +31,42 @@ class EditScene: SKScene {
         return sky
     }()
     
+    fileprivate var editObject: Object?             //存储当前修改物件(一个临时对象)
+    fileprivate var objects = [Object]()                //存储所有添加物件
+    
+    //MARK:- 导入关卡(setOnly)
+    var inputLevel: InputLevel!{
+        didSet{
+            //移除修改
+            removeChildren(in: objects)
+            objects.removeAll()
+            
+            //刷新地图
+            sceneSize = CGSize(width: inputLevel.width, height: inputLevel.height)
+            inputLevel.inputObjectList.forEach(){
+                inputObject in
+                
+                let object = Object(type: ObjectType(rawValue: inputObject.type)!)
+                object.position = CGPoint(x: inputObject.x, y: inputObject.y)
+                object.destroyable = inputObject.destroyable
+                addChild(object)
+                objects.append(object)
+            }
+        }
+    }
+    
+    //MARK:- 地图信息
+    var world: World?           //地图
+    var level: Int16?           //关卡
+    
     //MARK:- init
-    init(inputLevel: InputLevel) {
+    init(world: World?, level: Int16?, inputLevel: InputLevel) {
         super.init(size: win_size)
         
         sceneSize = CGSize(width: inputLevel.width, height: inputLevel.height)
+        self.world = world
+        self.level = level
+        
         
         config()
         createContents()
@@ -66,47 +102,87 @@ class EditScene: SKScene {
         
         //添加背景
         addChild(sky)
-        
     }
     
     private func createContents(){
         
+        //设置相机点击回调
+        mainCamera = MainCamera(isEdit: true){
+            buttonType in
+            switch buttonType {
+            case .home:
+                //返回家园
+                if let homeScene = SKScene(fileNamed: "HomeScene"){
+                    homeScene.scaleMode = .aspectFill
+                    self.view?.presentScene(homeScene)
+                }
+            case .delete:
+                //删除选择物件
+                if let editObj = self.editObject{
+                    editObj.removeFromParent()
+                    if let index = self.objects.index(of: editObj){
+                        self.objects.remove(at: index)
+                    }
+                    self.editObject = nil
+                }
+            case .save:
+                //保存关卡
+                var inputLevel = InputLevel()
+                inputLevel.completeScore = 100
+                inputLevel.repeatScore = 20
+                inputLevel.finishTime = 60
+                inputLevel.touchTimes = 50
+                inputLevel.width = self.sceneSize.width
+                inputLevel.height = self.sceneSize.height
+                var inputObjectList = [InputObject]()
+                self.objects.forEach(){
+                    object in
+                    var inputObject = InputObject()
+                    inputObject.destroyable = object.destroyable
+                    inputObject.type = object.type.rawValue
+                    inputObject.x = object.position.x
+                    inputObject.y = object.position.y
+                    inputObjectList.append(inputObject)
+                }
+                inputLevel.inputObjectList = inputObjectList
+                
+                //写入关卡
+                guard let wld = self.world, let lev = self.level else{
+                    debugPrint("需传入地图与关卡")
+                    break
+                }
+                LevelData.share().update(world: wld, level: lev, inputObject: inputLevel){
+                    complete in
+                    if complete{
+                        //写入完成
+                        self.mainCamera.stackSwitch = false
+                    }else{
+                        debugPrint("写入失败")
+                    }
+                }
+            default:
+                break
+            }
+        }
         camera = mainCamera
         mainCamera.setPosition(sceneSize: sceneSize)
         addChild(mainCamera)
         
-        //创建家园按钮
-        let homeButton = Button(type: .home){
-           
-            if let homeScene = SKScene(fileNamed: "HomeScene"){
-                homeScene.scaleMode = .aspectFill
-                self.view?.presentScene(homeScene)
-            }
-        }
-        homeButton.position = CGPoint(x: win_size.width / 2 - homeButton.size.width * 2, y: win_size.height / 2 - homeButton.size.height * 0.7)
-        mainCamera.addChild(homeButton)
-
+        
         //添加工具栏
         let editTool = EditTool()
         editTool.position = CGPoint(x: win_size.width / 2 - editTool.size.width / 2, y: 0)
         mainCamera.addChild(editTool)
+    }
+    
+    //MARK:- 添加物件
+    func add(object objectType: ObjectType){
+
+        let object = Object(type: objectType)
+        object.position = CGPoint(x: sceneSize.width / 2, y: sceneSize.height / 2)
+        addChild(object)
         
-//        let h1 = Button(type: .shop, clicked: {})
-//        h1.position = CGPoint.zero
-//        mainCamera.addChild(h1)
-//        
-//        //测试
-//        let b1 = Button(type: .shop, clicked: {})
-//        b1.position = CGPoint.zero
-//        addChild(b1)
-//        
-//        let b2 = Button(type: .shop, clicked: {})
-//        b2.position = CGPoint(x: win_size.width, y: win_size.height)
-//        addChild(b2)
-//        
-//        let b3 = Button(type: .shop, clicked: {})
-//        b3.position = CGPoint(x: sceneSize.width, y: sceneSize.height)
-//        addChild(b3)
+        objects.append(object)
     }
     
     //MARK:- 捏合手势
@@ -144,6 +220,20 @@ class EditScene: SKScene {
 
 //MARK:- 触摸事件
 extension EditScene{
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touches.forEach(){
+            touch in
+            let location = touch.location(in: self)
+            let nodeList = nodes(at: location)
+            
+            if !nodeList.isEmpty{
+                let node = nodeList[0]
+                if node is Object{
+                    editObject = node as? Object
+                }
+            }
+        }
+    }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         touches.forEach(){
             touch in
@@ -151,7 +241,40 @@ extension EditScene{
             let preLoc = touch.previousLocation(in: self)
             
             let delta = CGSize(width: preLoc.x - curLoc.x, height: preLoc.y - curLoc.y)
-            mainCamera.setPosition(sceneSize: sceneSize, deltaPosition: delta)
+            if let object = editObject{
+                var objX = object.position.x - delta.width
+                if objX < 0{
+                    objX = 0
+                }else if objX > sceneSize.width{
+                    objX = sceneSize.width
+                }
+                
+                var objY = object.position.y - delta.height
+                if objY < 0{
+                    objY = 0
+                }else if objY > sky.size.height{
+                    objY = sky.size.height
+                }
+                object.position = CGPoint(x: objX, y: objY)
+            }else{
+                mainCamera.setPosition(sceneSize: sceneSize, deltaPosition: delta)
+            }
+        }
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touches.forEach(){
+            touch in
+            let location = touch.location(in: self)
+            let nodeList = nodes(at: location)
+            
+            if nodeList.isEmpty{
+                editObject = nil
+            }else{
+                let node = nodeList[0]
+                if !(node is Object){
+                    editObject = nil
+                }
+            }
         }
     }
 }

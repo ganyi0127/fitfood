@@ -44,11 +44,11 @@ class GameScene: SKScene {
         
         //创建编辑按钮
         let editButton = Button(type: .edit){
+            _ in
             //获取原始关卡并切换
-            LevelData.share().get(world: .field, level: 1){
-                inputLevel in
+            if let inputLevel = LevelData.share().get(world: .field, level: 1){
                 
-                let editScene = EditScene(inputLevel: inputLevel)
+                let editScene = EditScene(world: nil, level: nil, inputLevel: inputLevel)
                 editScene.scaleMode = .aspectFill
                 self.view?.presentScene(editScene)
             }

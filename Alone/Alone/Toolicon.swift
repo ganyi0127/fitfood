@@ -16,23 +16,29 @@ enum ObjectType: Int16{
     case plat
     case rock
 }
+//贴图集_icon
+let objectIconNameMap: [ObjectType: String] = [.ground: "ground",
+                                               .bird: "bird",
+                                               .rock: "rock",
+                                               .river: "river",
+                                               .plat: "plat",
+                                               .wall: "wall"]
 //贴图集
-let textureNameMap: [ObjectType: String] = [.ground: "ground",
+let objectNameMap: [ObjectType: String] = [.ground: "ground",
                                            .bird: "bird",
                                            .rock: "rock",
                                            .river: "river",
                                            .plat: "plat",
                                            .wall: "wall"]
 
-
-class Tool: SKSpriteNode {
+//Icon
+class Toolicon: SKSpriteNode {
     
     var type: ObjectType!
     
     init(type: ObjectType){
-        let texName: String = textureNameMap[type]!
+        let texName: String = objectIconNameMap[type]!
         let tex = atlas.textureNamed(texName)
-        print(tex, texName)
         super.init(texture: tex, color: .clear, size: tex.size())
 
         self.type = type

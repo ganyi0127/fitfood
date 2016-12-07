@@ -30,10 +30,10 @@ class Tools: SKNode {
     
     private func createContents(){
     
-        textureNameMap.enumerated().forEach(){
+        objectIconNameMap.enumerated().forEach(){
             index, element in
-            let node = Tool(type: element.key)
-            node.position = CGPoint(x: 0, y: -node.size.height - node.size.height * CGFloat(index))
+            let node = Toolicon(type: element.key)
+            node.position = CGPoint(x: 0, y: -node.size.height / 2 - node.size.height * CGFloat(index))
             addChild(node)
         }
     }

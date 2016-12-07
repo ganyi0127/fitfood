@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3267D03C1DF56E7E0060B9C2 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D03B1DF56E7E0060B9C2 /* Tools.swift */; };
-		3267D03E1DF5711F0060B9C2 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D03D1DF5711F0060B9C2 /* Tool.swift */; };
+		3267D03E1DF5711F0060B9C2 /* Toolicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D03D1DF5711F0060B9C2 /* Toolicon.swift */; };
+		3267D0401DF657000060B9C2 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D03F1DF657000060B9C2 /* Object.swift */; };
+		3267D0421DF6903E0060B9C2 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D0411DF6903E0060B9C2 /* Stack.swift */; };
+		3267D0441DF69CE90060B9C2 /* Levelicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D0431DF69CE90060B9C2 /* Levelicon.swift */; };
+		3267D0461DF6A3930060B9C2 /* Worldicon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D0451DF6A3930060B9C2 /* Worldicon.swift */; };
+		3267D0481DF6BFA90060B9C2 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3267D0471DF6BFA90060B9C2 /* TextField.swift */; };
 		32B5E2481DF51B7B0032C2C4 /* MainCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B5E2471DF51B7B0032C2C4 /* MainCamera.swift */; };
 		32B5E2511DF523BD0032C2C4 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D413171DF2691D008EE637 /* DataHandler.swift */; };
 		32B5E2521DF524200032C2C4 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 32D413091DF26136008EE637 /* Model.xcdatamodeld */; };
@@ -57,7 +62,12 @@
 
 /* Begin PBXFileReference section */
 		3267D03B1DF56E7E0060B9C2 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		3267D03D1DF5711F0060B9C2 /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		3267D03D1DF5711F0060B9C2 /* Toolicon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolicon.swift; sourceTree = "<group>"; };
+		3267D03F1DF657000060B9C2 /* Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		3267D0411DF6903E0060B9C2 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		3267D0431DF69CE90060B9C2 /* Levelicon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Levelicon.swift; sourceTree = "<group>"; };
+		3267D0451DF6A3930060B9C2 /* Worldicon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Worldicon.swift; sourceTree = "<group>"; };
+		3267D0471DF6BFA90060B9C2 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		32B5E2471DF51B7B0032C2C4 /* MainCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCamera.swift; sourceTree = "<group>"; };
 		32B5E2531DF53DFB0032C2C4 /* EditScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditScene.swift; sourceTree = "<group>"; };
 		32B5E2561DF542F10032C2C4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -127,16 +137,20 @@
 			isa = PBXGroup;
 			children = (
 				32B5E2471DF51B7B0032C2C4 /* MainCamera.swift */,
+				3267D0411DF6903E0060B9C2 /* Stack.swift */,
+				3267D0451DF6A3930060B9C2 /* Worldicon.swift */,
+				3267D0431DF69CE90060B9C2 /* Levelicon.swift */,
 			);
 			name = camera;
 			sourceTree = "<group>";
 		};
-		32B5E2551DF542DF0032C2C4 /* buttons */ = {
+		32B5E2551DF542DF0032C2C4 /* 按钮 */ = {
 			isa = PBXGroup;
 			children = (
 				32B5E2561DF542F10032C2C4 /* Button.swift */,
+				3267D0471DF6BFA90060B9C2 /* TextField.swift */,
 			);
-			name = buttons;
+			name = "按钮";
 			sourceTree = "<group>";
 		};
 		32B5E2581DF5534E0032C2C4 /* 编辑器 */ = {
@@ -145,7 +159,7 @@
 				32B5E2531DF53DFB0032C2C4 /* EditScene.swift */,
 				32B5E2591DF561860032C2C4 /* EditTool.swift */,
 				3267D03B1DF56E7E0060B9C2 /* Tools.swift */,
-				3267D03D1DF5711F0060B9C2 /* Tool.swift */,
+				3267D03D1DF5711F0060B9C2 /* Toolicon.swift */,
 			);
 			name = "编辑器";
 			sourceTree = "<group>";
@@ -177,12 +191,12 @@
 				32D411FC1DEC4F3F008EE637 /* HomeScene.sks */,
 				32D412001DEC4F3F008EE637 /* HomeScene.swift */,
 				32B5E2581DF5534E0032C2C4 /* 编辑器 */,
-				32B5E2551DF542DF0032C2C4 /* buttons */,
+				32B5E2551DF542DF0032C2C4 /* 按钮 */,
 				32B5E2461DF51B680032C2C4 /* camera */,
-				32D412401DED9DE6008EE637 /* role */,
-				32D412A71DF00E7C008EE637 /* box */,
-				32D4122F1DED0916008EE637 /* background */,
-				32D413021DF132C6008EE637 /* data */,
+				32D412401DED9DE6008EE637 /* 猫 */,
+				32D412A71DF00E7C008EE637 /* 物件 */,
+				32D4122F1DED0916008EE637 /* 背景 */,
+				32D413021DF132C6008EE637 /* 数据 */,
 				32D412A51DEFD621008EE637 /* Resource.atlas */,
 				32D4122E1DEC546A008EE637 /* supportingfiles */,
 			);
@@ -223,28 +237,29 @@
 			name = supportingfiles;
 			sourceTree = "<group>";
 		};
-		32D4122F1DED0916008EE637 /* background */ = {
+		32D4122F1DED0916008EE637 /* 背景 */ = {
 			isa = PBXGroup;
 			children = (
 				32D412301DED0927008EE637 /* Background.swift */,
 			);
-			name = background;
+			name = "背景";
 			sourceTree = "<group>";
 		};
-		32D412401DED9DE6008EE637 /* role */ = {
+		32D412401DED9DE6008EE637 /* 猫 */ = {
 			isa = PBXGroup;
 			children = (
 				32D412411DED9DFC008EE637 /* Cat.swift */,
 			);
-			name = role;
+			name = "猫";
 			sourceTree = "<group>";
 		};
-		32D412A71DF00E7C008EE637 /* box */ = {
+		32D412A71DF00E7C008EE637 /* 物件 */ = {
 			isa = PBXGroup;
 			children = (
 				32D412A81DF00E91008EE637 /* Platform.swift */,
+				3267D03F1DF657000060B9C2 /* Object.swift */,
 			);
-			name = box;
+			name = "物件";
 			sourceTree = "<group>";
 		};
 		32D412EE1DF122A0008EE637 /* libfiles */ = {
@@ -255,25 +270,26 @@
 			name = libfiles;
 			sourceTree = "<group>";
 		};
-		32D413021DF132C6008EE637 /* data */ = {
+		32D413021DF132C6008EE637 /* 数据 */ = {
 			isa = PBXGroup;
 			children = (
 				32D413031DF132F6008EE637 /* LevelData.plist */,
 				32D413051DF13342008EE637 /* LevelData.swift */,
 				32D413961DF27AB6008EE637 /* CatInformation.plist */,
 				32D413981DF27C68008EE637 /* CatInformation.swift */,
-				32D4130C1DF26803008EE637 /* coredata */,
+				32D4130C1DF26803008EE637 /* 数据库 */,
 			);
+			name = "数据";
 			path = data;
 			sourceTree = "<group>";
 		};
-		32D4130C1DF26803008EE637 /* coredata */ = {
+		32D4130C1DF26803008EE637 /* 数据库 */ = {
 			isa = PBXGroup;
 			children = (
 				32D413091DF26136008EE637 /* Model.xcdatamodeld */,
 				32D413171DF2691D008EE637 /* DataHandler.swift */,
 			);
-			name = coredata;
+			name = "数据库";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,22 +438,27 @@
 				32D412011DEC4F3F008EE637 /* HomeScene.swift in Sources */,
 				32D412A91DF00E91008EE637 /* Platform.swift in Sources */,
 				32B5E2511DF523BD0032C2C4 /* DataHandler.swift in Sources */,
+				3267D0481DF6BFA90060B9C2 /* TextField.swift in Sources */,
 				32B5E2571DF542F10032C2C4 /* Button.swift in Sources */,
 				32B5E2521DF524200032C2C4 /* Model.xcdatamodeld in Sources */,
 				32D413081DF25244008EE637 /* Time.swift in Sources */,
 				32B5E2481DF51B7B0032C2C4 /* MainCamera.swift in Sources */,
 				32D412031DEC4F3F008EE637 /* GameViewController.swift in Sources */,
+				3267D0461DF6A3930060B9C2 /* Worldicon.swift in Sources */,
 				32D413991DF27C68008EE637 /* CatInformation.swift in Sources */,
-				3267D03E1DF5711F0060B9C2 /* Tool.swift in Sources */,
+				3267D03E1DF5711F0060B9C2 /* Toolicon.swift in Sources */,
+				3267D0401DF657000060B9C2 /* Object.swift in Sources */,
 				32D412ED1DF121A0008EE637 /* SwiftyJSON.swift in Sources */,
 				32D411FB1DEC4F3F008EE637 /* AppDelegate.swift in Sources */,
 				32D412331DED0992008EE637 /* Configue.swift in Sources */,
 				32B5E25A1DF561870032C2C4 /* EditTool.swift in Sources */,
 				3267D03C1DF56E7E0060B9C2 /* Tools.swift in Sources */,
+				3267D0421DF6903E0060B9C2 /* Stack.swift in Sources */,
 				32D412421DED9DFC008EE637 /* Cat.swift in Sources */,
 				32D413061DF13342008EE637 /* LevelData.swift in Sources */,
 				32B5E2541DF53DFB0032C2C4 /* EditScene.swift in Sources */,
 				32D412311DED0927008EE637 /* Background.swift in Sources */,
+				3267D0441DF69CE90060B9C2 /* Levelicon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
