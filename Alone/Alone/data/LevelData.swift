@@ -8,7 +8,7 @@
 
 import UIKit
 //MARK:- 世界类型
-enum World: String{
+enum WorldType: String{
     case field = "field"
     case castle = "castle"
 }
@@ -47,12 +47,12 @@ struct InputObject {
 }
 //MARK:- 导入关卡
 struct InputLevel {
-    var repeatScore: Int16 = 0
-    var completeScore: Int16 = 0
-    var finishTime: CGFloat = 0
-    var touchTimes: Int16 = 0
-    var width: CGFloat = 0
-    var height: CGFloat = 0
+    var repeatScore: Int16 = 20
+    var completeScore: Int16 = 100
+    var finishTime: CGFloat = 60
+    var touchTimes: Int16 = 50
+    var width: CGFloat = default_ground_size.width
+    var height: CGFloat = default_ground_size.height
     var inputObjectList = [InputObject]()
 }
 
@@ -101,9 +101,9 @@ class LevelData {
     }
 
     //MARK:- 根据关卡获取内容
-    func select(world: World = .field, level lev: Int, using: (OutputLevel)->()){
+    func select(world: WorldType = .field, level lev: Int16) -> OutputLevel?{
         guard let level:NSDictionary = (originData.value(forKey: world.rawValue) as? NSDictionary)?.value(forKey: "\(lev)") as? NSDictionary else{
-            return
+            return nil
         }
         
         let completed = level.value(forKey: "completed") as? Int16 ?? 0
@@ -149,11 +149,35 @@ class LevelData {
         outputLevel.outputObjectList = outputObjectList
         outputLevel.width = level.value(forKey: "width") as? CGFloat ?? default_ground_size.width
         outputLevel.height = level.value(forKey: "height") as? CGFloat ?? default_ground_size.height
-        using(outputLevel)
+        return outputLevel
+    }
+    
+    //MARK:- 获取所有关卡
+    func selectAllLevels() -> [WorldType: [Int16: OutputLevel]]{
+        var fieldMap = [Int16: OutputLevel]()
+        (0..<getLevelsCount(world: .field)).forEach(){
+            index in
+            let level = index + 1
+            let outputLevel = select(world: .field, level: level)
+            fieldMap[level] = outputLevel
+        }
+        
+        var castleMap = [Int16: OutputLevel]()
+        (0..<getLevelsCount(world: .castle)).forEach(){
+            index in
+            let level = index + 1
+            let outputLevel = select(world: .castle, level: level)
+            castleMap[level] = outputLevel
+        }
+        
+        var worldMap = [WorldType: [Int16: OutputLevel]]()
+        worldMap[.field] = fieldMap
+        worldMap[.castle] = castleMap
+        return worldMap
     }
     
     //修改关卡完成度 stars:完成等级 0:未完成 1:完成 2:完成 3:完美完成
-    func complete(world: World = .field, level lev: Int16, stars: Int16, bestfinishTime: Int16, completed: ((Bool)->())? = nil) {
+    func complete(world: WorldType = .field, level lev: Int16, stars: Int16, bestfinishTime: Int16, completed: ((Bool)->())? = nil) {
         
         guard let curWorld: NSMutableDictionary = originData.value(forKey: world.rawValue) as? NSMutableDictionary else {
             return
@@ -176,7 +200,7 @@ class LevelData {
     }
     
     //MARK:- 添加与编辑关卡
-    func update(world: World = .field, level lev: Int16, inputObject: InputLevel, completed: (Bool)->()){
+    func update(world: WorldType = .field, level lev: Int16, inputObject: InputLevel, completed: (Bool)->()){
         
         let level = NSMutableDictionary()
         level.setValue(inputObject.repeatScore, forKey: "repeatScore")
@@ -215,7 +239,7 @@ class LevelData {
     }
     
     //获取原始关卡
-    func get(world: World, level lev: Int16) -> InputLevel? {
+    func get(world: WorldType, level lev: Int16) -> InputLevel? {
         guard let curWorld: NSDictionary = originData.value(forKey: world.rawValue) as? NSDictionary else {
             return nil
         }
@@ -251,7 +275,7 @@ class LevelData {
     }
     
     //MARK:- 获取所有关卡
-    func getAllLevel() -> [World: [Int16: InputLevel]] {
+    func getAllLevel() -> [WorldType: [Int16: InputLevel]] {
         var fieldMap = [Int16: InputLevel]()
         (0..<getLevelsCount(world: .field)).forEach(){
             index in
@@ -269,13 +293,13 @@ class LevelData {
             castleMap[level] = inputLevel
         }
         
-        var worldMap = [World: [Int16: InputLevel]]()
+        var worldMap = [WorldType: [Int16: InputLevel]]()
         worldMap[.field] = fieldMap
         worldMap[.castle] = castleMap
         return worldMap
     }
     
-    private func getLevelsCount(world: World) -> Int16{
+    private func getLevelsCount(world: WorldType) -> Int16{
         guard let curWorld: NSDictionary = originData.value(forKey: world.rawValue) as? NSDictionary else {
             return 0
         }

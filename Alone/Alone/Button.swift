@@ -11,11 +11,13 @@ enum ButtonType: String{
     case edit = "edit"
     case home = "home"
     case menu = "menu"
+    case world = "world"
     case pause = "pause"
     case shop = "shop"
     case save = "save"
     case stack = "stack"
     case delete = "delete"
+    case destroyable = "destroyable"
 }
 
 class Button: SKSpriteNode {

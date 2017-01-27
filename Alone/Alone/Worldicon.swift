@@ -8,6 +8,13 @@
 
 import SpriteKit
 class Worldicon: SKSpriteNode {
+    
+    //按钮状态
+    enum State {
+        case on
+        case off
+    }
+    
     private var label = { () -> SKLabelNode in
         let label = SKLabelNode()
         label.fontColor = .white
@@ -19,17 +26,23 @@ class Worldicon: SKSpriteNode {
         return label
     }()
     
-    var closure: ((World)->())!
+    fileprivate var textureMap = [State: SKTexture]()       //贴图
+    
+    var closure: ((WorldType)->())!
     
     //地图
-    var world: World!{
+    var world: WorldType!{
         didSet{
             label.text = world.rawValue
         }
     }
     
-    init(world: World, clicked: @escaping (World)->()){
-        super.init(texture: nil, color: .black, size: CGSize(width: 400, height: 200))
+    init(world: WorldType, clicked: @escaping (WorldType)->()){
+        //添加贴图
+        textureMap[.on] = atlas.textureNamed("button_on")
+        textureMap[.off] = atlas.textureNamed("button_off")
+        
+        super.init(texture: textureMap[.off], color: .clear, size: textureMap[.off]!.size())
         
         self.world = world
         
@@ -57,7 +70,16 @@ class Worldicon: SKSpriteNode {
 }
 
 extension Worldicon{
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        texture = textureMap[.on]
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        texture = textureMap[.off]
         closure(world)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        texture = textureMap[.off]
     }
 }

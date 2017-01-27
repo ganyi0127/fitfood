@@ -9,6 +9,9 @@
 import SpriteKit
 class EditScene: SKScene {
     
+    //精度
+    private let position_accuracy: Int16 = 80
+    
     fileprivate var mainCamera: MainCamera!
     fileprivate var sceneSize: CGSize!{
         didSet{
@@ -31,7 +34,17 @@ class EditScene: SKScene {
         return sky
     }()
     
-    fileprivate var editObject: Object?             //存储当前修改物件(一个临时对象)
+    fileprivate var editObject: Object?{
+        didSet{
+            guard let editObj = editObject else {
+                mainCamera.destroyableButton.isHidden = true
+                return
+            }
+            mainCamera.destroyableButton.isHidden = false
+            self.mainCamera.destroyableButton.xScale = editObj.destroyable ? 0.5 : 1
+        }
+    }//存储当前修改物件(一个临时对象)
+    
     fileprivate var objects = [Object]()                //存储所有添加物件
     
     //MARK:- 导入关卡(setOnly)
@@ -46,7 +59,7 @@ class EditScene: SKScene {
             inputLevel.inputObjectList.forEach(){
                 inputObject in
                 
-                let object = Object(type: ObjectType(rawValue: inputObject.type)!)
+                let object = Object(type: ObjectType(rawValue: inputObject.type)!, edit: true)
                 object.position = CGPoint(x: inputObject.x, y: inputObject.y)
                 object.destroyable = inputObject.destroyable
                 addChild(object)
@@ -56,11 +69,11 @@ class EditScene: SKScene {
     }
     
     //MARK:- 地图信息
-    var world: World?           //地图
-    var level: Int16?           //关卡
+    var world: WorldType?           //地图
+    var level: Int16?               //关卡
     
     //MARK:- init
-    init(world: World?, level: Int16?, inputLevel: InputLevel) {
+    init(world: WorldType?, level: Int16?, inputLevel: InputLevel) {
         super.init(size: win_size)
         
         sceneSize = CGSize(width: inputLevel.width, height: inputLevel.height)
@@ -125,37 +138,61 @@ class EditScene: SKScene {
                     }
                     self.editObject = nil
                 }
+            case .destroyable:
+                //设置为一次性物品
+                if let editObj = self.editObject{
+                    editObj.destroyable = !editObj.destroyable
+                    self.mainCamera.destroyableButton.xScale = editObj.destroyable ? 0.5 : 1
+                }
             case .save:
                 //保存关卡
+                let textFieldMap = self.mainCamera.stack.textFieldMap
+                let defaultInput = InputLevel()
+
                 var inputLevel = InputLevel()
-                inputLevel.completeScore = 100
-                inputLevel.repeatScore = 20
-                inputLevel.finishTime = 60
-                inputLevel.touchTimes = 50
-                inputLevel.width = self.sceneSize.width
-                inputLevel.height = self.sceneSize.height
+                inputLevel.completeScore = Int16(textFieldMap[.completeScore]?.value ?? CGFloat(defaultInput.completeScore))
+                inputLevel.repeatScore = Int16(textFieldMap[.repeatScore]?.value ?? CGFloat(defaultInput.repeatScore))
+                inputLevel.finishTime = textFieldMap[.finishTime]?.value ?? defaultInput.finishTime
+                inputLevel.touchTimes = Int16(textFieldMap[.touchTimes]?.value ?? CGFloat(defaultInput.touchTimes))
+                let floatWidth = textFieldMap[.width]?.value ?? defaultInput.width
+                var width = Int16(floatWidth)
+                let widthRemainder = width % self.position_accuracy - (width % self.position_accuracy >= self.position_accuracy / 2 ? self.position_accuracy : 0)
+                width = width - widthRemainder
+                inputLevel.width = CGFloat(width)
+                let floatHeight = textFieldMap[.height]?.value ?? defaultInput.height
+                var height = Int16(floatHeight)
+                let heightRemainder = height % self.position_accuracy - (height % self.position_accuracy >= self.position_accuracy / 2 ? self.position_accuracy : 0)
+                height = height - heightRemainder
+                inputLevel.height = CGFloat(height)
                 var inputObjectList = [InputObject]()
                 self.objects.forEach(){
                     object in
                     var inputObject = InputObject()
                     inputObject.destroyable = object.destroyable
                     inputObject.type = object.type.rawValue
-                    inputObject.x = object.position.x
-                    inputObject.y = object.position.y
+                    var posX = Int16(object.position.x)
+                    let posXRemainder = posX % self.position_accuracy - (posX % self.position_accuracy >= self.position_accuracy / 2 ? self.position_accuracy : 0)
+                    posX = posX - posXRemainder
+                    inputObject.x = CGFloat(posX)
+                    var posY = Int16(object.position.y)
+                    let posYRemainder = posY % self.position_accuracy - (posY % self.position_accuracy >= self.position_accuracy / 2 ? self.position_accuracy : 0)
+                    posY = posY - posYRemainder
+                    inputObject.y = CGFloat(posY)
                     inputObjectList.append(inputObject)
                 }
                 inputLevel.inputObjectList = inputObjectList
                 
                 //写入关卡
                 guard let wld = self.world, let lev = self.level else{
-                    debugPrint("需传入地图与关卡")
+                    let message = "需传入地图与关卡"
+                    debugPrint(message)
                     break
                 }
                 LevelData.share().update(world: wld, level: lev, inputObject: inputLevel){
                     complete in
                     if complete{
                         //写入完成
-                        self.mainCamera.stackSwitch = false
+                        //self.mainCamera.stackSwitch = false
                     }else{
                         debugPrint("写入失败")
                     }
@@ -178,7 +215,7 @@ class EditScene: SKScene {
     //MARK:- 添加物件
     func add(object objectType: ObjectType){
 
-        let object = Object(type: objectType)
+        let object = Object(type: objectType, edit: true)
         object.position = CGPoint(x: sceneSize.width / 2, y: sceneSize.height / 2)
         addChild(object)
         
@@ -234,6 +271,7 @@ extension EditScene{
             }
         }
     }
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         touches.forEach(){
             touch in
@@ -261,6 +299,7 @@ extension EditScene{
             }
         }
     }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         touches.forEach(){
             touch in

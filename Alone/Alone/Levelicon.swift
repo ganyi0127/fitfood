@@ -22,10 +22,10 @@ class Levelicon: SKSpriteNode {
     
     fileprivate var isNew: Bool = false
     
-    var closure: ((World, Int16, Bool)->())!
+    var closure: ((WorldType, Int16, Bool)->())!
     
     //地图
-    var world: World!
+    var world: WorldType!
     //关卡数
     var level: Int16!{
         didSet{
@@ -33,7 +33,7 @@ class Levelicon: SKSpriteNode {
         }
     }
     
-    init(world: World, level: Int16, isNew: Bool = false, clicked: @escaping (World, Int16, Bool)->()){
+    init(world: WorldType, level: Int16, isNew: Bool = false, clicked: @escaping (WorldType, Int16, Bool)->()){
         super.init(texture: nil, color: .red, size: CGSize(width: 200, height: 200))
         
         self.world = world

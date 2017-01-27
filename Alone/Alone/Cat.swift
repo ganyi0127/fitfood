@@ -44,7 +44,7 @@ class CatNode: SKSpriteNode {
         }){
             error in
             //错误处理
-            debug(items: error)
+            debugPrint(error)
         }
     }
     
@@ -57,6 +57,7 @@ class CatNode: SKSpriteNode {
             }
             let physics: SKPhysicsBody = SKPhysicsBody(texture: tex, size: tex.size())
             physics.categoryBitMask = Mask.cat
+            physics.contactTestBitMask = Mask.bird | Mask.star | Mask.bad | Mask.finish
             physics.affectedByGravity = true
             physics.allowsRotation = false
             physics.isDynamic = true

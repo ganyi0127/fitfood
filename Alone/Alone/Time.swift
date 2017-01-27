@@ -41,8 +41,3 @@ func delay(_ time: TimeInterval, task: @escaping ()->()) -> Task?{
 func cancel(_ task: Task?){
     task?(true)
 }
-
-//MARK:- 自定义打印
-func debug(items: Any...){
-    print(items)
-}

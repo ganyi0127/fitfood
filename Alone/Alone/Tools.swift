@@ -33,7 +33,7 @@ class Tools: SKNode {
         objectIconNameMap.enumerated().forEach(){
             index, element in
             let node = Toolicon(type: element.key)
-            node.position = CGPoint(x: 0, y: -node.size.height / 2 - node.size.height * CGFloat(index))
+            node.position = CGPoint(x: 0, y: -node.size.height / 2 - 160 * CGFloat(index))
             addChild(node)
         }
     }

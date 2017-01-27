@@ -18,9 +18,17 @@ let atlas = SKTextureAtlas(named: "Resource.atlas")
 
 //MARK:- 物理体
 struct Mask{
-    static let edgeLoop: UInt32 = 0x01 << 0
-    static let box: UInt32 = 0x01 << 1
-    static let cat: UInt32 = 0x01 << 2
+    static let edgeLoop: UInt32 = 0x01 << 0     //包围
+    static let box: UInt32 = 0x01 << 1          //物件
+    static let cat: UInt32 = 0x01 << 2          //猫
+    
+    static let bird: UInt32 = 0x01 << 10        //鸟儿
+    static let star: UInt32 = 0x01 << 11        //星星
+    static let gold: UInt32 = 0x01 << 12        //金币
+    
+    static let bad: UInt32 = 0x01 << 20
+    
+    static let finish: UInt32 = 0x01 << 31      //结束
 }
 
 //MARK:- 层级

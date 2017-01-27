@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class HomeScene: SKScene {
     
     private var catNode: CatNode?
     
@@ -46,20 +46,29 @@ class GameScene: SKScene {
         let editButton = Button(type: .edit){
             _ in
             //获取原始关卡并切换
-            if let inputLevel = LevelData.share().get(world: .field, level: 1){
-                
-                let editScene = EditScene(world: nil, level: nil, inputLevel: inputLevel)
-                editScene.scaleMode = .aspectFill
-                self.view?.presentScene(editScene)
-            }
+            let editScene = EditScene(world: nil, level: nil, inputLevel: InputLevel())
+            editScene.scaleMode = .aspectFill
+            self.view?.presentScene(editScene)
         }
         editButton.position = CGPoint(x: size.width - editButton.size.width, y: size.height - editButton.size.height)
         addChild(editButton)
+        
+        //创建world选择按钮
+        let worldButton = Button(type: .world){
+            _ in
+            //切换页面
+            if let worldScene = WorldScene(fileNamed: "WorldScene"){
+                worldScene.scaleMode = .aspectFill
+                self.view?.presentScene(worldScene)
+            }
+        }
+        worldButton.position = CGPoint(x: size.width - worldButton.size.width, y: editButton.position.y - worldButton.size.height)
+        addChild(worldButton)
     }
 }
 
 //MARK:- 触摸事件
-extension GameScene{
+extension HomeScene{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         touches.forEach(){
@@ -102,7 +111,6 @@ extension GameScene{
                     //力向量
                     let forceVector = CGVector(dx: (originPoint.x - location.x) * force * 0.5, dy: (originPoint.y - location.y) * force * 0.5)
                     
-                    print("force vector:\n\(forceVector)")
                     //为合适物理体添加力
                     body.applyForce(forceVector)
                 }
@@ -129,7 +137,7 @@ extension GameScene{
 }
 
 //MARK:- 物理碰撞
-extension GameScene: SKPhysicsContactDelegate{
+extension HomeScene: SKPhysicsContactDelegate{
     func didBegin(_ contact: SKPhysicsContact) {
         var bodyA = contact.bodyA
         var bodyB = contact.bodyB

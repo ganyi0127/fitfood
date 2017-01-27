@@ -21,8 +21,10 @@ class MainCamera: SKCameraNode {
     }
     
     //折叠面板-设置
-    private let stack = Stack()
+    let stack = Stack()
 
+    //一次性按钮
+    var destroyableButton: Button!
     
     //MARK:- init
     init(isEdit: Bool = false, clicked: ((ButtonType)->())? = nil) {
@@ -42,7 +44,15 @@ class MainCamera: SKCameraNode {
     
     private func createContents(){
         if isEdit {
+            //编辑模式
             initEdit()
+        }else{
+            //游戏模式
+            
+            //创建world选择按钮
+            let worldButton = Button(type: .world, clicked: clicked)
+            worldButton.position = CGPoint(x: win_size.width / 2 - worldButton.size.width, y: win_size.height / 2 - worldButton.size.height)
+            addChild(worldButton)
         }
     }
     
@@ -67,15 +77,21 @@ class MainCamera: SKCameraNode {
         stackButton.zPosition = stackButton.zPosition + 1
         addChild(stackButton)
         
-        //-添加折叠窗
-        addChild(stack)
+        //添加一次性按钮
+        destroyableButton = Button(type: .destroyable, clicked: clicked)
+        destroyableButton.position = CGPoint(x: win_size.width / 2 - destroyableButton.size.width * 1.5, y: win_size.height / 2 - destroyableButton.size.height * 3.3)
+        addChild(destroyableButton)
         
+        //-添加折叠窗-------
+        addChild(stack)
         
         //创建保存按钮
         let saveButton = Button(type: .save, clicked: clicked)
         saveButton.position = CGPoint(x: -stack.size.width / 2 + saveButton.size.width / 2, y: stack.size.height / 2 - saveButton.size.height / 2)
         stack.addChild(saveButton)
         
+        //初始化展开
+        stackSwitch = true
     }
     
     //MARK:- 控制折叠面板
@@ -107,6 +123,25 @@ class MainCamera: SKCameraNode {
         }else if position.y - win_size.height / 2 < 0{
             position.y = win_size.height / 2
         }
+    }
+    
+    func setPointPosition(sceneSize: CGSize, pointPosition: CGPoint){
+        
+        var point = pointPosition
+        
+        if point.x + win_size.width / 2 > sceneSize.width {
+            point.x = sceneSize.width - win_size.width / 2
+        }else if point.x - win_size.width / 2 < 0{
+            point.x = win_size.width / 2
+        }
+        
+        if point.y + win_size.height / 2 > sceneSize.height {
+            point.y = sceneSize.height - win_size.height / 2
+        }else if point.y - win_size.height / 2 < 0{
+            point.y = win_size.height / 2
+        }
+        
+        position = point
     }
     
     required init?(coder aDecoder: NSCoder) {

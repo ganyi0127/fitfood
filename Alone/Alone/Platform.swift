@@ -9,7 +9,8 @@
 import SpriteKit
 class Platform: SKSpriteNode {
     init(){
-        super.init(texture: nil, color: .yellow, size: CGSize(width: 200, height: 50))
+        let tex = atlas.textureNamed("plat")
+        super.init(texture: tex, color: .clear, size: tex.size())
         
         config()
         createContents()
