@@ -15,6 +15,10 @@ class GameScene: SKScene {
         return FightBase(rowCount: 7, lineCount: 7)
     }()
     
+    private lazy var background: Background = {
+        return Background()
+    }()
+    
     //MARK:- 无用方法
     override func sceneDidLoad() {
     }
@@ -30,6 +34,8 @@ class GameScene: SKScene {
     }
     
     private func createContents(){
+        
+        addChild(background)
         addChild(fightBase)
     }
     

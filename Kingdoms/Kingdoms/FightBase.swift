@@ -46,9 +46,17 @@ class FightBase: SKSpriteNode {
             startCube.coordinate = endIdxPth
             endCube.coordinate = staIdxPth
             
-            checkMatrix(){
-                count in
-                debugPrint(count)
+            //操作后重置
+            _ = delay(move_time){
+                self.initMatrix(){
+                    count in
+                    debugPrint(count)
+                    //判断操作是否有效
+                    if count == 0 {
+                        startCube.coordinate = staIdxPth
+                        endCube.coordinate = endIdxPth
+                    }
+                }
             }
         }
     }
@@ -82,39 +90,69 @@ class FightBase: SKSpriteNode {
     
     private func createContents(){
         
-        initMatrix()
+        initMatrix(){
+            count in
+        }
     }
     
     //MARK:- 生成矩阵
-    private func initMatrix(){
-        cubeList.forEach(){
-            cube in
-            cube.removeFromParent()
-        }
-        cubeList.removeAll()
+    private func initMatrix(closure: @escaping (Int)->()){
+        
+        //判断是否产生新cube
+        var hasNewcube = false
         
         (0..<rowCount).forEach(){
             row in
             (0..<lineCount).forEach(){
                 line in
                 
-                //判断当前位置是否存在cube,随机创建cube
-                let isnotexist = cubeList.filter(){$0.coordinate == (row: row, line: line)}.isEmpty
-                if isnotexist{
-                    let cubeRaw = Int(arc4random_uniform(4)) + 1
-                    if let cubeType = FightCubeType(rawValue: cubeRaw){
-                        let cube = FightCube(cubeType)
-                        cube.coordinate = (row: row, line: line)
-                        cubeList.insert(cube)
-                        addChild(cube)
+                let curRow = rowCount - 1 - row
+                var reverseRow = curRow
+                var cube = getCube(fromCoordinate: reverseRow, line: line)
+                //当cube不存在时，往上查找
+                while cube == nil{
+                    
+                    reverseRow -= 1
+                    if reverseRow < 0{
+                        
+                        hasNewcube = true
+                        
+                        let cubeRaw = Int(arc4random_uniform(4)) + 1
+                        let cubeType = FightCubeType(rawValue: cubeRaw)!
+                        cube = FightCube(cubeType)
+                        let posX = CGFloat(line) * cube_size!.width + cube_size!.width / 2 - matrix_size.width / 2
+                        let posY = matrix_size.width / 2 + cube_size!.height / 2
+                        cube?.position = CGPoint(x: posX, y: posY)
+                        cubeList.insert(cube!)
+                        addChild(cube!)
+                        cube?.coordinate = (row: curRow, line: line)
+                    }else{
+                        cube = getCube(fromCoordinate: reverseRow, line: line)
                     }
                 }
+                cube?.coordinate = (row: curRow, line: line)
             }
         }
         
-        checkMatrix(){
-            count in
-            debugPrint(count)
+        var deleteCount = 0
+        _ = delay(hasNewcube ? move_time : 0){
+            self.checkMatrix(){
+                count in
+                
+                deleteCount += count
+                if count > 0{
+                    //判断每轮消除个数
+                    debugPrint("sub:", count)
+
+                    self.initMatrix(){
+                        c in
+                        deleteCount += c
+                        closure(deleteCount)
+                    }
+                }else{
+                    closure(0)
+                }
+            }
         }
     }
     
@@ -150,8 +188,8 @@ class FightBase: SKSpriteNode {
                     }while curType == cube.type
                     
                     //超过2个进入删除列表
-                    if tempList.count > 2{
-                        deleteList = deleteList.union(tempList)
+                    if let temp = decideDeleteCount(fromTemplist: tempList){
+                        deleteList = deleteList.union(temp)
                     }
                     
                     //右
@@ -169,8 +207,9 @@ class FightBase: SKSpriteNode {
                         }
                     }while curType == cube.type
                     
-                    if tempList.count > 2{
-                        deleteList = deleteList.union(tempList)
+                    //超过2个进入删除列表
+                    if let temp = decideDeleteCount(fromTemplist: tempList){
+                        deleteList = deleteList.union(temp)
                     }
                 }
             }
@@ -185,6 +224,25 @@ class FightBase: SKSpriteNode {
         
         //回调数量
         closure(deleteList.count)
+    }
+    
+    //MARK:- 判断消除个数并返回消除数组
+    private func decideDeleteCount(fromTemplist templist: Set<FightCube>) -> Set<FightCube>?{
+        var temp = templist
+        if temp.count > 2{
+            
+            //***此处发送消除消息***
+            notify_manager.post(name: notify_cubes, object: temp.count > 5 ? 5 : temp.count)
+            
+            //判断单次消除个数
+            if temp.count == 4{
+                temp.removeFirst().isPower = true
+            }else if temp.count > 4{
+                temp.removeFirst().type = .special
+            }
+            return temp
+        }
+        return nil
     }
     
     //MARK:- 根据坐标获取cube

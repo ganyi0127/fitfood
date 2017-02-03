@@ -13,6 +13,7 @@ enum FightCubeType: Int {
     case defense
     case magic
     case tenacity
+    case special
 }
 class FightCube: SKSpriteNode {
     
@@ -22,7 +23,15 @@ class FightCube: SKSpriteNode {
     //类型
     var type: FightCubeType?{
         didSet{
-            
+            if type == .special{
+                color = .black
+            }
+        }
+    }
+    
+    var isPower = false{
+        didSet{
+            alpha = 0.5
         }
     }
     
@@ -34,7 +43,11 @@ class FightCube: SKSpriteNode {
             let posX = CGFloat(line) * cube_size!.width + cube_size!.width / 2 - matrix_size.width / 2
             let posY = matrix_size.width / 2 - CGFloat(row) * cube_size!.height - cube_size!.height / 2
             
-            position = CGPoint(x: posX, y: posY)
+            let targetPosition = CGPoint(x: posX, y: posY)
+            
+            let moveAct = SKAction.move(to: targetPosition, duration: move_time)
+            moveAct.timingMode = .easeOut
+            run(moveAct)
         }
     }
     
@@ -45,6 +58,8 @@ class FightCube: SKSpriteNode {
         switch self.type! {
         case .attack:
             color = .red
+        case .special:
+            color = .black
         case .defense:
             color = .yellow
         case .magic:
