@@ -8,12 +8,12 @@
 
 import SpriteKit
 enum FightCubeType: Int {
-    case none = 0
-    case attack
-    case defense
-    case magic
-    case tenacity
-    case special
+    case none = 0       //无
+    case attack         //攻击
+    case defense        //防御
+    case magic          //魔法
+    case tenacity       //坚韧
+    case special        //特殊
 }
 class FightCube: SKSpriteNode {
     
@@ -24,14 +24,18 @@ class FightCube: SKSpriteNode {
     var type: FightCubeType?{
         didSet{
             if type == .special{
-                color = .black
+                let specialTex = SKTexture(imageNamed: "resource/cube/special_front")
+                texture = specialTex
             }
         }
     }
     
     var isPower = false{
         didSet{
-            alpha = 0.5
+            let backTex = SKTexture(imageNamed: "resource/cube/" + texName + "_back")
+            let back = SKSpriteNode(texture: backTex, size: backTex.size())
+            back.zPosition = -0.1
+            addChild(back)
         }
     }
     
@@ -48,29 +52,64 @@ class FightCube: SKSpriteNode {
             let moveAct = SKAction.move(to: targetPosition, duration: move_time)
             moveAct.timingMode = .easeOut
             run(moveAct)
+            
+            //test
+            label.text = "\(row)_\(line)"
         }
     }
+    
+    //test
+    private lazy var label: SKLabelNode = {
+        let label: SKLabelNode = SKLabelNode(fontNamed: font_name)
+        label.fontColor = .black
+        label.zPosition = 0.1
+        label.fontSize = 40
+        label.horizontalAlignmentMode = .center
+        return label
+    }()
+    
+    //test
+    private var markDot: SKSpriteNode?
+    
+    //标记单次遍历
+    var isMarked = false{
+        didSet{
+            if isMarked {
+                if markDot == nil{
+                    markDot = SKSpriteNode(color: .white, size: CGSize(width: 5, height: 5))
+                    markDot?.zPosition = 0.2
+                    addChild(markDot!)
+                }
+            }else{
+                if markDot != nil{
+                    markDot!.removeFromParent()
+                    markDot = nil
+                }
+            }
+        }
+    }
+    
+    private var texName = ""
     
     //MARK:- init
     init(_ type: FightCubeType) {
         self.type = type
-        var color: SKColor
         switch self.type! {
         case .attack:
-            color = .red
+            texName = "attack"
         case .special:
-            color = .black
+            texName = "special"
         case .defense:
-            color = .yellow
+            texName = "defense"
         case .magic:
-            color = .purple
+            texName = "magic"
         case .tenacity:
-            color = .green
+            texName = "tenacity"
         default:
-            color = .clear
+            texName = ""
         }
-        
-        super.init(texture: nil, color: color, size: cube_size!)
+        let tex = SKTexture(imageNamed: "resource/cube/" + texName + "_front")
+        super.init(texture: tex, color: .clear, size: tex.size())
         
         config()
         createContents()
@@ -81,10 +120,10 @@ class FightCube: SKSpriteNode {
     }
     
     private func config(){
-        
+        zPosition = ZPos.cube
     }
     
     private func createContents(){
-        
+        addChild(label)
     }
 }

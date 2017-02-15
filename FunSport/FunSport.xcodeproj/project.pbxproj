@@ -99,13 +99,9 @@
 		32D411AE1DEBBD16008EE637 /* FunSport */ = {
 			isa = PBXGroup;
 			children = (
-				32D411AF1DEBBD16008EE637 /* AppDelegate.swift */,
 				32D411B11DEBBD16008EE637 /* ViewController.swift */,
-				32D411B31DEBBD16008EE637 /* Main.storyboard */,
-				32D411B91DEBBD16008EE637 /* Assets.xcassets */,
-				32D411BB1DEBBD16008EE637 /* LaunchScreen.storyboard */,
-				32D411BE1DEBBD16008EE637 /* Info.plist */,
-				32D411B61DEBBD16008EE637 /* FunSport.xcdatamodeld */,
+				32D411E11DEBBD55008EE637 /* coredata */,
+				32D411E01DEBBD3D008EE637 /* supportingfiles */,
 			);
 			path = FunSport;
 			sourceTree = "<group>";
@@ -126,6 +122,26 @@
 				32D411D41DEBBD16008EE637 /* Info.plist */,
 			);
 			path = FunSportUITests;
+			sourceTree = "<group>";
+		};
+		32D411E01DEBBD3D008EE637 /* supportingfiles */ = {
+			isa = PBXGroup;
+			children = (
+				32D411AF1DEBBD16008EE637 /* AppDelegate.swift */,
+				32D411B31DEBBD16008EE637 /* Main.storyboard */,
+				32D411B91DEBBD16008EE637 /* Assets.xcassets */,
+				32D411BB1DEBBD16008EE637 /* LaunchScreen.storyboard */,
+				32D411BE1DEBBD16008EE637 /* Info.plist */,
+			);
+			name = supportingfiles;
+			sourceTree = "<group>";
+		};
+		32D411E11DEBBD55008EE637 /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+				32D411B61DEBBD16008EE637 /* FunSport.xcdatamodeld */,
+			);
+			name = coredata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

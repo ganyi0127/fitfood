@@ -11,11 +11,11 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private lazy var fightBase: FightBase = {
+    fileprivate lazy var fightBase: FightBase = {
         return FightBase(rowCount: 7, lineCount: 7)
     }()
     
-    private lazy var background: Background = {
+    fileprivate lazy var background: Background = {
         return Background()
     }()
     
@@ -40,14 +40,15 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
+        background.update(currentTime)
     }
 }
 
 //MARK;- touch
 extension GameScene{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+//        fightBase.hidden(!fightBase.isBaseHidden)
+        background.nextWave()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

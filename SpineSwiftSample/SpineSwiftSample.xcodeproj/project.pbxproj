@@ -17,6 +17,10 @@
 		320F4FDB1D98006700895CFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 320F4FD91D98006700895CFE /* LaunchScreen.storyboard */; };
 		320F4FE61D98006700895CFE /* SpineSwiftSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F4FE51D98006700895CFE /* SpineSwiftSampleTests.swift */; };
 		320F4FF11D98006700895CFE /* SpineSwiftSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F4FF01D98006700895CFE /* SpineSwiftSampleUITests.swift */; };
+		320F50041D98013000895CFE /* SpineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F50031D98013000895CFE /* SpineNode.swift */; };
+		320F50061D98088200895CFE /* SpineBone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F50051D98088200895CFE /* SpineBone.swift */; };
+		320F50081D98C88100895CFE /* SpineSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F50071D98C88100895CFE /* SpineSlot.swift */; };
+		320F500A1D98D26200895CFE /* SpineAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F50091D98D26200895CFE /* SpineAttachment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		320F4FEC1D98006700895CFE /* SpineSwiftSampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpineSwiftSampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		320F4FF01D98006700895CFE /* SpineSwiftSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpineSwiftSampleUITests.swift; sourceTree = "<group>"; };
 		320F4FF21D98006700895CFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		320F50031D98013000895CFE /* SpineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpineNode.swift; sourceTree = "<group>"; };
+		320F50051D98088200895CFE /* SpineBone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpineBone.swift; sourceTree = "<group>"; };
+		320F50071D98C88100895CFE /* SpineSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpineSlot.swift; sourceTree = "<group>"; };
+		320F50091D98D26200895CFE /* SpineAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpineAttachment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,15 +111,9 @@
 		320F4FC91D98006700895CFE /* SpineSwiftSample */ = {
 			isa = PBXGroup;
 			children = (
-				320F4FCA1D98006700895CFE /* AppDelegate.swift */,
-				320F4FCC1D98006700895CFE /* GameScene.sks */,
-				320F4FCE1D98006700895CFE /* Actions.sks */,
+				320F50021D9800FF00895CFE /* SpineSwiftLibfiles */,
 				320F4FD01D98006700895CFE /* GameScene.swift */,
-				320F4FD21D98006700895CFE /* GameViewController.swift */,
-				320F4FD41D98006700895CFE /* Main.storyboard */,
-				320F4FD71D98006700895CFE /* Assets.xcassets */,
-				320F4FD91D98006700895CFE /* LaunchScreen.storyboard */,
-				320F4FDC1D98006700895CFE /* Info.plist */,
+				320F4FFE1D98008100895CFE /* SupportingFiles */,
 			);
 			path = SpineSwiftSample;
 			sourceTree = "<group>";
@@ -133,6 +135,32 @@
 			);
 			path = SpineSwiftSampleUITests;
 			sourceTree = "<group>";
+		};
+		320F4FFE1D98008100895CFE /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				320F4FCA1D98006700895CFE /* AppDelegate.swift */,
+				320F4FCC1D98006700895CFE /* GameScene.sks */,
+				320F4FCE1D98006700895CFE /* Actions.sks */,
+				320F4FD21D98006700895CFE /* GameViewController.swift */,
+				320F4FD41D98006700895CFE /* Main.storyboard */,
+				320F4FD71D98006700895CFE /* Assets.xcassets */,
+				320F4FD91D98006700895CFE /* LaunchScreen.storyboard */,
+				320F4FDC1D98006700895CFE /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		320F50021D9800FF00895CFE /* SpineSwiftLibfiles */ = {
+			isa = PBXGroup;
+			children = (
+				320F50031D98013000895CFE /* SpineNode.swift */,
+				320F50051D98088200895CFE /* SpineBone.swift */,
+				320F50071D98C88100895CFE /* SpineSlot.swift */,
+				320F50091D98D26200895CFE /* SpineAttachment.swift */,
+			);
+			path = SpineSwiftLibfiles;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -202,6 +230,7 @@
 				TargetAttributes = {
 					320F4FC61D98006700895CFE = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = NWGF84NL9Q;
 						ProvisioningStyle = Automatic;
 					};
 					320F4FE01D98006700895CFE = {
@@ -270,9 +299,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320F500A1D98D26200895CFE /* SpineAttachment.swift in Sources */,
+				320F50061D98088200895CFE /* SpineBone.swift in Sources */,
 				320F4FD11D98006700895CFE /* GameScene.swift in Sources */,
 				320F4FD31D98006700895CFE /* GameViewController.swift in Sources */,
+				320F50081D98C88100895CFE /* SpineSlot.swift in Sources */,
 				320F4FCB1D98006700895CFE /* AppDelegate.swift in Sources */,
+				320F50041D98013000895CFE /* SpineNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +457,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
 				INFOPLIST_FILE = SpineSwiftSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.SpineSwiftSample;
@@ -436,6 +470,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
 				INFOPLIST_FILE = SpineSwiftSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.SpineSwiftSample;

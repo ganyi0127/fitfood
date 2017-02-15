@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   Font.plist
-   FontLib
-
-   Created by YiGan on 23/01/2017.
-   Copyright (c) 2017 YiGan. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<dict>
+	<key>red</key>
+	<integer>0</integer>
+	<key>green</key>
+	<integer>0</integer>
+	<key>blue</key>
+	<integer>0</integer>
+	<key>size</key>
+	<integer>17</integer>
+	<key>text</key>
+	<string>I love this!</string>
+	<key>fontname</key>
+	<string>HelveticaNeue-Italic</string>
+</dict>
 </plist>

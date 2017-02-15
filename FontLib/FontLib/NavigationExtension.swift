@@ -6,4 +6,13 @@
 //  Copyright © 2017 YiGan. All rights reserved.
 //
 
-import Foundation
+import UIKit
+extension UINavigationController{
+    open override func awakeFromNib() {
+        navigationBar.backgroundColor = default_color
+        
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+    }
+}

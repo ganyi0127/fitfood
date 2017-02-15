@@ -32,6 +32,17 @@ class FightBase: SKSpriteNode {
                 return
             }
             
+            //判断是否为上下交换
+            guard staIdxPth.row == endIdxPth.row || staIdxPth.line == endIdxPth.line else {
+                return
+            }
+            
+            guard !isLocked else {
+                return
+            }
+            
+            isLocked = true
+            
             //获取start方块
             guard let startCube = cubeList.filter({$0.coordinate == staIdxPth}).first else{
                 return
@@ -48,9 +59,11 @@ class FightBase: SKSpriteNode {
             
             //操作后重置
             _ = delay(move_time){
-                self.initMatrix(){
+                self.initMatrix{
                     count in
                     debugPrint(count)
+                    self.isLocked = false
+                    
                     //判断操作是否有效
                     if count == 0 {
                         startCube.coordinate = staIdxPth
@@ -64,9 +77,15 @@ class FightBase: SKSpriteNode {
     //存储所有cube
     fileprivate var cubeList = Set<FightCube>()
     
+    //存储隐藏状态
+    var isBaseHidden = false
+    
+    //存储移动状态
+    fileprivate var isLocked = false
+    
     //MARK:- init
     init(rowCount: Int, lineCount: Int){
-        super.init(texture: nil, color: .blue, size: matrix_size)
+        super.init(texture: nil, color: .clear, size: matrix_size)
         
         //计算cube尺寸
         cube_size = CGSize(width: matrix_size.width / CGFloat(lineCount), height: matrix_size.height / CGFloat(rowCount))
@@ -90,20 +109,41 @@ class FightBase: SKSpriteNode {
     
     private func createContents(){
         
-        initMatrix(){
-            count in
+        initMatrix{_ in }
+    }
+    
+    //MARK:- 隐藏整个页面
+    func hidden(_ flag: Bool){
+        
+        guard !isLocked else {
+            return
+        }
+        
+        isBaseHidden = flag
+        
+        if flag {
+            cubeList.enumerated().forEach{
+                offset, cube in
+                cube.removeAllActions()
+                let moveAct = SKAction.moveTo(y: -matrix_size.height * 0.6, duration: TimeInterval(cubeList.count - offset) * 0.01)
+                moveAct.timingMode = .easeOut
+                cube.run(moveAct)
+            }
+        }else{
+            cubeList.forEach{$0.removeAllActions()}
+            initMatrix{_ in }
         }
     }
     
     //MARK:- 生成矩阵
-    private func initMatrix(closure: @escaping (Int)->()){
+    fileprivate func initMatrix(closure: @escaping (Int)->()){
         
         //判断是否产生新cube
         var hasNewcube = false
         
-        (0..<rowCount).forEach(){
+        (0..<rowCount).forEach{
             row in
-            (0..<lineCount).forEach(){
+            (0..<lineCount).forEach{
                 line in
                 
                 let curRow = rowCount - 1 - row
@@ -136,7 +176,7 @@ class FightBase: SKSpriteNode {
         
         var deleteCount = 0
         _ = delay(hasNewcube ? move_time : 0){
-            self.checkMatrix(){
+            self.checkMatrix{
                 count in
                 
                 deleteCount += count
@@ -144,7 +184,7 @@ class FightBase: SKSpriteNode {
                     //判断每轮消除个数
                     debugPrint("sub:", count)
 
-                    self.initMatrix(){
+                    self.initMatrix{
                         c in
                         deleteCount += c
                         closure(deleteCount)
@@ -163,76 +203,97 @@ class FightBase: SKSpriteNode {
         var deleteList = Set<FightCube>()
         
         //遍历
-        (0..<rowCount).forEach(){
+        (0..<rowCount).forEach{
             row in
-            (0..<lineCount).forEach(){
+            (0..<lineCount).forEach{
                 line in
                 
                 //判断并获取当前cube
                 if var cube = getCube(fromCoordinate: row, line: line) {
+                    
+                    //当cubetype不为特殊类型的情况下，查找
                     let curType = cube.type
-                    let originCube = cube
-
-                    //下
-                    var nextRow = row
-                    
-                    var tempList = Set<FightCube>()
-                    repeat{
-                        tempList.insert(cube)
-                        nextRow += 1
-                        if let nextCube = getCube(fromCoordinate: nextRow, line: line){
-                            cube = nextCube
-                        }else{
-                            break
+                    if curType != .special{
+                        let originCube = cube
+                        
+                        //下
+                        var nextRow = row
+                        
+                        var tempList = Set<FightCube>()
+                        repeat{
+                            tempList.insert(cube)
+                            nextRow += 1
+                            if let nextCube = getCube(fromCoordinate: nextRow, line: line){
+                                cube = nextCube
+                            }else{
+                                break
+                            }
+                        }while curType == cube.type
+                        
+                        //超过2个进入删除列表
+                        if let tuple = decideDeleteCount(fromTemplist: tempList, unionDelete: !deleteList.intersection(tempList).isEmpty){
+                            if let first = tuple.specialCube{
+                                deleteList.remove(first)
+                            }
+                            deleteList = deleteList.union(tuple.deleteList)
                         }
-                    }while curType == cube.type
-                    
-                    //超过2个进入删除列表
-                    if let temp = decideDeleteCount(fromTemplist: tempList){
-                        deleteList = deleteList.union(temp)
-                    }
-                    
-                    //右
-                    cube = originCube
-                    var nextLine = line
-                    
-                    tempList.removeAll()
-                    repeat{
-                        tempList.insert(cube)
-                        nextLine += 1
-                        if let nextCube = getCube(fromCoordinate: row, line: nextLine){
-                            cube = nextCube
-                        }else{
-                            break
+                        
+                        //右
+                        cube = originCube
+                        var nextLine = line
+                        
+                        tempList.removeAll()
+                        repeat{
+                            tempList.insert(cube)
+                            nextLine += 1
+                            if let nextCube = getCube(fromCoordinate: row, line: nextLine){
+                                cube = nextCube
+                            }else{
+                                break
+                            }
+                        }while curType == cube.type
+                        
+                        //超过2个进入删除列表
+                        if let tuple = decideDeleteCount(fromTemplist: tempList, unionDelete: !deleteList.intersection(tempList).isEmpty){
+                            if let first = tuple.specialCube{
+                                deleteList.remove(first)
+                            }
+                            deleteList = deleteList.union(tuple.deleteList)
                         }
-                    }while curType == cube.type
-                    
-                    //超过2个进入删除列表
-                    if let temp = decideDeleteCount(fromTemplist: tempList){
-                        deleteList = deleteList.union(temp)
                     }
                 }
             }
         }
-        
+
         //从列表中移除cubes
         cubeList = cubeList.subtracting(deleteList)
-        deleteList.forEach(){
-            cube in
-            cube.removeFromParent()
-        }
+        deleteList.forEach{$0.removeFromParent()}
         
         //回调数量
         closure(deleteList.count)
     }
     
     //MARK:- 判断消除个数并返回消除数组
-    private func decideDeleteCount(fromTemplist templist: Set<FightCube>) -> Set<FightCube>?{
+    private func decideDeleteCount(fromTemplist templist: Set<FightCube>, unionDelete: Bool) -> (deleteList: Set<FightCube>, specialCube: FightCube?)?{
         var temp = templist
-        if temp.count > 2{
+        guard temp.count > 2 else {
+            return nil
+        }
+        
+        if unionDelete {
             
+            //判断单次消除个数
+            let first = temp.removeFirst()
+            first.type = .special
+            return (temp, first)
+        }else{
             //***此处发送消除消息***
-            notify_manager.post(name: notify_cubes, object: temp.count > 5 ? 5 : temp.count)
+            let powerList = temp.filter{$0.isPower}
+            let isPower = powerList.isEmpty ? false : true
+            let userInfo = ["type": temp.first!.type!,
+                            "power" : isPower,
+                            "count": temp.count > 5 ? 5 : temp.count] as [String : Any]
+            notify_manager.post(name: notify_cubes, object: nil, userInfo: userInfo)
             
             //判断单次消除个数
             if temp.count == 4{
@@ -240,16 +301,19 @@ class FightBase: SKSpriteNode {
             }else if temp.count > 4{
                 temp.removeFirst().type = .special
             }
-            return temp
+            return (temp, nil)
         }
-        return nil
     }
     
     //MARK:- 根据坐标获取cube
     private func getCube(fromCoordinate row: Int, line: Int) -> FightCube?{
-        let list = cubeList.filter(){$0.coordinate == (row: row, line: line)}
+        let list = cubeList.filter{$0.coordinate == (row: row, line: line)}
         guard list.isEmpty else {
-            return list[0]
+            let firstCube = list[0]
+            if firstCube.isMarked {
+                return nil
+            }
+            return firstCube
         }
         return nil
     }
@@ -270,56 +334,137 @@ extension FightBase{
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touches.forEach(){
-            touch in
-            let location = touch.location(in: self)
-            startIndexpath = getCoordinate(fromLocation: location)      //存储开始点
+
+        guard event?.allTouches?.count == 1 else {
+            return
         }
+        
+        guard touches.count == 1 else {
+            return
+        }
+        
+        guard let touch = touches.first else {
+            return
+        }
+
+        guard touch.tapCount == 1 else {
+            return
+        }
+        
+        let location = touch.location(in: self)
+        startIndexpath = getCoordinate(fromLocation: location)      //存储开始点
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        touches.forEach(){
-            touch in
-            
-            let curLocation = touch.location(in: self)
-            let preLocation = touch.previousLocation(in: self)
-            
-            let deltaX = preLocation.x - curLocation.x
-            let deltaY = preLocation.y - curLocation.y
-            
-            //判定滑动方向
-            if fabs(deltaX) > fabs(deltaY){
-                //横滑
-                if deltaX > 0{
-                    direction = .right
-                }else{
-                    direction = .left
-                }
-            }else{
-                //竖滑
-                if deltaY > 0{
-                    direction = .up
-                }else{
-                    direction = .down
-                }
-            }
-            
-            //判断结束点位置
-            endIndexpath = getCoordinate(fromLocation: curLocation)     //存储结束点
+        
+        guard event?.allTouches?.count == 1 else {
+            return
         }
+        
+        guard touches.count == 1 else {
+            return
+        }
+        
+        guard let touch = touches.first else {
+            return
+        }
+
+        guard touch.tapCount == 1 else {
+            return
+        }
+        
+        let curLocation = touch.location(in: self)
+        let preLocation = touch.previousLocation(in: self)
+        
+        let deltaX = preLocation.x - curLocation.x
+        let deltaY = preLocation.y - curLocation.y
+        
+        //判定滑动方向
+        if fabs(deltaX) > fabs(deltaY){
+            //横滑
+            if deltaX > 0{
+                direction = .right
+            }else{
+                direction = .left
+            }
+        }else{
+            //竖滑
+            if deltaY > 0{
+                direction = .up
+            }else{
+                direction = .down
+            }
+        }
+        
+        //判断结束点位置
+        endIndexpath = getCoordinate(fromLocation: curLocation)     //存储结束点
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        touches.forEach(){
-            _ in
-            
+        guard event?.allTouches?.count == 1 else {
+            return
         }
+        
+        guard let touch = touches.first else {
+            return
+        }
+        
+        guard touch.tapCount == 1 else {
+            return
+        }
+        
+        //判断是否点击super cube
+        let location = touch.location(in: self)
+        let indexpath = getCoordinate(fromLocation: location)
+        
+        if let staIdxPth = startIndexpath, let idxPth = indexpath {
+            if staIdxPth == idxPth {
+                
+                //获取super cube
+                guard let cube = cubeList.filter({$0.coordinate == idxPth}).first, cube.type == .special else{
+                    return
+                }
+
+                cube.removeFromParent()
+                cubeList.remove(cube)
+                
+                //***此处发送消除消息***
+                let userInfo = ["type": FightCubeType.special,
+                                "power" : false,
+                                "count": 1] as [String : Any]
+                notify_manager.post(name: notify_cubes, object: nil, userInfo: userInfo)
+                
+                //操作后重置
+                _ = delay(move_time){
+                    self.initMatrix{
+                        count in
+                        debugPrint(count)
+                        self.isLocked = false
+                    }
+                }
+            }
+        }
+        
         //滑动结束调用
         startIndexpath = nil
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        guard event?.allTouches?.count == 1 else {
+            return
+        }
+        
+        guard let touch = touches.first else {
+            return
+        }
+        
+        guard touch.tapCount == 1 else {
+            return
+        }
+        
+        //滑动结束调用
         startIndexpath = nil
     }
 }
