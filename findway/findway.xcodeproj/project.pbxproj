@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		321DE84E1E681405006D9CFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE84D1E681405006D9CFF /* AppDelegate.swift */; };
+		321DE8501E681405006D9CFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE84F1E681405006D9CFF /* ViewController.swift */; };
+		321DE8531E681405006D9CFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321DE8511E681405006D9CFF /* Main.storyboard */; };
+		321DE8561E681405006D9CFF /* findway.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 321DE8541E681405006D9CFF /* findway.xcdatamodeld */; };
+		321DE8581E681405006D9CFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 321DE8571E681405006D9CFF /* Assets.xcassets */; };
+		321DE85B1E681405006D9CFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 321DE8591E681405006D9CFF /* LaunchScreen.storyboard */; };
+		321DE8661E681405006D9CFF /* findwayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE8651E681405006D9CFF /* findwayTests.swift */; };
+		321DE8711E681405006D9CFF /* findwayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321DE8701E681405006D9CFF /* findwayUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		321DE8621E681405006D9CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 321DE8421E681404006D9CFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 321DE8491E681405006D9CFF;
+			remoteInfo = findway;
+		};
+		321DE86D1E681405006D9CFF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 321DE8421E681404006D9CFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 321DE8491E681405006D9CFF;
+			remoteInfo = findway;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		321DE84A1E681405006D9CFF /* findway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findway.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		321DE84D1E681405006D9CFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		321DE84F1E681405006D9CFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		321DE8521E681405006D9CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		321DE8551E681405006D9CFF /* findway.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = findway.xcdatamodel; sourceTree = "<group>"; };
+		321DE8571E681405006D9CFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		321DE85A1E681405006D9CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		321DE85C1E681405006D9CFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		321DE8611E681405006D9CFF /* findwayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = findwayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		321DE8651E681405006D9CFF /* findwayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findwayTests.swift; sourceTree = "<group>"; };
+		321DE8671E681405006D9CFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		321DE86C1E681405006D9CFF /* findwayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = findwayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		321DE8701E681405006D9CFF /* findwayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findwayUITests.swift; sourceTree = "<group>"; };
+		321DE8721E681405006D9CFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		321DE8471E681405006D9CFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321DE85E1E681405006D9CFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321DE8691E681405006D9CFF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		321DE8411E681404006D9CFF = {
+			isa = PBXGroup;
+			children = (
+				321DE84C1E681405006D9CFF /* findway */,
+				321DE8641E681405006D9CFF /* findwayTests */,
+				321DE86F1E681405006D9CFF /* findwayUITests */,
+				321DE84B1E681405006D9CFF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		321DE84B1E681405006D9CFF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				321DE84A1E681405006D9CFF /* findway.app */,
+				321DE8611E681405006D9CFF /* findwayTests.xctest */,
+				321DE86C1E681405006D9CFF /* findwayUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		321DE84C1E681405006D9CFF /* findway */ = {
+			isa = PBXGroup;
+			children = (
+				321DE84D1E681405006D9CFF /* AppDelegate.swift */,
+				321DE84F1E681405006D9CFF /* ViewController.swift */,
+				321DE8511E681405006D9CFF /* Main.storyboard */,
+				321DE8571E681405006D9CFF /* Assets.xcassets */,
+				321DE8591E681405006D9CFF /* LaunchScreen.storyboard */,
+				321DE85C1E681405006D9CFF /* Info.plist */,
+				321DE8541E681405006D9CFF /* findway.xcdatamodeld */,
+			);
+			path = findway;
+			sourceTree = "<group>";
+		};
+		321DE8641E681405006D9CFF /* findwayTests */ = {
+			isa = PBXGroup;
+			children = (
+				321DE8651E681405006D9CFF /* findwayTests.swift */,
+				321DE8671E681405006D9CFF /* Info.plist */,
+			);
+			path = findwayTests;
+			sourceTree = "<group>";
+		};
+		321DE86F1E681405006D9CFF /* findwayUITests */ = {
+			isa = PBXGroup;
+			children = (
+				321DE8701E681405006D9CFF /* findwayUITests.swift */,
+				321DE8721E681405006D9CFF /* Info.plist */,
+			);
+			path = findwayUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		321DE8491E681405006D9CFF /* findway */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 321DE8751E681405006D9CFF /* Build configuration list for PBXNativeTarget "findway" */;
+			buildPhases = (
+				321DE8461E681405006D9CFF /* Sources */,
+				321DE8471E681405006D9CFF /* Frameworks */,
+				321DE8481E681405006D9CFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = findway;
+			productName = findway;
+			productReference = 321DE84A1E681405006D9CFF /* findway.app */;
+			productType = "com.apple.product-type.application";
+		};
+		321DE8601E681405006D9CFF /* findwayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 321DE8781E681405006D9CFF /* Build configuration list for PBXNativeTarget "findwayTests" */;
+			buildPhases = (
+				321DE85D1E681405006D9CFF /* Sources */,
+				321DE85E1E681405006D9CFF /* Frameworks */,
+				321DE85F1E681405006D9CFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				321DE8631E681405006D9CFF /* PBXTargetDependency */,
+			);
+			name = findwayTests;
+			productName = findwayTests;
+			productReference = 321DE8611E681405006D9CFF /* findwayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		321DE86B1E681405006D9CFF /* findwayUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 321DE87B1E681405006D9CFF /* Build configuration list for PBXNativeTarget "findwayUITests" */;
+			buildPhases = (
+				321DE8681E681405006D9CFF /* Sources */,
+				321DE8691E681405006D9CFF /* Frameworks */,
+				321DE86A1E681405006D9CFF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				321DE86E1E681405006D9CFF /* PBXTargetDependency */,
+			);
+			name = findwayUITests;
+			productName = findwayUITests;
+			productReference = 321DE86C1E681405006D9CFF /* findwayUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		321DE8421E681404006D9CFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = YiGan;
+				TargetAttributes = {
+					321DE8491E681405006D9CFF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = NWGF84NL9Q;
+						ProvisioningStyle = Automatic;
+					};
+					321DE8601E681405006D9CFF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = NWGF84NL9Q;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 321DE8491E681405006D9CFF;
+					};
+					321DE86B1E681405006D9CFF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = NWGF84NL9Q;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 321DE8491E681405006D9CFF;
+					};
+				};
+			};
+			buildConfigurationList = 321DE8451E681404006D9CFF /* Build configuration list for PBXProject "findway" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 321DE8411E681404006D9CFF;
+			productRefGroup = 321DE84B1E681405006D9CFF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				321DE8491E681405006D9CFF /* findway */,
+				321DE8601E681405006D9CFF /* findwayTests */,
+				321DE86B1E681405006D9CFF /* findwayUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		321DE8481E681405006D9CFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321DE85B1E681405006D9CFF /* LaunchScreen.storyboard in Resources */,
+				321DE8581E681405006D9CFF /* Assets.xcassets in Resources */,
+				321DE8531E681405006D9CFF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321DE85F1E681405006D9CFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321DE86A1E681405006D9CFF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		321DE8461E681405006D9CFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321DE8561E681405006D9CFF /* findway.xcdatamodeld in Sources */,
+				321DE8501E681405006D9CFF /* ViewController.swift in Sources */,
+				321DE84E1E681405006D9CFF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321DE85D1E681405006D9CFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321DE8661E681405006D9CFF /* findwayTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		321DE8681E681405006D9CFF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				321DE8711E681405006D9CFF /* findwayUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		321DE8631E681405006D9CFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 321DE8491E681405006D9CFF /* findway */;
+			targetProxy = 321DE8621E681405006D9CFF /* PBXContainerItemProxy */;
+		};
+		321DE86E1E681405006D9CFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 321DE8491E681405006D9CFF /* findway */;
+			targetProxy = 321DE86D1E681405006D9CFF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		321DE8511E681405006D9CFF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				321DE8521E681405006D9CFF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		321DE8591E681405006D9CFF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				321DE85A1E681405006D9CFF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		321DE8731E681405006D9CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		321DE8741E681405006D9CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		321DE8761E681405006D9CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = findway/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.findway;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		321DE8771E681405006D9CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = findway/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.findway;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		321DE8791E681405006D9CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = findwayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.findwayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/findway.app/findway";
+			};
+			name = Debug;
+		};
+		321DE87A1E681405006D9CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = findwayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.findwayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/findway.app/findway";
+			};
+			name = Release;
+		};
+		321DE87C1E681405006D9CFF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = findwayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.findwayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = findway;
+			};
+			name = Debug;
+		};
+		321DE87D1E681405006D9CFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = findwayUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.findwayUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = findway;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		321DE8451E681404006D9CFF /* Build configuration list for PBXProject "findway" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321DE8731E681405006D9CFF /* Debug */,
+				321DE8741E681405006D9CFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		321DE8751E681405006D9CFF /* Build configuration list for PBXNativeTarget "findway" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321DE8761E681405006D9CFF /* Debug */,
+				321DE8771E681405006D9CFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		321DE8781E681405006D9CFF /* Build configuration list for PBXNativeTarget "findwayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321DE8791E681405006D9CFF /* Debug */,
+				321DE87A1E681405006D9CFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		321DE87B1E681405006D9CFF /* Build configuration list for PBXNativeTarget "findwayUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				321DE87C1E681405006D9CFF /* Debug */,
+				321DE87D1E681405006D9CFF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		321DE8541E681405006D9CFF /* findway.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				321DE8551E681405006D9CFF /* findway.xcdatamodel */,
+			);
+			currentVersion = 321DE8551E681405006D9CFF /* findway.xcdatamodel */;
+			path = findway.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 321DE8421E681404006D9CFF /* Project object */;
+}
