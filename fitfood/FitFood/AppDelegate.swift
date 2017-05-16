@@ -16,26 +16,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //崩溃处理
+        NSSetUncaughtExceptionHandler(customUncaughtExceptionHandler())
+        
         return true
     }
+    
+    //MARK:- 崩溃回调
+    func customUncaughtExceptionHandler() -> @convention(c) (NSException) -> Void{
+        return {
+            (exception) -> Void in
+            
+            let stack = exception.callStackSymbols    //栈信息
+            let reason = exception.reason
+            let name = exception.name
+            
+            let data = "<exception> type: \(name), reason: \(String(describing: reason)), stackInfo:  \(stack))"
+            
+            //存储或反馈错误信息
+        }
+    }
 
+    //MARK:- 状态切换
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoPrivacy - Camera Usage Descriptionming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        debugPrint("__will resign active")
     }
 
+    //MARK:- 进入后台
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        debugPrint("__did enter background")
     }
 
+    //MARK:- 进入前台
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        debugPrint("__will enter foreground")
     }
 
+    //MARK:-
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
     }
 
     //MARK:- 程序终止
