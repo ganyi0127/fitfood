@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>FitFoodKeyborad.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>32A513C81EDABD2000411654</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>32F5635B1EC60DA9001B1946</key>
 		<dict>
 			<key>primary</key>

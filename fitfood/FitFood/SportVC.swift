@@ -6,4 +6,20 @@
 //  Copyright © 2017 YiGan. All rights reserved.
 //
 
-import Foundation
+import UIKit
+class SportVC: SubVC {
+    override func viewDidLoad() {
+        config()
+        createContents()
+    }
+    
+    override func config(){
+        super.config()
+        
+    }
+    
+    override func createContents(){
+        super.createContents()
+        
+    }
+}

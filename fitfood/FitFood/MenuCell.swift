@@ -6,4 +6,12 @@
 //  Copyright © 2017 YiGan. All rights reserved.
 //
 
-import Foundation
+import UIKit
+class MenuCell: UITableViewCell {
+    @IBOutlet weak var label: UILabel!
+    
+    
+    override func didMoveToSuperview() {
+        
+    }
+}

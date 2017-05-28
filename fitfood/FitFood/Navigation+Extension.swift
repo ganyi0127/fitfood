@@ -21,7 +21,8 @@ extension UINavigationController: UINavigationControllerDelegate{
                                              NSForegroundColorAttributeName: UIColor(red: 42 / 255, green: 42 / 255, blue: 42 / 255, alpha: 1)]
         
         
-        navigationBar.backgroundColor = .white
+        navigationBar.backgroundColor = .black
+        isNavigationBarHidden = true        
         
         /*
         let image = UIImage(named: "resource/navigation_back")?.transfromImage(size: CGSize(width: view_size.width, height: navigation_height! + 64))
@@ -33,6 +34,8 @@ extension UINavigationController: UINavigationControllerDelegate{
     //切换界面时调用_手环按钮
     public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
+        
+        return
         //判断是否为根视图
         if viewControllers.count == 1{
             /*

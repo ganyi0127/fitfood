@@ -7,8 +7,9 @@
 //
 
 import UIKit
-class MenuTVC: UIViewController {
+class MenuVC: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,7 +19,7 @@ class MenuTVC: UIViewController {
     
     private func config(){
         
-        tableView.rowHeight = (tableView.bounds.size.height - 44 - 20) / 7
+        navigationController?.isNavigationBarHidden = true
         navigationController?.navigationBar.clipsToBounds = true //不显示导航栏下面的小阴影
     }
     
@@ -28,34 +29,54 @@ class MenuTVC: UIViewController {
 }
 
 //MARK:- tableview
-extension MenuTVC {
+extension MenuVC: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MenuItem.shareItems.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MenuItem.sharedItems.count + 1
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view_size.height / 4
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = indexPath.row
+        if row == 0{
+            return view_size.height / 2
+        }
+        return view_size.height / 2 / 3
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MenuCell
-        let menuItem = MenuItem.shareItems[indexPath.row]
         
-        cell.menuLabel.text = menuItem.titleText
-        cell.menuLabel.font = font_big
-        
-        cell.contentView.backgroundColor = menuItem.backgroundColor
+        if row == 0{
+            cell.label.text = "fit food"
+            cell.backgroundColor = .gray
+        }else{
+            let menuItem = MenuItem.sharedItems[indexPath.row - 1]
+            
+            cell.label.text = menuItem.title
+            cell.label.font = font_big
+            
+            cell.contentView.backgroundColor = menuItem.color
+        }
         
         return cell
     }
         
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        (navigationController?.parent as! InitVC).switchTo(withMenuItemType: MenuItem.shareItems[indexPath.row].type)
+        
+        let initVC = navigationController?.parent as? InitVC
+        let row = indexPath.row
+        if row == 0{
+            //修改个人资料
+            initVC?.setInformation()
+        }else {
+            //跳转到编辑页面
+            initVC?.switchTo(withMenuItem: MenuItem.sharedItems[row - 1])
+        }
     }
 }

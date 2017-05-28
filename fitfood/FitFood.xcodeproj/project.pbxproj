@@ -7,6 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32A513CC1EDABD2000411654 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A513CB1EDABD2000411654 /* KeyboardViewController.swift */; };
+		32A513D01EDABD2000411654 /* FitFoodKeyborad.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		32B92CF11EDB272C003212BA /* Alert_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF01EDB272C003212BA /* Alert_Extension.swift */; };
+		32B92CF31EDB2810003212BA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF21EDB2810003212BA /* Timer.swift */; };
+		32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094A71ED1BC28008AB5AC /* InitVC.swift */; };
+		32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */; };
+		32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */; };
+		32D094AF1ED1BCCE008AB5AC /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AC1ED1BCCE008AB5AC /* MenuVC.swift */; };
+		32D094B41ED1D0CE008AB5AC /* FoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094B31ED1D0CE008AB5AC /* FoodVC.swift */; };
+		32D094B61ED1D1D4008AB5AC /* WaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094B51ED1D1D4008AB5AC /* WaterVC.swift */; };
+		32D094B81ED1D1DE008AB5AC /* SportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094B71ED1D1DE008AB5AC /* SportVC.swift */; };
+		32D094BA1ED1D5DC008AB5AC /* SubVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094B91ED1D5DC008AB5AC /* SubVC.swift */; };
+		32D095001ED477A2008AB5AC /* MainRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094FF1ED477A2008AB5AC /* MainRecordButton.swift */; };
+		32D095031ED5CC98008AB5AC /* InformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095021ED5CC98008AB5AC /* InformationVC.swift */; };
+		32D095051ED5D68D008AB5AC /* BigWhiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095041ED5D68D008AB5AC /* BigWhiteView.swift */; };
+		32D095091ED72070008AB5AC /* CD+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095081ED7206F008AB5AC /* CD+User.swift */; };
+		32D0950B1ED720BF008AB5AC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0950A1ED720BF008AB5AC /* UserManager.swift */; };
+		32D095161ED72719008AB5AC /* CD+WeightItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0950C1ED72525008AB5AC /* CD+WeightItem.swift */; };
+		32D095181ED73247008AB5AC /* CD+Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095171ED73247008AB5AC /* CD+Condition.swift */; };
+		32D0951A1ED7D431008AB5AC /* CD+FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095191ED7D431008AB5AC /* CD+FoodItem.swift */; };
+		32D0951C1ED7D9A5008AB5AC /* CD+WaterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0951B1ED7D9A5008AB5AC /* CD+WaterItem.swift */; };
+		32D0951E1ED7DAE7008AB5AC /* CD+SportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0951D1ED7DAE7008AB5AC /* CD+SportItem.swift */; };
+		32D095211ED80059008AB5AC /* CD+Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D0951F1ED7FB57008AB5AC /* CD+Recipes.swift */; };
+		32D095231ED877E5008AB5AC /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095221ED877E5008AB5AC /* Selector.swift */; };
+		32D095251ED87C02008AB5AC /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095241ED87C02008AB5AC /* View+Extension.swift */; };
+		32D095271ED87C77008AB5AC /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D095261ED87C77008AB5AC /* ViewController+Extension.swift */; };
+		32EE9EB71EDAEFDD00C77B5F /* Container+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE9EB61EDAEFDD00C77B5F /* Container+Extension.swift */; };
+		32EE9EB91EDAFA9A00C77B5F /* resource in Resources */ = {isa = PBXBuildFile; fileRef = 32EE9EB81EDAFA9A00C77B5F /* resource */; };
+		32EE9EBB1EDB00AF00C77B5F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32EE9EBA1EDB00AF00C77B5F /* MainView.swift */; };
 		32F563601EC60DA9001B1946 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F5635F1EC60DA9001B1946 /* AppDelegate.swift */; };
 		32F563651EC60DAA001B1946 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32F563631EC60DAA001B1946 /* Main.storyboard */; };
 		32F5636A1EC60DAA001B1946 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32F563691EC60DAA001B1946 /* Assets.xcassets */; };
@@ -19,15 +48,22 @@
 		32F5639A1EC71018001B1946 /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F563991EC71018001B1946 /* Setting.plist */; };
 		32F5639C1EC71024001B1946 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F5639B1EC71024001B1946 /* Setting.swift */; };
 		32F5639E1EC9E178001B1946 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F5639D1EC9E178001B1946 /* MainVC.swift */; };
-		32F563A11EC9E28F001B1946 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A01EC9E28F001B1946 /* NavigationExtension.swift */; };
+		32F563A11EC9E28F001B1946 /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A01EC9E28F001B1946 /* Navigation+Extension.swift */; };
 		32F563A31EC9E2E8001B1946 /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A21EC9E2E8001B1946 /* Configure.swift */; };
-		32F563A51EC9E45F001B1946 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A41EC9E45F001B1946 /* ColorExtension.swift */; };
-		32F563A71EC9E568001B1946 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A61EC9E568001B1946 /* ImageExtension.swift */; };
+		32F563A51EC9E45F001B1946 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A41EC9E45F001B1946 /* Color+Extension.swift */; };
+		32F563A71EC9E568001B1946 /* Image+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A61EC9E568001B1946 /* Image+Extension.swift */; };
 		32F563AA1EC9E635001B1946 /* PushTransition0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563A91EC9E635001B1946 /* PushTransition0.swift */; };
 		32F563AC1EC9E671001B1946 /* PopTransition0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F563AB1EC9E671001B1946 /* PopTransition0.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		32A513CE1EDABD2000411654 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32F563541EC60DA9001B1946 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 32A513C81EDABD2000411654;
+			remoteInfo = FitFoodKeyborad;
+		};
 		32F563741EC60DAA001B1946 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32F563541EC60DA9001B1946 /* Project object */;
@@ -44,7 +80,53 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		32A513D41EDABD2000411654 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				32A513D01EDABD2000411654 /* FitFoodKeyborad.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FitFoodKeyborad.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		32A513CB1EDABD2000411654 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		32A513CD1EDABD2000411654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32B92CF01EDB272C003212BA /* Alert_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert_Extension.swift; sourceTree = "<group>"; };
+		32B92CF21EDB2810003212BA /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		32D094A71ED1BC28008AB5AC /* InitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitVC.swift; sourceTree = "<group>"; };
+		32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
+		32D094AC1ED1BCCE008AB5AC /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		32D094B31ED1D0CE008AB5AC /* FoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodVC.swift; sourceTree = "<group>"; };
+		32D094B51ED1D1D4008AB5AC /* WaterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaterVC.swift; sourceTree = "<group>"; };
+		32D094B71ED1D1DE008AB5AC /* SportVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportVC.swift; sourceTree = "<group>"; };
+		32D094B91ED1D5DC008AB5AC /* SubVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubVC.swift; sourceTree = "<group>"; };
+		32D094FF1ED477A2008AB5AC /* MainRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRecordButton.swift; sourceTree = "<group>"; };
+		32D095021ED5CC98008AB5AC /* InformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationVC.swift; sourceTree = "<group>"; };
+		32D095041ED5D68D008AB5AC /* BigWhiteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigWhiteView.swift; sourceTree = "<group>"; };
+		32D095081ED7206F008AB5AC /* CD+User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+User.swift"; sourceTree = "<group>"; };
+		32D0950A1ED720BF008AB5AC /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		32D0950C1ED72525008AB5AC /* CD+WeightItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+WeightItem.swift"; sourceTree = "<group>"; };
+		32D0950F1ED72574008AB5AC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		32D095141ED725F1008AB5AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		32D095171ED73247008AB5AC /* CD+Condition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+Condition.swift"; sourceTree = "<group>"; };
+		32D095191ED7D431008AB5AC /* CD+FoodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+FoodItem.swift"; sourceTree = "<group>"; };
+		32D0951B1ED7D9A5008AB5AC /* CD+WaterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+WaterItem.swift"; sourceTree = "<group>"; };
+		32D0951D1ED7DAE7008AB5AC /* CD+SportItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+SportItem.swift"; sourceTree = "<group>"; };
+		32D0951F1ED7FB57008AB5AC /* CD+Recipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CD+Recipes.swift"; sourceTree = "<group>"; };
+		32D095221ED877E5008AB5AC /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
+		32D095241ED87C02008AB5AC /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		32D095261ED87C77008AB5AC /* ViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		32EE9EB61EDAEFDD00C77B5F /* Container+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Container+Extension.swift"; sourceTree = "<group>"; };
+		32EE9EB81EDAFA9A00C77B5F /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; path = resource; sourceTree = "<group>"; };
+		32EE9EBA1EDB00AF00C77B5F /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		32F5635C1EC60DA9001B1946 /* FitFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F5635F1EC60DA9001B1946 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32F563641EC60DAA001B1946 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,15 +144,22 @@
 		32F563991EC71018001B1946 /* Setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Setting.plist; sourceTree = "<group>"; };
 		32F5639B1EC71024001B1946 /* Setting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		32F5639D1EC9E178001B1946 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		32F563A01EC9E28F001B1946 /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
+		32F563A01EC9E28F001B1946 /* Navigation+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
 		32F563A21EC9E2E8001B1946 /* Configure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
-		32F563A41EC9E45F001B1946 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
-		32F563A61EC9E568001B1946 /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		32F563A41EC9E45F001B1946 /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		32F563A61EC9E568001B1946 /* Image+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Extension.swift"; sourceTree = "<group>"; };
 		32F563A91EC9E635001B1946 /* PushTransition0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushTransition0.swift; sourceTree = "<group>"; };
 		32F563AB1EC9E671001B1946 /* PopTransition0.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopTransition0.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		32A513C61EDABD2000411654 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32F563591EC60DA9001B1946 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,13 +184,85 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32A513CA1EDABD2000411654 /* FitFoodKeyborad */ = {
+			isa = PBXGroup;
+			children = (
+				32A513CB1EDABD2000411654 /* KeyboardViewController.swift */,
+				32A513CD1EDABD2000411654 /* Info.plist */,
+			);
+			path = FitFoodKeyborad;
+			sourceTree = "<group>";
+		};
+		32D094A91ED1BCBD008AB5AC /* 菜单 */ = {
+			isa = PBXGroup;
+			children = (
+				32D094AC1ED1BCCE008AB5AC /* MenuVC.swift */,
+				32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */,
+				32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */,
+			);
+			name = "菜单";
+			sourceTree = "<group>";
+		};
+		32D094B01ED1D095008AB5AC /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				32D094B31ED1D0CE008AB5AC /* FoodVC.swift */,
+			);
+			name = Food;
+			sourceTree = "<group>";
+		};
+		32D094B11ED1D0B7008AB5AC /* Water */ = {
+			isa = PBXGroup;
+			children = (
+				32D094B51ED1D1D4008AB5AC /* WaterVC.swift */,
+			);
+			name = Water;
+			sourceTree = "<group>";
+		};
+		32D094B21ED1D0C2008AB5AC /* Sport */ = {
+			isa = PBXGroup;
+			children = (
+				32D094B71ED1D1DE008AB5AC /* SportVC.swift */,
+			);
+			name = Sport;
+			sourceTree = "<group>";
+		};
+		32D094FE1ED476CB008AB5AC /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				32D094FF1ED477A2008AB5AC /* MainRecordButton.swift */,
+			);
+			name = Record;
+			sourceTree = "<group>";
+		};
+		32D095011ED5CC85008AB5AC /* 个人 */ = {
+			isa = PBXGroup;
+			children = (
+				32D095021ED5CC98008AB5AC /* InformationVC.swift */,
+				32D095041ED5D68D008AB5AC /* BigWhiteView.swift */,
+				32D095221ED877E5008AB5AC /* Selector.swift */,
+			);
+			name = "个人";
+			sourceTree = "<group>";
+		};
+		32D0950E1ED72574008AB5AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32D095141ED725F1008AB5AC /* UIKit.framework */,
+				32D0950F1ED72574008AB5AC /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		32F563531EC60DA9001B1946 = {
 			isa = PBXGroup;
 			children = (
 				32F5635E1EC60DA9001B1946 /* FitFood */,
 				32F563761EC60DAA001B1946 /* FitFoodTests */,
 				32F563811EC60DAA001B1946 /* FitFoodUITests */,
+				32A513CA1EDABD2000411654 /* FitFoodKeyborad */,
 				32F5635D1EC60DA9001B1946 /* Products */,
+				32D0950E1ED72574008AB5AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +272,7 @@
 				32F5635C1EC60DA9001B1946 /* FitFood.app */,
 				32F563731EC60DAA001B1946 /* FitFoodTests.xctest */,
 				32F5637E1EC60DAA001B1946 /* FitFoodUITests.xctest */,
+				32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,8 +283,11 @@
 				32F5635F1EC60DA9001B1946 /* AppDelegate.swift */,
 				32F563631EC60DAA001B1946 /* Main.storyboard */,
 				32F563691EC60DAA001B1946 /* Assets.xcassets */,
+				32EE9EB81EDAFA9A00C77B5F /* resource */,
 				32F5636B1EC60DAA001B1946 /* LaunchScreen.storyboard */,
-				32F563AD1EC9E72B001B1946 /* Main */,
+				32D094A71ED1BC28008AB5AC /* InitVC.swift */,
+				32D094A91ED1BCBD008AB5AC /* 菜单 */,
+				32F563AD1EC9E72B001B1946 /* 主页 */,
 				32F563A81EC9E608001B1946 /* Transitions */,
 				32F5639F1EC9E21E001B1946 /* Extensions */,
 				32F563931EC60F24001B1946 /* Sqlite */,
@@ -165,6 +330,14 @@
 			children = (
 				32F563941EC60F24001B1946 /* FitFood.xcdatamodeld */,
 				32F563971EC60F4C001B1946 /* CoredataHandler.swift */,
+				32D0950A1ED720BF008AB5AC /* UserManager.swift */,
+				32D095081ED7206F008AB5AC /* CD+User.swift */,
+				32D0950C1ED72525008AB5AC /* CD+WeightItem.swift */,
+				32D095171ED73247008AB5AC /* CD+Condition.swift */,
+				32D095191ED7D431008AB5AC /* CD+FoodItem.swift */,
+				32D0951B1ED7D9A5008AB5AC /* CD+WaterItem.swift */,
+				32D0951D1ED7DAE7008AB5AC /* CD+SportItem.swift */,
+				32D0951F1ED7FB57008AB5AC /* CD+Recipes.swift */,
 			);
 			path = Sqlite;
 			sourceTree = "<group>";
@@ -172,9 +345,14 @@
 		32F5639F1EC9E21E001B1946 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				32F563A01EC9E28F001B1946 /* NavigationExtension.swift */,
-				32F563A41EC9E45F001B1946 /* ColorExtension.swift */,
-				32F563A61EC9E568001B1946 /* ImageExtension.swift */,
+				32F563A01EC9E28F001B1946 /* Navigation+Extension.swift */,
+				32D095261ED87C77008AB5AC /* ViewController+Extension.swift */,
+				32EE9EB61EDAEFDD00C77B5F /* Container+Extension.swift */,
+				32D095241ED87C02008AB5AC /* View+Extension.swift */,
+				32F563A41EC9E45F001B1946 /* Color+Extension.swift */,
+				32F563A61EC9E568001B1946 /* Image+Extension.swift */,
+				32B92CF01EDB272C003212BA /* Alert_Extension.swift */,
+				32B92CF21EDB2810003212BA /* Timer.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -188,17 +366,41 @@
 			name = Transitions;
 			sourceTree = "<group>";
 		};
-		32F563AD1EC9E72B001B1946 /* Main */ = {
+		32F563AD1EC9E72B001B1946 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
 				32F5639D1EC9E178001B1946 /* MainVC.swift */,
+				32EE9EBA1EDB00AF00C77B5F /* MainView.swift */,
+				32D095011ED5CC85008AB5AC /* 个人 */,
+				32D094FE1ED476CB008AB5AC /* Record */,
+				32D094B91ED1D5DC008AB5AC /* SubVC.swift */,
+				32D094B01ED1D095008AB5AC /* Food */,
+				32D094B11ED1D0B7008AB5AC /* Water */,
+				32D094B21ED1D0C2008AB5AC /* Sport */,
 			);
-			name = Main;
+			name = "主页";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		32A513C81EDABD2000411654 /* FitFoodKeyborad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32A513D31EDABD2000411654 /* Build configuration list for PBXNativeTarget "FitFoodKeyborad" */;
+			buildPhases = (
+				32A513C51EDABD2000411654 /* Sources */,
+				32A513C61EDABD2000411654 /* Frameworks */,
+				32A513C71EDABD2000411654 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FitFoodKeyborad;
+			productName = FitFoodKeyborad;
+			productReference = 32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		32F5635B1EC60DA9001B1946 /* FitFood */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 32F563871EC60DAA001B1946 /* Build configuration list for PBXNativeTarget "FitFood" */;
@@ -206,10 +408,12 @@
 				32F563581EC60DA9001B1946 /* Sources */,
 				32F563591EC60DA9001B1946 /* Frameworks */,
 				32F5635A1EC60DA9001B1946 /* Resources */,
+				32A513D41EDABD2000411654 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				32A513CF1EDABD2000411654 /* PBXTargetDependency */,
 			);
 			name = FitFood;
 			productName = FitFood;
@@ -262,6 +466,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = YiGan;
 				TargetAttributes = {
+					32A513C81EDABD2000411654 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = NWGF84NL9Q;
+						ProvisioningStyle = Automatic;
+					};
 					32F5635B1EC60DA9001B1946 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = NWGF84NL9Q;
@@ -297,17 +506,26 @@
 				32F5635B1EC60DA9001B1946 /* FitFood */,
 				32F563721EC60DAA001B1946 /* FitFoodTests */,
 				32F5637D1EC60DAA001B1946 /* FitFoodUITests */,
+				32A513C81EDABD2000411654 /* FitFoodKeyborad */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		32A513C71EDABD2000411654 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32F5635A1EC60DA9001B1946 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				32F5639A1EC71018001B1946 /* Setting.plist in Resources */,
 				32F563921EC60EDA001B1946 /* Info.plist in Resources */,
+				32EE9EB91EDAFA9A00C77B5F /* resource in Resources */,
 				32F5636D1EC60DAA001B1946 /* LaunchScreen.storyboard in Resources */,
 				32F5636A1EC60DAA001B1946 /* Assets.xcassets in Resources */,
 				32F563651EC60DAA001B1946 /* Main.storyboard in Resources */,
@@ -331,21 +549,55 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		32A513C51EDABD2000411654 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32A513CC1EDABD2000411654 /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		32F563581EC60DA9001B1946 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32D0951E1ED7DAE7008AB5AC /* CD+SportItem.swift in Sources */,
+				32D095181ED73247008AB5AC /* CD+Condition.swift in Sources */,
 				32F5639C1EC71024001B1946 /* Setting.swift in Sources */,
+				32D095001ED477A2008AB5AC /* MainRecordButton.swift in Sources */,
 				32F563AC1EC9E671001B1946 /* PopTransition0.swift in Sources */,
+				32D095231ED877E5008AB5AC /* Selector.swift in Sources */,
+				32D095251ED87C02008AB5AC /* View+Extension.swift in Sources */,
 				32F563AA1EC9E635001B1946 /* PushTransition0.swift in Sources */,
+				32B92CF11EDB272C003212BA /* Alert_Extension.swift in Sources */,
+				32D095271ED87C77008AB5AC /* ViewController+Extension.swift in Sources */,
 				32F5639E1EC9E178001B1946 /* MainVC.swift in Sources */,
+				32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */,
+				32EE9EB71EDAEFDD00C77B5F /* Container+Extension.swift in Sources */,
+				32D095211ED80059008AB5AC /* CD+Recipes.swift in Sources */,
+				32D0950B1ED720BF008AB5AC /* UserManager.swift in Sources */,
 				32F563A31EC9E2E8001B1946 /* Configure.swift in Sources */,
-				32F563A51EC9E45F001B1946 /* ColorExtension.swift in Sources */,
+				32B92CF31EDB2810003212BA /* Timer.swift in Sources */,
+				32F563A51EC9E45F001B1946 /* Color+Extension.swift in Sources */,
+				32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */,
+				32D095051ED5D68D008AB5AC /* BigWhiteView.swift in Sources */,
+				32D094B41ED1D0CE008AB5AC /* FoodVC.swift in Sources */,
+				32D094BA1ED1D5DC008AB5AC /* SubVC.swift in Sources */,
+				32D094B81ED1D1DE008AB5AC /* SportVC.swift in Sources */,
 				32F563981EC60F4C001B1946 /* CoredataHandler.swift in Sources */,
 				32F563601EC60DA9001B1946 /* AppDelegate.swift in Sources */,
+				32EE9EBB1EDB00AF00C77B5F /* MainView.swift in Sources */,
+				32D0951C1ED7D9A5008AB5AC /* CD+WaterItem.swift in Sources */,
+				32D0951A1ED7D431008AB5AC /* CD+FoodItem.swift in Sources */,
 				32F563961EC60F24001B1946 /* FitFood.xcdatamodeld in Sources */,
-				32F563A71EC9E568001B1946 /* ImageExtension.swift in Sources */,
-				32F563A11EC9E28F001B1946 /* NavigationExtension.swift in Sources */,
+				32F563A71EC9E568001B1946 /* Image+Extension.swift in Sources */,
+				32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */,
+				32D094B61ED1D1D4008AB5AC /* WaterVC.swift in Sources */,
+				32F563A11EC9E28F001B1946 /* Navigation+Extension.swift in Sources */,
+				32D095091ED72070008AB5AC /* CD+User.swift in Sources */,
+				32D095031ED5CC98008AB5AC /* InformationVC.swift in Sources */,
+				32D095161ED72719008AB5AC /* CD+WeightItem.swift in Sources */,
+				32D094AF1ED1BCCE008AB5AC /* MenuVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +620,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		32A513CF1EDABD2000411654 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 32A513C81EDABD2000411654 /* FitFoodKeyborad */;
+			targetProxy = 32A513CE1EDABD2000411654 /* PBXContainerItemProxy */;
+		};
 		32F563751EC60DAA001B1946 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 32F5635B1EC60DA9001B1946 /* FitFood */;
@@ -400,6 +657,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		32A513D11EDABD2000411654 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = FitFoodKeyborad/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.fitfood.FitFoodKeyborad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		32A513D21EDABD2000411654 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = NWGF84NL9Q;
+				INFOPLIST_FILE = FitFoodKeyborad/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.fitfood.FitFoodKeyborad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		32F563851EC60DAA001B1946 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -496,6 +779,7 @@
 		32F563881EC60DAA001B1946 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NWGF84NL9Q;
 				INFOPLIST_FILE = "$(SRCROOT)/FitFood/SupportingFiles/Info.plist";
@@ -503,6 +787,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.fitfood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -510,6 +795,7 @@
 		32F563891EC60DAA001B1946 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NWGF84NL9Q;
 				INFOPLIST_FILE = "$(SRCROOT)/FitFood/SupportingFiles/Info.plist";
@@ -517,6 +803,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.fitfood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -582,6 +869,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		32A513D31EDABD2000411654 /* Build configuration list for PBXNativeTarget "FitFoodKeyborad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32A513D11EDABD2000411654 /* Debug */,
+				32A513D21EDABD2000411654 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32F563571EC60DA9001B1946 /* Build configuration list for PBXProject "FitFood" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
