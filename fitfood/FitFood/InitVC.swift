@@ -65,7 +65,6 @@ class InitVC: UIViewController {
         hideMenu(true)
         
         //初始化数据库
-        coredateHandler = CoredataHandler.share()
         user = coredateHandler.currentUser()
     }
     

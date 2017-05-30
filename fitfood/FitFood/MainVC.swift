@@ -7,6 +7,7 @@
 //
 
 import UIKit
+var infoChanged = false
 class MainVC: UIViewController {
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
@@ -104,11 +105,29 @@ class MainVC: UIViewController {
     }()
     
     //MARK:- 属性
-    var intakeCaloria: CGFloat = 0 {
+    private var caloriaValue: CGFloat = 0{
+        didSet{
+            intakeCaloria = caloriaValue
+        }
+    }
+    private var waterValue: CGFloat = 0{
+        didSet{
+            intakeWater = waterValue
+        }
+    }
+    private var intakeCaloria: CGFloat = 0 {
         didSet{
             mainView.intakeCaloria = intakeCaloria
         }
     }
+    private var intakeWater: CGFloat = 0{
+        didSet{
+            mainView.waters = intakeWater
+        }
+    }
+    
+    
+    
     
     //MARK:- init ***************************************************************
     override func viewDidLoad() {
@@ -124,12 +143,25 @@ class MainVC: UIViewController {
         view.bringSubview(toFront: mainButton)
         view.insertSubview(effectView, belowSubview: mainButton)
         
-        intakeCaloria = 1000
+        //刷新
+        if infoChanged {
+            infoChanged = false
+            //千卡
+            intakeCaloria = caloriaValue
+            //毫升
+            intakeWater = waterValue
+        }else{
+            //千卡
+            caloriaValue = 1000
+            //毫升
+            waterValue = 1500
+        }
     }
     
     private func config(){
         
-        navigationController?.isNavigationBarHidden = true        
+        navigationController?.isNavigationBarHidden = true
+        
     }
     
     private func createContents(){

@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import CoreMotion
 class MainView: UIView {
     
     //父视图
     private var mainVC: MainVC!
+    
+    //运动管理器
+    let motionManager = CMMotionManager()
     
     //layer动画
     private let strokeAnim: CABasicAnimation = {
@@ -34,7 +38,6 @@ class MainView: UIView {
                 strokeAnim.toValue = Float(intakeCaloria) / (20 * weighItem.weight)
                 frontShape.add(strokeAnim, forKey: nil)
                 
-                
             }else{
                 let anim = CAKeyframeAnimation(keyPath: "opacity")
                 anim.values = [2, 0.5, 2]
@@ -49,18 +52,55 @@ class MainView: UIView {
         }
     }
     
+    //MARK:-当前摄入的水份
+    private var intakeWater: CGFloat = 0{
+        didSet{
+            
+            let animKey = "wave"
+            var paths: [CGPath]
+            if let weightItem = coredateHandler.currentWeightItem(){
+                let toValue = intakeWater / CGFloat(40 * weightItem.weight)
+                
+                paths = getWaterPathsAnim(with: toValue)
+            }else{
+                paths = getWaterPathsAnim(with: 0)
+            }
+            
+            let anim = CAKeyframeAnimation(keyPath: "path")
+            anim.values = paths
+            anim.duration = 3
+            anim.isRemovedOnCompletion = false
+            anim.fillMode = kCAFillModeBoth
+            anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            waterShape.add(anim, forKey: animKey)
+        }
+    }
+    var waters: CGFloat = 0{
+        didSet{
+            intakeWater = waters
+        }
+    }
+    
     //MARK:图形
     private let frontShape = CAShapeLayer()
     private let bottomShape = CAShapeLayer()
+    private let waterShape = CAShapeLayer()
     
+    private var xGravity: Double = 0{
+        didSet{
+            UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
+                self.waterShape.transform = CATransform3DMakeRotation(CGFloat(self.xGravity * 0.1), 0, 0, -1)
+            }, completion: nil)
+        }
+    }
     
     //MARK:- init ************************************************************************
     override func didMoveToSuperview() {
+        config()
+        createContents()
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
-        config()
-        createContents()
     }
     
     private func config(){
@@ -69,11 +109,44 @@ class MainView: UIView {
     
     private func createContents(){
         
+        drawWaterProgress()
         drawCalProgress()
+        
+        startGyroUpdates()
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
+    }
+    
+    // 开始获取陀螺仪数据
+    func startGyroUpdates() {
+        //判断设备支持情况
+        guard motionManager.isGyroAvailable else {
+            return
+        }
+        
+        //设置刷新时间间隔
+        motionManager.gyroUpdateInterval = 1
+        
+        
+        //开始实时获取数据
+        if let queue = OperationQueue.current{
+            //重力
+            motionManager.startDeviceMotionUpdates(to: queue, withHandler: {
+                data, error in
+                guard error == nil else {
+                    print(error!)
+                    return
+                }
+                // 有更新
+                if self.motionManager.isDeviceMotionActive {
+                    if let gravity = data?.gravity {
+                        self.xGravity = gravity.x
+                    }
+                }
+            })
+        }
     }
     
     //MARK:绘制cal进度条
@@ -151,5 +224,71 @@ class MainView: UIView {
         //动画
         strokeAnim.toValue = 0.0
         frontShape.add(strokeAnim, forKey: nil)
+    }
+    
+    //MARK:绘制水份进度
+    private func drawWaterProgress(){
+        waterShape.lineWidth = 0
+        waterShape.fillColor = UIColor.blue.withAlphaComponent(0.1).cgColor
+        layer.addSublayer(waterShape)
+    }
+        
+    private func getWaterPathsAnim(with progress: CGFloat) -> [CGPath]{
+        
+        //直线开始点
+        let point0 = CGPoint(x: view_size.width + 100, y: view_size.height * progress)
+        //底部点
+        let point1 = CGPoint(x: view_size.width + 100, y: view_size.height + 100)
+        let point2 = CGPoint(x: -100, y: view_size.height + 100)
+        
+        
+        //水波高度
+        let minWaveHeight: CGFloat = 0
+        let maxWaveHeight: CGFloat = 8
+        let waveHeightCount: Int = 10
+        let waveDelta: CGFloat = (minWaveHeight - maxWaveHeight) / CGFloat(waveHeightCount)
+        let minWaveLength: CGFloat = 23
+        let maxWaveLength: CGFloat = 45
+
+        //绘制水
+        var paths = [CGPath]()
+        for (i, waveHeight) in stride(from: maxWaveHeight, to: minWaveHeight, by: waveDelta).enumerated(){
+            
+            //直线结束点
+            let posX = -CGFloat(i) * (100 / CGFloat(waveHeightCount)) - 100
+            let point3 = CGPoint(x: posX, y: view_size.height * progress)
+            
+            let bezier = UIBezierPath()
+            bezier.move(to: point0)
+            bezier.addLine(to: point1)
+            bezier.addLine(to: point2)
+            bezier.addLine(to: point3)
+            
+            
+            //浪长
+            let waveLength = minWaveLength + (maxWaveLength - minWaveLength) / CGFloat(waveHeightCount) * CGFloat(i)
+
+            //绘制波浪
+            for (j, wavePosX) in stride(from: point3.x, to: view_size.width, by: waveLength * 2).enumerated(){
+                
+                //起始波浪为平面
+                var deltaHeight = waveHeight * (i % 2 == 0 ? 1 : -1) * ( j % 2 == 0 ? 1 : -1)
+                if i == 0{
+                    deltaHeight = 0
+                }
+                
+                //浪高
+                bezier.addQuadCurve(to: CGPoint(x: wavePosX,
+                                                y: point3.y),
+                                    controlPoint: CGPoint(x: wavePosX - waveLength / 2,
+                                                          y: point3.y + deltaHeight))
+            }
+
+            bezier.close()
+            
+            paths.append(bezier.cgPath)
+        }
+        
+        return paths
     }
 }

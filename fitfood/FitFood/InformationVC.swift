@@ -526,6 +526,7 @@ class InformationVC: UIViewController {
         if coredateHandler.addWeight(weight: Float(weight)) {
             showNotif(withTitle: "保存成功!", duration: 2, closure: {
                 self.dismiss(animated: true, completion: nil)
+                infoChanged = true
             })
         }else{
             showNotif(withTitle: "另人意外地保存失败", duration: 2, closure: nil)
