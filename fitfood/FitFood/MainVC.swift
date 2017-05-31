@@ -48,6 +48,7 @@ class MainVC: UIViewController {
             i in
             let subButton: MainRecordButton = MainRecordButton(index: i, initFrame: self.mainButton.frame)
             subButton.addTarget(self, action: #selector(self.clickSubMenuButton(sender:)), for: .touchUpInside)
+            subButton.layer.zPosition = 5
             list.append(subButton)
             self.view.insertSubview(subButton, belowSubview: self.mainButton)
         }
@@ -99,6 +100,7 @@ class MainVC: UIViewController {
     fileprivate lazy var effectView = { () -> UIVisualEffectView in
         let blur: UIBlurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let effectView: UIVisualEffectView = UIVisualEffectView(effect: blur)
+        effectView.layer.zPosition = 4
         effectView.frame = self.view.bounds
         effectView.isHidden = true
         return effectView
@@ -140,9 +142,6 @@ class MainVC: UIViewController {
         
         view.layer.cornerRadius = 0
         
-        view.bringSubview(toFront: mainButton)
-        view.insertSubview(effectView, belowSubview: mainButton)
-        
         //刷新
         if infoChanged {
             infoChanged = false
@@ -156,16 +155,20 @@ class MainVC: UIViewController {
             //毫升
             waterValue = 1500
         }
+        
+        view.bringSubview(toFront: mainButton)
     }
     
     private func config(){
         
         navigationController?.isNavigationBarHidden = true
         
+        mainButton.layer.zPosition = 5
     }
     
     private func createContents(){
         
+        view.addSubview(effectView)
     }
     
     //MARK:- 跳转到个人设置页

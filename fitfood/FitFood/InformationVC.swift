@@ -642,7 +642,11 @@ extension InformationVC{
             return
         }
         
-        if isHorizontalScroll! {
+        guard let isHorizontal = isHorizontalScroll else {
+            return
+        }
+        
+        if isHorizontal {
             let deltaHorizontal = curLocation.x - preLocation.x
             weightTenTimes += deltaHorizontal
         }else{
