@@ -21,5 +21,14 @@ class WaterVC: SubVC {
     override func createContents(){
         super.createContents()
         
+        recordTV = RecordTV(withRecordType: .water)
+        view.addSubview(recordTV!)
+    }
+    
+    override func accept(sender: UIButton) {
+        //存储数据
+        
+        
+        super.accept(sender: sender)
     }
 }

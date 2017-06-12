@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321108821EE6EF1D0098DBE3 /* RecordTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321108811EE6EF1D0098DBE3 /* RecordTV.swift */; };
+		321108851EE6F2760098DBE3 /* RecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321108841EE6F2760098DBE3 /* RecordCell.swift */; };
+		32251A821EE974D700289D02 /* RecordHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A811EE974D700289D02 /* RecordHeader.swift */; };
+		32251A841EE9750800289D02 /* RecordFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A831EE9750800289D02 /* RecordFooter.swift */; };
+		32251A861EE9772A00289D02 /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A851EE9772A00289D02 /* RecordSelector.swift */; };
+		32251A881EE978E900289D02 /* FoodTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A871EE978E900289D02 /* FoodTypeCell.swift */; };
+		32251A8A1EE9837500289D02 /* SubFoodTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A891EE9837500289D02 /* SubFoodTypeCell.swift */; };
+		32251A8C1EE9839000289D02 /* SportTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A8B1EE9839000289D02 /* SportTypeCell.swift */; };
 		32A513CC1EDABD2000411654 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A513CB1EDABD2000411654 /* KeyboardViewController.swift */; };
 		32A513D01EDABD2000411654 /* FitFoodKeyborad.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32B92CF11EDB272C003212BA /* Alert_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF01EDB272C003212BA /* Alert_Extension.swift */; };
@@ -95,6 +103,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		321108811EE6EF1D0098DBE3 /* RecordTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTV.swift; sourceTree = "<group>"; };
+		321108841EE6F2760098DBE3 /* RecordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordCell.swift; sourceTree = "<group>"; };
+		32251A811EE974D700289D02 /* RecordHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordHeader.swift; sourceTree = "<group>"; };
+		32251A831EE9750800289D02 /* RecordFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordFooter.swift; sourceTree = "<group>"; };
+		32251A851EE9772A00289D02 /* RecordSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
+		32251A871EE978E900289D02 /* FoodTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTypeCell.swift; sourceTree = "<group>"; };
+		32251A891EE9837500289D02 /* SubFoodTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubFoodTypeCell.swift; sourceTree = "<group>"; };
+		32251A8B1EE9839000289D02 /* SportTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportTypeCell.swift; sourceTree = "<group>"; };
 		32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FitFoodKeyborad.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A513CB1EDABD2000411654 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		32A513CD1EDABD2000411654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,6 +200,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		321108831EE6EF220098DBE3 /* 手动记录 */ = {
+			isa = PBXGroup;
+			children = (
+				32D094B91ED1D5DC008AB5AC /* SubVC.swift */,
+				321108811EE6EF1D0098DBE3 /* RecordTV.swift */,
+				321108841EE6F2760098DBE3 /* RecordCell.swift */,
+				32251A851EE9772A00289D02 /* RecordSelector.swift */,
+				32251A8D1EE9839C00289D02 /* collectionCell */,
+				32251A811EE974D700289D02 /* RecordHeader.swift */,
+				32251A831EE9750800289D02 /* RecordFooter.swift */,
+				32D094B01ED1D095008AB5AC /* Food */,
+				32D094B31ED1D0CE008AB5AC /* FoodVC.swift */,
+				32D094B11ED1D0B7008AB5AC /* Water */,
+				32D094B51ED1D1D4008AB5AC /* WaterVC.swift */,
+				32D094B21ED1D0C2008AB5AC /* Sport */,
+				32D094B71ED1D1DE008AB5AC /* SportVC.swift */,
+			);
+			name = "手动记录";
+			sourceTree = "<group>";
+		};
+		32251A8D1EE9839C00289D02 /* collectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				32251A871EE978E900289D02 /* FoodTypeCell.swift */,
+				32251A891EE9837500289D02 /* SubFoodTypeCell.swift */,
+				32251A8B1EE9839000289D02 /* SportTypeCell.swift */,
+			);
+			name = collectionCell;
+			sourceTree = "<group>";
+		};
 		32A513CA1EDABD2000411654 /* FitFoodKeyborad */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +252,6 @@
 		32D094B01ED1D095008AB5AC /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				32D094B31ED1D0CE008AB5AC /* FoodVC.swift */,
 			);
 			name = Food;
 			sourceTree = "<group>";
@@ -214,7 +259,6 @@
 		32D094B11ED1D0B7008AB5AC /* Water */ = {
 			isa = PBXGroup;
 			children = (
-				32D094B51ED1D1D4008AB5AC /* WaterVC.swift */,
 			);
 			name = Water;
 			sourceTree = "<group>";
@@ -222,17 +266,16 @@
 		32D094B21ED1D0C2008AB5AC /* Sport */ = {
 			isa = PBXGroup;
 			children = (
-				32D094B71ED1D1DE008AB5AC /* SportVC.swift */,
 			);
 			name = Sport;
 			sourceTree = "<group>";
 		};
-		32D094FE1ED476CB008AB5AC /* Record */ = {
+		32D094FE1ED476CB008AB5AC /* 记录按钮 */ = {
 			isa = PBXGroup;
 			children = (
 				32D094FF1ED477A2008AB5AC /* MainRecordButton.swift */,
 			);
-			name = Record;
+			name = "记录按钮";
 			sourceTree = "<group>";
 		};
 		32D095011ED5CC85008AB5AC /* 个人 */ = {
@@ -372,11 +415,8 @@
 				32F5639D1EC9E178001B1946 /* MainVC.swift */,
 				32EE9EBA1EDB00AF00C77B5F /* MainView.swift */,
 				32D095011ED5CC85008AB5AC /* 个人 */,
-				32D094FE1ED476CB008AB5AC /* Record */,
-				32D094B91ED1D5DC008AB5AC /* SubVC.swift */,
-				32D094B01ED1D095008AB5AC /* Food */,
-				32D094B11ED1D0B7008AB5AC /* Water */,
-				32D094B21ED1D0C2008AB5AC /* Sport */,
+				32D094FE1ED476CB008AB5AC /* 记录按钮 */,
+				321108831EE6EF220098DBE3 /* 手动记录 */,
 			);
 			name = "主页";
 			sourceTree = "<group>";
@@ -564,6 +604,8 @@
 				32D0951E1ED7DAE7008AB5AC /* CD+SportItem.swift in Sources */,
 				32D095181ED73247008AB5AC /* CD+Condition.swift in Sources */,
 				32F5639C1EC71024001B1946 /* Setting.swift in Sources */,
+				32251A881EE978E900289D02 /* FoodTypeCell.swift in Sources */,
+				32251A8A1EE9837500289D02 /* SubFoodTypeCell.swift in Sources */,
 				32D095001ED477A2008AB5AC /* MainRecordButton.swift in Sources */,
 				32F563AC1EC9E671001B1946 /* PopTransition0.swift in Sources */,
 				32D095231ED877E5008AB5AC /* Selector.swift in Sources */,
@@ -575,6 +617,7 @@
 				32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */,
 				32EE9EB71EDAEFDD00C77B5F /* Container+Extension.swift in Sources */,
 				32D095211ED80059008AB5AC /* CD+Recipes.swift in Sources */,
+				32251A841EE9750800289D02 /* RecordFooter.swift in Sources */,
 				32D0950B1ED720BF008AB5AC /* UserManager.swift in Sources */,
 				32F563A31EC9E2E8001B1946 /* Configure.swift in Sources */,
 				32B92CF31EDB2810003212BA /* Timer.swift in Sources */,
@@ -582,12 +625,16 @@
 				32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */,
 				32D095051ED5D68D008AB5AC /* BigWhiteView.swift in Sources */,
 				32D094B41ED1D0CE008AB5AC /* FoodVC.swift in Sources */,
+				32251A8C1EE9839000289D02 /* SportTypeCell.swift in Sources */,
 				32D094BA1ED1D5DC008AB5AC /* SubVC.swift in Sources */,
 				32D094B81ED1D1DE008AB5AC /* SportVC.swift in Sources */,
 				32F563981EC60F4C001B1946 /* CoredataHandler.swift in Sources */,
+				321108821EE6EF1D0098DBE3 /* RecordTV.swift in Sources */,
+				321108851EE6F2760098DBE3 /* RecordCell.swift in Sources */,
 				32F563601EC60DA9001B1946 /* AppDelegate.swift in Sources */,
 				32EE9EBB1EDB00AF00C77B5F /* MainView.swift in Sources */,
 				32D0951C1ED7D9A5008AB5AC /* CD+WaterItem.swift in Sources */,
+				32251A821EE974D700289D02 /* RecordHeader.swift in Sources */,
 				32D0951A1ED7D431008AB5AC /* CD+FoodItem.swift in Sources */,
 				32F563961EC60F24001B1946 /* FitFood.xcdatamodeld in Sources */,
 				32F563A71EC9E568001B1946 /* Image+Extension.swift in Sources */,
@@ -596,6 +643,7 @@
 				32F563A11EC9E28F001B1946 /* Navigation+Extension.swift in Sources */,
 				32D095091ED72070008AB5AC /* CD+User.swift in Sources */,
 				32D095031ED5CC98008AB5AC /* InformationVC.swift in Sources */,
+				32251A861EE9772A00289D02 /* RecordSelector.swift in Sources */,
 				32D095161ED72719008AB5AC /* CD+WeightItem.swift in Sources */,
 				32D094AF1ED1BCCE008AB5AC /* MenuVC.swift in Sources */,
 			);

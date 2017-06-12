@@ -21,5 +21,17 @@ class FoodVC: SubVC {
     override func createContents(){
         super.createContents()
         
+        recordTV = RecordTV(withRecordType: .food)
+        view.addSubview(recordTV!)
+    }
+    
+    override func accept(sender: UIButton) {
+        //存储数据
+        guard let foodType = RecordTV.foodType, let foodSubType = RecordTV.foodSubType, let foodAmountG = RecordTV.foodAmountG, let foodDate = RecordTV.foodDate else {
+            showNotif(withTitle: "需补全内容", duration: 2, closure: nil)
+            return
+        }
+        
+        super.accept(sender: sender)
     }
 }

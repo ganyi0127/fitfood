@@ -21,5 +21,14 @@ class SportVC: SubVC {
     override func createContents(){
         super.createContents()
         
+        recordTV = RecordTV(withRecordType: .sport)
+        view.addSubview(recordTV!)
+    }
+    
+    override func accept(sender: UIButton) {
+        //存储数据
+        
+        
+        super.accept(sender: sender)
     }
 }

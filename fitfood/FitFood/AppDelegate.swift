@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let reason = exception.reason
             let name = exception.name
             
-            let data = "<exception> type: \(name), reason: \(String(describing: reason)), stackInfo:  \(stack))"
+            _ = "<exception> type: \(name), reason: \(String(describing: reason)), stackInfo:  \(stack))"
             
             //存储或反馈错误信息
         }
