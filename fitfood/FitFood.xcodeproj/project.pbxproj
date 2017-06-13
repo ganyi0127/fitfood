@@ -19,6 +19,7 @@
 		32A513D01EDABD2000411654 /* FitFoodKeyborad.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32B92CF11EDB272C003212BA /* Alert_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF01EDB272C003212BA /* Alert_Extension.swift */; };
 		32B92CF31EDB2810003212BA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF21EDB2810003212BA /* Timer.swift */; };
+		32C439BF1EEF99A2001E904D /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439BE1EEF99A2001E904D /* FoodManager.swift */; };
 		32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094A71ED1BC28008AB5AC /* InitVC.swift */; };
 		32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */; };
 		32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */; };
@@ -116,6 +117,7 @@
 		32A513CD1EDABD2000411654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32B92CF01EDB272C003212BA /* Alert_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert_Extension.swift; sourceTree = "<group>"; };
 		32B92CF21EDB2810003212BA /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		32C439BE1EEF99A2001E904D /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
 		32D094A71ED1BC28008AB5AC /* InitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitVC.swift; sourceTree = "<group>"; };
 		32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				32F563911EC60EDA001B1946 /* Info.plist */,
 				32F563991EC71018001B1946 /* Setting.plist */,
 				32F5639B1EC71024001B1946 /* Setting.swift */,
+				32C439BE1EEF99A2001E904D /* FoodManager.swift */,
 				32F563A21EC9E2E8001B1946 /* Configure.swift */,
 			);
 			path = SupportingFiles;
@@ -622,6 +625,7 @@
 				32F563A31EC9E2E8001B1946 /* Configure.swift in Sources */,
 				32B92CF31EDB2810003212BA /* Timer.swift in Sources */,
 				32F563A51EC9E45F001B1946 /* Color+Extension.swift in Sources */,
+				32C439BF1EEF99A2001E904D /* FoodManager.swift in Sources */,
 				32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */,
 				32D095051ED5D68D008AB5AC /* BigWhiteView.swift in Sources */,
 				32D094B41ED1D0CE008AB5AC /* FoodVC.swift in Sources */,

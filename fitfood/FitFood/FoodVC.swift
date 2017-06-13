@@ -30,7 +30,9 @@ class FoodVC: SubVC {
         guard let foodType = RecordTV.foodType, let foodSubType = RecordTV.foodSubType, let foodAmountG = RecordTV.foodAmountG, let foodDate = RecordTV.foodDate else {
             showNotif(withTitle: "需补全内容", duration: 2, closure: nil)
             return
-        }
+        }                
+        
+        _ = coredataHandler.addFoodItem(withType: foodType, subType: foodSubType, amountG: foodAmountG, date: foodDate)
         
         super.accept(sender: sender)
     }

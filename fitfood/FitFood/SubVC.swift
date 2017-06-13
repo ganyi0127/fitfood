@@ -11,6 +11,7 @@ class SubVC: UIViewController {
     
     var recordTV: RecordTV?
     
+    let coredataHandler = CoredataHandler()
     
     override func viewDidLoad() {
         config()

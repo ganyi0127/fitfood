@@ -10,8 +10,8 @@ import UIKit
 class RecordSelector: UIView {
     
     //体重整数位
-    fileprivate lazy var foodAmountGDataList: [Int] = {
-        var list = [Int]()
+    fileprivate lazy var foodAmountGDataList: [Int32] = {
+        var list = [Int32]()
         (0..<20).forEach{
             i in
             list.append(i)
@@ -20,8 +20,8 @@ class RecordSelector: UIView {
     }()
     
     //体重小数位
-    fileprivate var foodAmountGDotDataList: [Int]{
-        var list = [Int]()
+    fileprivate var foodAmountGDotDataList: [Int32]{
+        var list = [Int32]()
         (0..<10).forEach{
             i in
             list.append(i)
@@ -68,10 +68,26 @@ class RecordSelector: UIView {
     fileprivate var collectionCount: Int = {
         return 12  //12种运动方式或 12种食物
     }()
-    fileprivate var pageCount: Int = {
+    fileprivate var foodPageCount: Int = {
         let count = sportNameMap.count
-        var pages = count / 3
-        if count % 3 != 0{
+        var pages = count / 9
+        if count % 9 != 0 {
+            pages += 1
+        }
+        return pages
+    }()
+    fileprivate var foodSubPageCount: Int = {
+        let count = sportNameMap.count
+        var pages = count / 9
+        if count % 9 != 0 {
+            pages += 1
+        }
+        return pages
+    }()
+    fileprivate var sportPageCount: Int = {
+        let count = sportNameMap.count
+        var pages = count / 9
+        if count % 9 != 0 {
             pages += 1
         }
         return pages
@@ -90,18 +106,19 @@ class RecordSelector: UIView {
             
             //设置默认值
             if type == .foodAmountG{
-                var foodAmountG: Int32 = 100
+                var foodAmountG: Int32 = 1000
                 if let localFoodAmountG = RecordTV.foodAmountG {
                     foodAmountG = localFoodAmountG
                 }
                 
-                pickerView?.selectRow(Int(foodAmountG), inComponent: 0, animated: true)
+                pickerView?.selectRow(Int(foodAmountG / 1000), inComponent: 0, animated: true)
+                pickerView?.selectRow(Int(foodAmountG % 1000 / 100), inComponent: 1, animated: true)
                 selectedValue = foodAmountG
                 
             }else if type == .waterType {
-                var waterTypeIndex: Int = 0
+                var waterTypeIndex: Int32 = 0
                 if let index = RecordTV.waterType{
-                    waterTypeIndex = index
+                    waterTypeIndex = index.rawValue
                 }
                 pickerView?.selectRow(Int(waterTypeIndex), inComponent: 0, animated: true)
                 selectedValue = waterTypeIndex
@@ -141,7 +158,7 @@ class RecordSelector: UIView {
                 let pageControlFrame = CGRect(x: 0, y: frame.height - pageContolHeight, width: frame.width, height: pageContolHeight)
                 pageControl = UIPageControl(frame: pageControlFrame)
                 pageControl?.currentPage = 0
-                pageControl?.numberOfPages = pageCount
+                pageControl?.numberOfPages = foodPageCount
                 pageControl?.currentPageIndicatorTintColor = .gray
                 pageControl?.pageIndicatorTintColor = word_light_color
                 addSubview(pageControl!)
@@ -220,17 +237,17 @@ class RecordSelector: UIView {
             datePickerView?.addTarget(self, action: #selector(selectDate(sender:)), for: .valueChanged)
             addSubview(datePickerView!)
             
-            var countDownDuration: TimeInterval = 60
+            var countDownDuration: Int32 = 60
             if let localSportDuration = RecordTV.sportDuration{
                 countDownDuration = localSportDuration
             }
             if let localSportStartDate = RecordTV.sportDate{
-                let duration = Date().timeIntervalSince(localSportStartDate)
+                let duration = Int32(Date().timeIntervalSince(localSportStartDate))
                 if duration < countDownDuration{
                     countDownDuration = duration
                 }
             }
-            datePickerView?.countDownDuration = countDownDuration
+            datePickerView?.countDownDuration = TimeInterval(countDownDuration)
             selectedValue = countDownDuration
         default:
             break
@@ -322,8 +339,10 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
         case .foodAmountG:
             if component == 0 {
                 return foodAmountGDataList.count
+            }else if component == 1{
+                return foodAmountGDotDataList.count
             }
-            return foodAmountGDotDataList.count
+            return 1
         case .waterType:
             return waterNameMap.count
         default:
@@ -353,7 +372,7 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
                 return "kg"
             }
         case .waterType:
-            let type = WaterType(rawValue: row)!
+            let type = WaterType(rawValue: Int32(row))!
             return waterNameMap[type]
         default:
             return ""
@@ -364,14 +383,14 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
         
         switch type as RecordSubType {
         case .waterType:
-            selectedValue = row
-            RecordSelector.selectedWaterType = WaterType(rawValue: row)
+            selectedValue = Int32(row)
+            RecordSelector.selectedWaterType = WaterType(rawValue: Int32(row))
         case .foodAmountG:
             
             let row0 = pickerView.selectedRow(inComponent: 0)   //整数位
             let row1 = pickerView.selectedRow(inComponent: 1)   //小数位
             
-            selectedValue = CGFloat(foodAmountGDataList[row0]) + CGFloat(row1) / 10
+            selectedValue = foodAmountGDataList[row0] * 1000 + foodAmountGDotDataList[row1] * 100
             
         default:
             selectedValue = nil
@@ -389,10 +408,14 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch type as RecordSubType {
+        case .foodType:
+            return foodPageCount * 9
         case .foodSubType:
-            return pageCount * 9
+            return foodSubPageCount * 9
+        case .sportType:
+            return sportNameMap.count
         default:
-            return pageCount * 1
+            return foodPageCount * 1
         }
     }
     
@@ -434,7 +457,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
                 return cell
             }
             
-            cell.type = SportType(rawValue: row)
+            cell.type = SportType(rawValue: Int32(row))
             return cell
         }
     }

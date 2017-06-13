@@ -37,7 +37,7 @@ let recordAttributeMap: [RecordType: [RecordSubType]] = [
 ]
 
 //MARK:-运动类型
-enum SportType: Int{
+enum SportType: Int32{
     case setUp = 0
     case pushUp
     case running
@@ -51,7 +51,7 @@ let sportNameMap: [SportType: String] = [
 ]
 
 //MARK:-水份类型
-enum WaterType: Int{
+enum WaterType: Int32{
     case juice = 0
     case energyDrink
     case tea
@@ -143,13 +143,13 @@ class RecordTV: UIView {
     static var foodAmountG: Int32?
     static var foodDate: Date?
     
-    static var waterType: Int?
+    static var waterType: WaterType?
     static var waterAmountG: Int32?
     static var waterDate: Date?
     
     static var sportType: SportType?
     static var sportDate: Date?
-    static var sportDuration: TimeInterval?
+    static var sportDuration: Int32?
     
     //MARK:- init ************************************************************************************
     init(withRecordType type: RecordType) {
@@ -232,7 +232,7 @@ class RecordTV: UIView {
             //设置选择回调
             recordTableViewCell.selectedClosure = {
                 cellType, value in
-                
+                /*
                 switch cellType as RecordSubType{
                 case .foodType:
                     if let foodType = value as? Int32{
@@ -252,12 +252,12 @@ class RecordTV: UIView {
                         RecordTV.foodDate = date
                     }else{
                         let defaultDate = Date(timeInterval: -30 * 60, since: Date())
-                        RecordTV.sportDate = defaultDate
+                        RecordTV.foodDate = defaultDate
                         self.header?.leftDate = defaultDate
                     }
                 case .waterType:
-                    if let waterType = value as? Int{
-                        RecordTV.waterType = waterType
+                    if let waterTypeIndex = value as? Int32{
+                        RecordTV.waterType = WaterType(rawValue: waterTypeIndex)
                     }
                 case .waterAmountG:
                     if let waterAmountG = value as? Int32{
@@ -286,13 +286,14 @@ class RecordTV: UIView {
                         RecordTV.sportDate = defaultDate
                     }
                 case .sportDuration:
-                    if let duration = value as? TimeInterval, let header = self.header{
-                        self.header?.rightDate = Date(timeInterval: duration, since: header.leftDate)
+                    if let duration = value as? Int32, let header = self.header{
+                        self.header?.rightDate = Date(timeInterval: TimeInterval(duration), since: header.leftDate)
                         RecordTV.sportDuration = duration
                     }
                 default:
                     break
                 }
+                 */
             }
         }
         

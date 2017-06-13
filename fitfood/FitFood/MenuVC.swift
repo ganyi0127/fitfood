@@ -24,7 +24,8 @@ class MenuVC: UIViewController {
     }
     
     private func createContents(){
-        
+        let foodManager = FoodManager.share()
+        foodManager.getDocument()
     }
 }
 

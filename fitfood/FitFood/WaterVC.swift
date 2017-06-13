@@ -27,7 +27,12 @@ class WaterVC: SubVC {
     
     override func accept(sender: UIButton) {
         //存储数据
+        guard let waterType = RecordTV.waterType, let waterAmountG = RecordTV.waterAmountG, let waterDate = RecordTV.waterDate else {
+            showNotif(withTitle: "需补全内容", duration: 2, closure: nil)
+            return
+        }
         
+        _ = coredataHandler.addWaterItem(withType: waterType.rawValue, amountML: waterAmountG, date: waterDate)
         
         super.accept(sender: sender)
     }

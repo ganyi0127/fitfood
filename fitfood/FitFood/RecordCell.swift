@@ -23,82 +23,87 @@ class RecordCell: UIView {
             var detailText = ""
             switch recordSubType as RecordSubType{
             case .foodType:
+                var eligibleValue: Int32 = 0
                 if let foodType = value as? Int32{
-                    detailText = "\(foodType)"
-                }else{
-                    detailText = "-"
+                    eligibleValue = foodType
                 }
+                detailText = "\(eligibleValue)"
+                RecordTV.foodType = eligibleValue
             case .foodSubType:
+                var eligibleValue: Int32 = 0
                 if let foodSubType = value as? Int32{
-                    detailText = "\(foodSubType)"
-                }else{
-                    detailText = "-"
+                    eligibleValue = foodSubType
                 }
+                detailText = "\(eligibleValue)"
+                RecordTV.foodSubType = eligibleValue
             case .foodAmountG:
-                if let foodAmountG = value as? CGFloat{
-                    detailText = "\(foodAmountG)kg"
-                }else{
-                    detailText = "-"
+                var eligibleValue: Int32 = 1000
+                if let foodAmountG = value as? Int32{
+                    eligibleValue = foodAmountG
                 }
+                let amountKG = String(format: "%.1f", CGFloat(eligibleValue) / 1000)
+                detailText = "\(amountKG)kg"
+                RecordTV.foodAmountG = eligibleValue
             case .foodDate:
+                var eligibleValue = Date()
                 if let foodDate = value as? Date{
-                    detailText = format.string(from: foodDate)
-                }else{
-                    let defaultDate = Date()
-                    RecordTV.sportDate = defaultDate
-                    detailText = format.string(from: defaultDate)
+                    eligibleValue = foodDate
                 }
+                detailText = format.string(from: eligibleValue)
+                RecordTV.foodDate = eligibleValue
             case .waterType:
-                if let waterTypeIndex = value as? Int{
-                    let waterType = WaterType(rawValue: waterTypeIndex)!
-                    detailText = waterNameMap[waterType]!
-                }else{
-                    detailText = "-"
+                var eligibleValue: Int32 = 0
+                if let waterTypeIndex = value as? Int32{
+                    eligibleValue = waterTypeIndex
                 }
+                let waterType = WaterType(rawValue: eligibleValue)!
+                detailText = waterNameMap[waterType]!
+                RecordTV.waterType = waterType
             case .waterAmountG:
+                var eligibleValue: Int32 = 500
                 if let waterAmountG = value as? Int32{
-                    detailText = "\(waterAmountG)ml"
-                }else{
-                    detailText = "-"
+                    eligibleValue = waterAmountG
                 }
+                detailText = "\(eligibleValue)ml"
+                RecordTV.waterAmountG = eligibleValue
             case .waterDate:
+                var eligibleValue = Date()
                 if let waterDate = value as? Date{
-                    detailText = format.string(from: waterDate)
-                }else{
-                    let defaultDate = Date()
-                    RecordTV.sportDate = defaultDate
-                    detailText = format.string(from: defaultDate)
+                    eligibleValue = waterDate
                 }
+                detailText = format.string(from: eligibleValue)
+                RecordTV.waterDate = eligibleValue
             case .sportType:
+                var eligibleValue = SportType.pushUp
                 if let sportType = value as? SportType{
-                    detailText = sportNameMap[sportType]!
-                }else{
-                    detailText = "-"
+                    eligibleValue = sportType
                 }
+                detailText = sportNameMap[eligibleValue]!
+                RecordTV.sportType = eligibleValue
             case .sportDate:
+                var eligibleValue = Date()
                 if let sportDate = value as? Date{
-                    detailText = format.string(from: sportDate)
-                }else{
-                    let defaultDate = Date()
-                    RecordTV.sportDate = defaultDate
-                    detailText = format.string(from: defaultDate)
+                    eligibleValue = sportDate
                 }
+                RecordTV.sportDate = eligibleValue
+                detailText = format.string(from: eligibleValue)
             case .sportDuration:
-                if let duration = value as? TimeInterval{
-                    let hour = Int(duration) / (60 * 60)
-                    let minute = (Int(duration) - hour * 60 * 60) / 60
-                    detailText = "\(hour)小时\(minute)分钟"
-                    
-                    if let localSportStartDate = RecordTV.sportDate{
-                        let constDuration = Date().timeIntervalSince(localSportStartDate)
-                        if constDuration < duration{
-                            detailLabel?.textColor = UIColor.red.withAlphaComponent(0.5)
-                        }else{
-                            detailLabel?.textColor = word_default_color
-                        }
+                var eligibleValue: Int32 = 30
+                if let duration = value as? Int32{
+                    eligibleValue = duration
+                }
+                let hour = eligibleValue / (60 * 60)
+                let minute = eligibleValue % (60 * 60) / 60
+                detailText = "\(hour)小时\(minute)分钟"
+                RecordTV.sportDuration = eligibleValue
+                
+                if let localSportStartDate = RecordTV.sportDate{
+                    let constDuration = Int32(Date().timeIntervalSince(localSportStartDate))
+                    if constDuration < eligibleValue{
+                        detailLabel?.textColor = UIColor.red.withAlphaComponent(0.5)
+                    }else{
+                        detailLabel?.textColor = word_light_color
                     }
-                }else{
-                    detailText = "-"
                 }
             }
             detailLabel?.text = detailText
