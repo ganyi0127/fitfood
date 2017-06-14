@@ -9,15 +9,15 @@
 import UIKit
 class FoodTypeCell: UICollectionViewCell {
     
-    var type: Int32?{
+    var category: FoodCategory?{
         didSet{
-            guard let t = type else {
+            guard let t = category else {
                 imageView?.image = nil
                 label?.text = ""
                 return
             }
             
-            let name = "\(t)"
+            let name = t.name()
             
             let originImage = UIImage(named: "resource/sporticons/icon/" + name)?.transfromImage(size: imageView!.bounds.size)
             let image = isSelected ? originImage?.withRenderingMode(.alwaysOriginal) : originImage?.withRenderingMode(.alwaysTemplate)

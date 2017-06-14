@@ -39,8 +39,8 @@ class RecordSelector: UIView {
     
     
     //当前选择的运动类型
-    static fileprivate var selectedFoodType: Int32?
-    static fileprivate var selectedSubFoodType: Int32?
+    static var selectedFoodType: FoodCategory?
+    static var selectedSubFoodType: Food?
     static fileprivate var selectedWaterType: WaterType?
     static fileprivate var selectedSportType: SportType?
     
@@ -60,30 +60,23 @@ class RecordSelector: UIView {
     
     private func config(){
         isUserInteractionEnabled = true
+        
+        fooddata = FoodManager.share().getDocument()
     }
     
     //MARK:- 选择活动类型
     private var collectionView: UICollectionView?
     fileprivate var pageControl: UIPageControl?
-    fileprivate var collectionCount: Int = {
-        return 12  //12种运动方式或 12种食物
-    }()
+    fileprivate var fooddata: FoodData!
     fileprivate var foodPageCount: Int = {
-        let count = sportNameMap.count
+        let count = FoodCategory.allCategory.count
         var pages = count / 9
         if count % 9 != 0 {
             pages += 1
         }
         return pages
     }()
-    fileprivate var foodSubPageCount: Int = {
-        let count = sportNameMap.count
-        var pages = count / 9
-        if count % 9 != 0 {
-            pages += 1
-        }
-        return pages
-    }()
+    static var foodSubList = [Food]()
     fileprivate var sportPageCount: Int = {
         let count = sportNameMap.count
         var pages = count / 9
@@ -98,7 +91,7 @@ class RecordSelector: UIView {
     fileprivate var levelMask: UIView?
     private func createContents(){
         switch type as RecordSubType {
-        case .foodAmountG, .waterType:
+        case .foodAmountG, .waterType, .foodSubType:
             pickerView = UIPickerView(frame: frame)
             pickerView?.delegate = self
             pickerView?.dataSource = self
@@ -122,8 +115,19 @@ class RecordSelector: UIView {
                 }
                 pickerView?.selectRow(Int(waterTypeIndex), inComponent: 0, animated: true)
                 selectedValue = waterTypeIndex
+            }else if type == .foodSubType{
+                var foodSubTypeIndex: Int = 0
+                if let foodSubType = RecordSelector.selectedSubFoodType{
+                    for (index, foodSub) in RecordSelector.foodSubList.enumerated(){
+                        if foodSub.serial == foodSubType.serial {
+                            foodSubTypeIndex = index
+                            selectedValue = foodSub
+                        }
+                    }
+                }
+                pickerView?.selectRow(foodSubTypeIndex, inComponent: 0, animated: true)
             }
-        case .foodType, .foodSubType, .sportType:
+        case .foodType, .sportType:
             //自定义选择器
             let pageContolHeight: CGFloat = 20
             if collectionView == nil{
@@ -152,7 +156,11 @@ class RecordSelector: UIView {
                 addSubview(collectionView!)
             }
             
-            selectedValue = RecordTV.sportType
+            if type == .sportType{
+                selectedValue = RecordTV.sportType
+            }else if type == .foodType{
+                selectedValue = RecordTV.foodType
+            }
             
             if pageControl == nil{
                 let pageControlFrame = CGRect(x: 0, y: frame.height - pageContolHeight, width: frame.width, height: pageContolHeight)
@@ -329,6 +337,8 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
             return 3
         case .waterType:
             return 1
+        case .foodSubType:
+            return 1
         default:
             return 0
         }
@@ -345,6 +355,8 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
             return 1
         case .waterType:
             return waterNameMap.count
+        case .foodSubType:
+            return RecordSelector.foodSubList.count
         default:
             return 0
         }
@@ -374,6 +386,8 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
         case .waterType:
             let type = WaterType(rawValue: Int32(row))!
             return waterNameMap[type]
+        case .foodSubType:
+            return RecordSelector.foodSubList[row].name
         default:
             return ""
         }
@@ -391,7 +405,12 @@ extension RecordSelector: UIPickerViewDelegate, UIPickerViewDataSource{
             let row1 = pickerView.selectedRow(inComponent: 1)   //小数位
             
             selectedValue = foodAmountGDataList[row0] * 1000 + foodAmountGDotDataList[row1] * 100
-            
+        case .foodSubType:
+            if row < RecordSelector.foodSubList.count{
+                let food = RecordSelector.foodSubList[row]
+                selectedValue = food
+                RecordSelector.selectedSubFoodType = food
+            }
         default:
             selectedValue = nil
         }
@@ -410,8 +429,6 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
         switch type as RecordSubType {
         case .foodType:
             return foodPageCount * 9
-        case .foodSubType:
-            return foodSubPageCount * 9
         case .sportType:
             return sportNameMap.count
         default:
@@ -428,31 +445,19 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! FoodTypeCell
             
-            if row >= collectionCount{
-                cell.type = nil
+            if row >= FoodCategory.allCategory.count{
+                cell.category = nil
                 return cell
             }
             
-            cell.type = Int32(row)
-            return cell
-        case .foodSubType:
-            let identifier = "custom1"
-            
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SubFoodTypeCell
-            
-            if row >= collectionCount{
-                cell.type = nil
-                return cell
-            }
-            
-            cell.type = Int32(row)
+            cell.category = FoodCategory.allCategory[row]
             return cell
         default:
             let identifier = "custom2"
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SportTypeCell
             
-            if row >= collectionCount{
+            if row >= sportNameMap.count{
                 cell.type = nil
                 return cell
             }
@@ -467,13 +472,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
         switch type as RecordSubType {
         case .foodType:
             if let localFoodType = RecordTV.foodType{
-                if localFoodType == (cell as! FoodTypeCell).type{
-                    cell.isSelected = true
-                }
-            }
-        case .foodSubType:
-            if let localFoodSubType = RecordTV.foodSubType{
-                if localFoodSubType == (cell as! SubFoodTypeCell).type{
+                if localFoodType == (cell as! FoodTypeCell).category{
                     cell.isSelected = true
                 }
             }
@@ -487,7 +486,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl?.currentPage = Int(scrollView.contentOffset.x) / Int(frame.width) //indexPath.row
+        pageControl?.currentPage = Int(scrollView.contentOffset.x) / Int(frame.width)
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
@@ -501,7 +500,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .zero //UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        return .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -519,7 +518,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     //delegate
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         let row = indexPath.row
-        if row >= collectionCount {
+        if row >= (type == .sportType ? sportNameMap.count : FoodCategory.allCategory.count) {
             return false
         }
         return true
@@ -529,27 +528,21 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
         let row = indexPath.row
         switch type as RecordSubType {
         case .foodType:
-            if row < collectionCount{
+            if row < FoodCategory.allCategory.count{
                 //选择回调
                 let cell = collectionView.cellForItem(at: indexPath) as! FoodTypeCell
-                RecordSelector.selectedFoodType = cell.type
-                if let cellType = cell.type{
-                    closure?(type, cellType)
-                }
-                collectionView.reloadData()
-            }
-        case .foodSubType:
-            if row < collectionCount{
-                //选择回调
-                let cell = collectionView.cellForItem(at: indexPath) as! SubFoodTypeCell
-                RecordSelector.selectedSubFoodType = cell.type
-                if let cellType = cell.type{
+                RecordSelector.selectedFoodType = cell.category
+                RecordSelector.selectedSubFoodType = nil
+                RecordTV.foodSubType = nil
+                RecordSelector.foodSubList.removeAll()
+                RecordSelector.foodSubList.append(contentsOf: fooddata[cell.category!]!)
+                if let cellType = cell.category{
                     closure?(type, cellType)
                 }
                 collectionView.reloadData()
             }
         default:
-            if row < collectionCount{
+            if row < sportNameMap.count{
                 //选择回调
                 let cell = collectionView.cellForItem(at: indexPath) as! SportTypeCell
                 RecordSelector.selectedSportType = cell.type

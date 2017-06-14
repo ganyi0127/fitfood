@@ -138,8 +138,8 @@ class RecordTV: UIView {
     private var selectedSubType: RecordSubType?
     
     //MARK:-需存储的数据
-    static var foodType: Int32?
-    static var foodSubType: Int32?
+    static var foodType: FoodCategory?
+    static var foodSubType: Food?
     static var foodAmountG: Int32?
     static var foodDate: Date?
     

@@ -23,18 +23,23 @@ class RecordCell: UIView {
             var detailText = ""
             switch recordSubType as RecordSubType{
             case .foodType:
-                var eligibleValue: Int32 = 0
-                if let foodType = value as? Int32{
+                var eligibleValue: FoodCategory = FoodCategory.cerealCrop
+                if let foodType = value as? FoodCategory{
+                    eligibleValue = foodType
+                }else if let foodType = RecordSelector.selectedFoodType{
                     eligibleValue = foodType
                 }
-                detailText = "\(eligibleValue)"
+                detailText = eligibleValue.name()
                 RecordTV.foodType = eligibleValue
+                RecordSelector.foodSubList = FoodManager.share().getDocument()[eligibleValue]!
             case .foodSubType:
-                var eligibleValue: Int32 = 0
-                if let foodSubType = value as? Int32{
+                var eligibleValue: Food? = nil
+                if let foodSubType = value as? Food{
+                    eligibleValue = foodSubType
+                }else if let foodSubType = RecordSelector.selectedSubFoodType{
                     eligibleValue = foodSubType
                 }
-                detailText = "\(eligibleValue)"
+                detailText = eligibleValue?.name ?? "-"
                 RecordTV.foodSubType = eligibleValue
             case .foodAmountG:
                 var eligibleValue: Int32 = 1000
