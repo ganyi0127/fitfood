@@ -22,25 +22,25 @@ class RecordCell: UIView {
             //文字
             var detailText = ""
             switch recordSubType as RecordSubType{
-            case .foodType:
+            case .foodCategory:
                 var eligibleValue: FoodCategory = FoodCategory.cerealCrop
-                if let foodType = value as? FoodCategory{
-                    eligibleValue = foodType
-                }else if let foodType = RecordSelector.selectedFoodType{
-                    eligibleValue = foodType
+                if let foodCategory = value as? FoodCategory{
+                    eligibleValue = foodCategory
+                }else if let foodCategory = RecordSelector.selectedFoodType{
+                    eligibleValue = foodCategory
                 }
                 detailText = eligibleValue.name()
-                RecordTV.foodType = eligibleValue
+                RecordTV.foodCategory = eligibleValue
                 RecordSelector.foodSubList = FoodManager.share().getDocument()[eligibleValue]!
-            case .foodSubType:
+            case .food:
                 var eligibleValue: Food? = nil
-                if let foodSubType = value as? Food{
-                    eligibleValue = foodSubType
-                }else if let foodSubType = RecordSelector.selectedSubFoodType{
-                    eligibleValue = foodSubType
+                if let food = value as? Food{
+                    eligibleValue = food
+                }else if let food = RecordSelector.selectedSubFoodType{
+                    eligibleValue = food
                 }
                 detailText = eligibleValue?.name ?? "-"
-                RecordTV.foodSubType = eligibleValue
+                RecordTV.food = eligibleValue
             case .foodAmountG:
                 var eligibleValue: Int32 = 100
                 if let foodAmountG = value as? Int32{
@@ -78,22 +78,22 @@ class RecordCell: UIView {
                 }
                 detailText = format.string(from: eligibleValue)
                 RecordTV.waterDate = eligibleValue
-            case .sportType:
-                var eligibleValue = SportCategory.boxing
-                if let sportType = value as? SportCategory{
-                    eligibleValue = sportType
+            case .sport:
+                var eligibleValue: Sport? = nil
+                if let sport = value as? Sport{
+                    eligibleValue = sport
                 }
-                detailText = eligibleValue.name()
-                RecordTV.sportType = eligibleValue
+                detailText = eligibleValue?.name ?? "-"
+                RecordTV.sport = eligibleValue
             case .sportDate:
-                var eligibleValue = Date()
+                var eligibleValue = Date(timeInterval: -30 * 60, since: Date())
                 if let sportDate = value as? Date{
                     eligibleValue = sportDate
                 }
                 RecordTV.sportDate = eligibleValue
                 detailText = format.string(from: eligibleValue)
             case .sportDuration:
-                var eligibleValue: Int32 = 60
+                var eligibleValue: Int32 = 60 * 30      //默认30分钟
                 if let duration = value as? TimeInterval{
                     eligibleValue = Int32(duration)
                 }else if let duration = RecordTV.sportDuration{
@@ -224,20 +224,22 @@ class RecordCell: UIView {
         //主文字
         var titleText: String
         switch recordSubType! {
-        case .foodType:
+        case .foodCategory:
             titleText = "食物类型"
-        case .foodSubType:
+        case .food:
             titleText = "食物名称"
         case .foodAmountG, .waterAmountG:
             titleText = "用量"
-        case .foodDate, .waterDate, .sportDate:
+        case .foodDate, .waterDate:
             titleText = "时间"
+        case .sportDate:
+            titleText = "开始时间"
         case .waterType:
             titleText = "类型"
-        case .sportType:
+        case .sport:
             titleText = "运动类型"
         case .sportDuration:
-            titleText = "用时"
+            titleText = "运动时长"
         default:
             titleText = ""
         }

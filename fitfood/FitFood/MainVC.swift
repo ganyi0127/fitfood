@@ -150,28 +150,13 @@ class MainVC: UIViewController {
             //毫升
             intakeWater = waterValue
         }else{
-            //获取所有condition
-            var tmpCal: CGFloat = 0
-            var tmpWater: CGFloat = 0
-            if let condition = coredateHandler.getCondition(withDate: Date(), insertIfNotExist: false){
-                //饮食
-                for element in condition.foodItemList!{
-                    let foodItem = element as! FoodItem
-                    let calorie = foodItem.intakeCalorie
-                    tmpCal += CGFloat(calorie)
-                }
-                //水份
-                for element in condition.waterItemList!{
-                    let waterItem = element as! WaterItem
-                    let amountML = waterItem.amountML
-                    tmpWater += CGFloat(amountML)
-                }
-            }
-                        
+            
+            let intoken = getIntokenCalorieAndWater()
+            
             //千卡
-            caloriaValue = tmpCal
+            caloriaValue = intoken.calorie
             //毫升
-            waterValue = tmpWater
+            waterValue = intoken.water
         }
         
         view.bringSubview(toFront: mainButton)
@@ -211,6 +196,39 @@ class MainVC: UIViewController {
     
     @IBAction func showMenu(_ sender: Any) {
         (navigationController?.parent as! InitVC).hideMenu(false)
+    }
+    
+    //MARK:-获取记录数据消耗
+    private func getIntokenCalorieAndWater() -> (calorie: CGFloat, water: CGFloat){
+        //获取所有condition
+        var tmpCal: CGFloat = 0
+        var tmpWater: CGFloat = 0
+        
+        //计算添加项
+        if let condition = coredateHandler.getCondition(withDate: selectDate, insertIfNotExist: false){
+            //饮食
+            for element in condition.foodItemList!{
+                let foodItem = element as! FoodItem
+                let calorie = foodItem.intakeCalorie
+                tmpCal += CGFloat(calorie)
+            }
+            
+            //运动
+            for element in condition.sportItemList!{
+                let sportItem = element as! SportItem
+                let calorie = sportItem.burnCalorie
+                tmpCal -= CGFloat(calorie)
+            }
+            
+            //水份
+            for element in condition.waterItemList!{
+                let waterItem = element as! WaterItem
+                let amountML = waterItem.amountML
+                tmpWater += CGFloat(amountML)
+            }
+        }                
+        
+        return (tmpCal, tmpWater)
     }
 }
 

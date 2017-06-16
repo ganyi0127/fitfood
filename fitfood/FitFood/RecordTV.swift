@@ -15,8 +15,8 @@ enum RecordType{
 }
 //MARK:-记录子属性
 enum RecordSubType {
-    case foodType
-    case foodSubType
+    case foodCategory
+    case food
     case foodAmountG
     case foodDate
     
@@ -24,27 +24,27 @@ enum RecordSubType {
     case waterAmountG
     case waterDate
     
-    case sportType
+    case sport
     case sportDate
     case sportDuration
 }
 
 //MARK:-配置自定义滑块
 let recordAttributeMap: [RecordType: [RecordSubType]] = [
-    .food: [.foodType, .foodSubType, .foodAmountG, .foodDate],
+    .food: [.foodCategory, .food, .foodAmountG, .foodDate],
     .water: [.waterAmountG, .waterDate],
-    .sport: [.sportType, .sportDate, .sportDuration]
+    .sport: [.sport, .sportDate, .sportDuration]
 ]
 
 /*
 //MARK:-运动类型
-enum SportType: Int32{
+enum sport: Int32{
     case setUp = 0
     case pushUp
     case running
     case walking
 }
-let sportNameMap: [SportType: String] = [
+let sportNameMap: [sport: String] = [
     .setUp: "set up",
     .pushUp: "push up",
     .running: "running",
@@ -140,8 +140,8 @@ class RecordTV: UIView {
     private var selectedSubType: RecordSubType?
     
     //MARK:-需存储的数据
-    static var foodType: FoodCategory?
-    static var foodSubType: Food?
+    static var foodCategory: FoodCategory?
+    static var food: Food?
     static var foodAmountG: Int32?
     static var foodDate: Date?
     
@@ -149,7 +149,7 @@ class RecordTV: UIView {
     static var waterAmountG: Int32?
     static var waterDate: Date?
     
-    static var sportType: SportCategory?
+    static var sport: Sport?
     static var sportDate: Date?
     static var sportDuration: Int32?
     
@@ -240,9 +240,9 @@ class RecordTV: UIView {
                     if let foodType = value as? Int32{
                         RecordTV.foodType = foodType
                     }
-                case .foodSubType:
-                    if let foodSubType = value as? Int32{
-                        RecordTV.foodSubType = foodSubType
+                case .food:
+                    if let food = value as? Int32{
+                        RecordTV.food = food
                     }
                 case .foodAmountG:
                     if let foodAmountG = value as? Int32{
@@ -274,9 +274,9 @@ class RecordTV: UIView {
                         self.header?.leftDate = defaultDate
                         RecordTV.waterDate = defaultDate
                     }
-                case .sportType:
-                    if let sportType = value as? SportType{
-                        RecordTV.sportType = sportType
+                case .sport:
+                    if let sport = value as? Sport{
+                        RecordTV.sport = sport
                     }
                 case .sportDate:
                     if let date = value as? Date{

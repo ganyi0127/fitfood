@@ -1,5 +1,5 @@
 //
-//  RecordCollectionCell.swift
+//  SportTypeCell.swift
 //  FitFood
 //
 //  Created by YiGan on 08/06/2017.
@@ -7,17 +7,17 @@
 //
 
 import UIKit
-class FoodTypeCell: UICollectionViewCell {
+class SportCell: UICollectionViewCell {
     
-    var category: FoodCategory?{
+    var type: Sport?{
         didSet{
-            guard let t = category else {
+            guard let t = type else {
                 imageView?.image = nil
                 label?.text = ""
                 return
             }
             
-            let name = t.name()
+            let name = t.name!
             
             let originImage = UIImage(named: "resource/sporticons/icon/" + name)?.transfromImage(size: imageView!.bounds.size)
             let image = isSelected ? originImage?.withRenderingMode(.alwaysOriginal) : originImage?.withRenderingMode(.alwaysTemplate)

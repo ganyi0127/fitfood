@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class SubFoodTypeCell: UICollectionViewCell {
+class FoodCell: UICollectionViewCell {
     
     var food: Food?{
         didSet{

@@ -12,9 +12,9 @@
 		32251A821EE974D700289D02 /* RecordHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A811EE974D700289D02 /* RecordHeader.swift */; };
 		32251A841EE9750800289D02 /* RecordFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A831EE9750800289D02 /* RecordFooter.swift */; };
 		32251A861EE9772A00289D02 /* RecordSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A851EE9772A00289D02 /* RecordSelector.swift */; };
-		32251A881EE978E900289D02 /* FoodTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A871EE978E900289D02 /* FoodTypeCell.swift */; };
-		32251A8A1EE9837500289D02 /* SubFoodTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A891EE9837500289D02 /* SubFoodTypeCell.swift */; };
-		32251A8C1EE9839000289D02 /* SportTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A8B1EE9839000289D02 /* SportTypeCell.swift */; };
+		32251A881EE978E900289D02 /* FoodCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A871EE978E900289D02 /* FoodCategoryCell.swift */; };
+		32251A8A1EE9837500289D02 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A891EE9837500289D02 /* FoodCell.swift */; };
+		32251A8C1EE9839000289D02 /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32251A8B1EE9839000289D02 /* SportCell.swift */; };
 		32A513CC1EDABD2000411654 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A513CB1EDABD2000411654 /* KeyboardViewController.swift */; };
 		32A513D01EDABD2000411654 /* FitFoodKeyborad.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32B92CF11EDB272C003212BA /* Alert_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF01EDB272C003212BA /* Alert_Extension.swift */; };
@@ -22,6 +22,7 @@
 		32C439BF1EEF99A2001E904D /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439BE1EEF99A2001E904D /* FoodManager.swift */; };
 		32C439C11EF27B32001E904D /* SportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C01EF27B32001E904D /* SportManager.swift */; };
 		32C439C31EF377E8001E904D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C21EF377E8001E904D /* Date+Extension.swift */; };
+		32C439C51EF3E33E001E904D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C439C41EF3E33E001E904D /* HealthKit.framework */; };
 		32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094A71ED1BC28008AB5AC /* InitVC.swift */; };
 		32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */; };
 		32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */; };
@@ -111,9 +112,9 @@
 		32251A811EE974D700289D02 /* RecordHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordHeader.swift; sourceTree = "<group>"; };
 		32251A831EE9750800289D02 /* RecordFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordFooter.swift; sourceTree = "<group>"; };
 		32251A851EE9772A00289D02 /* RecordSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordSelector.swift; sourceTree = "<group>"; };
-		32251A871EE978E900289D02 /* FoodTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTypeCell.swift; sourceTree = "<group>"; };
-		32251A891EE9837500289D02 /* SubFoodTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubFoodTypeCell.swift; sourceTree = "<group>"; };
-		32251A8B1EE9839000289D02 /* SportTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportTypeCell.swift; sourceTree = "<group>"; };
+		32251A871EE978E900289D02 /* FoodCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCategoryCell.swift; sourceTree = "<group>"; };
+		32251A891EE9837500289D02 /* FoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		32251A8B1EE9839000289D02 /* SportCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		32A513C91EDABD2000411654 /* FitFoodKeyborad.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FitFoodKeyborad.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A513CB1EDABD2000411654 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		32A513CD1EDABD2000411654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,6 +123,8 @@
 		32C439BE1EEF99A2001E904D /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
 		32C439C01EF27B32001E904D /* SportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportManager.swift; sourceTree = "<group>"; };
 		32C439C21EF377E8001E904D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		32C439C41EF3E33E001E904D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		32C439C61EF3E33E001E904D /* FitFood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitFood.entitlements; sourceTree = "<group>"; };
 		32D094A71ED1BC28008AB5AC /* InitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitVC.swift; sourceTree = "<group>"; };
 		32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -186,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C439C51EF3E33E001E904D /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,9 +233,9 @@
 		32251A8D1EE9839C00289D02 /* collectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				32251A871EE978E900289D02 /* FoodTypeCell.swift */,
-				32251A891EE9837500289D02 /* SubFoodTypeCell.swift */,
-				32251A8B1EE9839000289D02 /* SportTypeCell.swift */,
+				32251A871EE978E900289D02 /* FoodCategoryCell.swift */,
+				32251A891EE9837500289D02 /* FoodCell.swift */,
+				32251A8B1EE9839000289D02 /* SportCell.swift */,
 			);
 			name = collectionCell;
 			sourceTree = "<group>";
@@ -297,6 +301,7 @@
 		32D0950E1ED72574008AB5AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32C439C41EF3E33E001E904D /* HealthKit.framework */,
 				32D095141ED725F1008AB5AC /* UIKit.framework */,
 				32D0950F1ED72574008AB5AC /* CoreData.framework */,
 			);
@@ -329,6 +334,7 @@
 		32F5635E1EC60DA9001B1946 /* FitFood */ = {
 			isa = PBXGroup;
 			children = (
+				32C439C61EF3E33E001E904D /* FitFood.entitlements */,
 				32F5635F1EC60DA9001B1946 /* AppDelegate.swift */,
 				32F563631EC60DAA001B1946 /* Main.storyboard */,
 				32F563691EC60DAA001B1946 /* Assets.xcassets */,
@@ -523,7 +529,12 @@
 					32F5635B1EC60DA9001B1946 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = NWGF84NL9Q;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					32F563721EC60DAA001B1946 = {
 						CreatedOnToolsVersion = 8.3.1;
@@ -613,8 +624,8 @@
 				32D0951E1ED7DAE7008AB5AC /* CD+SportItem.swift in Sources */,
 				32D095181ED73247008AB5AC /* CD+Condition.swift in Sources */,
 				32F5639C1EC71024001B1946 /* Setting.swift in Sources */,
-				32251A881EE978E900289D02 /* FoodTypeCell.swift in Sources */,
-				32251A8A1EE9837500289D02 /* SubFoodTypeCell.swift in Sources */,
+				32251A881EE978E900289D02 /* FoodCategoryCell.swift in Sources */,
+				32251A8A1EE9837500289D02 /* FoodCell.swift in Sources */,
 				32C439C31EF377E8001E904D /* Date+Extension.swift in Sources */,
 				32D095001ED477A2008AB5AC /* MainRecordButton.swift in Sources */,
 				32F563AC1EC9E671001B1946 /* PopTransition0.swift in Sources */,
@@ -636,7 +647,7 @@
 				32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */,
 				32D095051ED5D68D008AB5AC /* BigWhiteView.swift in Sources */,
 				32D094B41ED1D0CE008AB5AC /* FoodVC.swift in Sources */,
-				32251A8C1EE9839000289D02 /* SportTypeCell.swift in Sources */,
+				32251A8C1EE9839000289D02 /* SportCell.swift in Sources */,
 				32D094BA1ED1D5DC008AB5AC /* SubVC.swift in Sources */,
 				32D094B81ED1D1DE008AB5AC /* SportVC.swift in Sources */,
 				32F563981EC60F4C001B1946 /* CoredataHandler.swift in Sources */,
@@ -841,12 +852,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FitFood/FitFood.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = NWGF84NL9Q;
 				INFOPLIST_FILE = "$(SRCROOT)/FitFood/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.fitfood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "03a0e6ec-1f32-49a8-9859-1c1cce15783a";
+				PROVISIONING_PROFILE_SPECIFIER = fitfood_dev_pf;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
@@ -857,12 +872,16 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FitFood/FitFood.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = NWGF84NL9Q;
 				INFOPLIST_FILE = "$(SRCROOT)/FitFood/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.orangebrush.fitfood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "edee8bdd-0c07-4048-b3e0-0a9d88e4bc34";
+				PROVISIONING_PROFILE_SPECIFIER = fitfood_dis_pf;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};

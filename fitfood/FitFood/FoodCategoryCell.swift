@@ -1,5 +1,5 @@
 //
-//  SportTypeCell.swift
+//  RecordCollectionCell.swift
 //  FitFood
 //
 //  Created by YiGan on 08/06/2017.
@@ -7,11 +7,11 @@
 //
 
 import UIKit
-class SportTypeCell: UICollectionViewCell {
+class FoodCatetoryCell: UICollectionViewCell {
     
-    var type: SportCategory?{
+    var category: FoodCategory?{
         didSet{
-            guard let t = type else {
+            guard let t = category else {
                 imageView?.image = nil
                 label?.text = ""
                 return

@@ -16,10 +16,21 @@ class MainView: UIView {
     //运动管理器
     let motionManager = CMMotionManager()
     
-    //layer动画
+    //layer路径动画
     private let strokeAnim: CABasicAnimation = {
         let anim = CABasicAnimation(keyPath: "strokeEnd")
         anim.fromValue = 0
+        anim.duration = 1.5
+        anim.fillMode = kCAFillModeBoth
+        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        anim.isRemovedOnCompletion = false
+        return anim
+    }()
+    
+    //layer颜色动画
+    private let colorAnim: CABasicAnimation = {
+        let anim = CABasicAnimation(keyPath: "strokeColor")
+        anim.fromValue = UIColor.yellow.cgColor
         anim.duration = 1.5
         anim.fillMode = kCAFillModeBoth
         anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
@@ -31,13 +42,92 @@ class MainView: UIView {
     var intakeCaloria: CGFloat = 0{
         didSet{
             let animKey = "novalue"
-            if let weighItem = coredateHandler.currentWeightItem(){
+            if let weightItem = coredateHandler.currentWeightItem(){
                 bottomShape.removeAnimation(forKey: animKey)
                 bottomShape.lineWidth = 10
-                strokeAnim.fromValue = Float(oldValue) / (20 * weighItem.weight)
-                strokeAnim.toValue = Float(intakeCaloria) / (20 * weighItem.weight)
+                
+                var targetCaloria = weightItem.weight * 20
+                var curTargetCaloria: Float = 0
+                //计算基础消耗
+                if let user = coredateHandler.currentUser(){
+                    let weight = weightItem.weight //获取体重
+                    let gender = user.gender                //获取性别
+                    
+                    let calendar = Calendar.current
+                    let birthdayYear = calendar.component(.year, from: user.birthday! as Date)
+                    let currentYear = calendar.component(.year, from: Date())
+                    let age = currentYear - birthdayYear    //获取年龄
+                    
+                    var dailyCal: Float                     //获取日常消耗卡路里
+                    if gender == 0 {    //女
+                        if age > 18 && age < 30 {
+                            dailyCal = weight * 14.6 + 450
+                        }else if age >= 30 && age < 60{
+                            dailyCal = weight * 8.6 + 830
+                        }else if age >= 60{
+                            dailyCal = weight * 10.4 + 600
+                        }else{
+                            dailyCal = weight * 8.6 + 450   //女性婴儿期(选最低标准)
+                        }
+                    }else{              //男
+                        if age > 18 && age < 30 {
+                            dailyCal = weight * 15.2 + 680
+                        }else if age >= 30 && age < 60{
+                            dailyCal = weight * 11.5 + 830
+                        }else if age >= 60{
+                            dailyCal = weight * 13.4 + 490
+                        }else{
+                            dailyCal = weight * 11.5 + 490  //男性婴儿期(选最低标准)
+                        }
+                    }
+                    
+                    if selectDate.isToday() {
+                        let passIntervalTime = Float(selectDate.timeIntervalSince(coredateHandler.translate(selectDate)))
+                        let beforeSleepIntervalTime: Float = 60 * 60 * 4        //一天结束前4小时
+                        let beginingOfDayIntervalTime: Float = 60 * 60 * 5      //早晨5小时
+                        var intervalTime = passIntervalTime - beginingOfDayIntervalTime
+                        if intervalTime < 0{
+                            intervalTime = 0
+                        }
+                        let timeProgress = intervalTime / (60 * 60 * 24 - beforeSleepIntervalTime - beginingOfDayIntervalTime)
+                        curTargetCaloria = dailyCal * timeProgress
+                    }else{
+                        curTargetCaloria = dailyCal
+                    }
+                    targetCaloria = dailyCal
+                }
+                
+                //添加路径动画
+                strokeAnim.fromValue = Float(oldValue) / targetCaloria
+                strokeAnim.toValue = Float(intakeCaloria) / targetCaloria
                 frontShape.add(strokeAnim, forKey: nil)
                 
+                //获取颜色
+                func getColor(withIntokenCaloria intokenCaloria: Float, targetCaloria: Float) -> CGColor{
+                    var r: CGFloat = 255
+                    var g: CGFloat = 255
+                    let b: CGFloat = 0
+                    
+                    var deltaCaloria = fabsf(intokenCaloria - targetCaloria)
+                    if intokenCaloria < targetCaloria {
+                        r = CGFloat(1 - deltaCaloria / targetCaloria) * 155 + 100
+                    }else{
+                        let beyondCaloria: Float = 500
+                        if deltaCaloria > beyondCaloria{
+                            deltaCaloria = beyondCaloria
+                        }
+                        r = CGFloat(deltaCaloria / beyondCaloria) * 155 + 100
+                        g = CGFloat(1 - deltaCaloria / beyondCaloria) * 155 + 100
+                    }
+                    
+                    let color = UIColor(red: r / 255, green: g / 255, blue: b / 255, alpha: 1)
+                    return color.cgColor
+                }
+                
+                //添加颜色动画
+                colorAnim.fromValue = getColor(withIntokenCaloria: Float(oldValue), targetCaloria: curTargetCaloria)
+                colorAnim.toValue = getColor(withIntokenCaloria: Float(intakeCaloria), targetCaloria: curTargetCaloria)
+                frontShape.add(colorAnim, forKey: nil)
             }else{
                 let anim = CAKeyframeAnimation(keyPath: "opacity")
                 anim.values = [2, 0.5, 2]
