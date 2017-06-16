@@ -34,7 +34,7 @@ class MainView: UIView {
             if let weighItem = coredateHandler.currentWeightItem(){
                 bottomShape.removeAnimation(forKey: animKey)
                 bottomShape.lineWidth = 10
-                
+                strokeAnim.fromValue = Float(oldValue) / (20 * weighItem.weight)
                 strokeAnim.toValue = Float(intakeCaloria) / (20 * weighItem.weight)
                 frontShape.add(strokeAnim, forKey: nil)
                 
@@ -59,11 +59,11 @@ class MainView: UIView {
             let animKey = "wave"
             var paths: [CGPath]
             if let weightItem = coredateHandler.currentWeightItem(){
-                let toValue = intakeWater / CGFloat(40 * weightItem.weight)
+                let toValue = (1 - intakeWater / CGFloat(40 * weightItem.weight))
                 
                 paths = getWaterPathsAnim(with: toValue)
             }else{
-                paths = getWaterPathsAnim(with: 0)
+                paths = getWaterPathsAnim(with: 1)
             }
             
             let anim = CAKeyframeAnimation(keyPath: "path")

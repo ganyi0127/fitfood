@@ -42,7 +42,7 @@ class RecordCell: UIView {
                 detailText = eligibleValue?.name ?? "-"
                 RecordTV.foodSubType = eligibleValue
             case .foodAmountG:
-                var eligibleValue: Int32 = 1000
+                var eligibleValue: Int32 = 100
                 if let foodAmountG = value as? Int32{
                     eligibleValue = foodAmountG
                 }
@@ -79,11 +79,11 @@ class RecordCell: UIView {
                 detailText = format.string(from: eligibleValue)
                 RecordTV.waterDate = eligibleValue
             case .sportType:
-                var eligibleValue = SportType.pushUp
-                if let sportType = value as? SportType{
+                var eligibleValue = SportCategory.boxing
+                if let sportType = value as? SportCategory{
                     eligibleValue = sportType
                 }
-                detailText = sportNameMap[eligibleValue]!
+                detailText = eligibleValue.name()
                 RecordTV.sportType = eligibleValue
             case .sportDate:
                 var eligibleValue = Date()
@@ -93,8 +93,10 @@ class RecordCell: UIView {
                 RecordTV.sportDate = eligibleValue
                 detailText = format.string(from: eligibleValue)
             case .sportDuration:
-                var eligibleValue: Int32 = 30
-                if let duration = value as? Int32{
+                var eligibleValue: Int32 = 60
+                if let duration = value as? TimeInterval{
+                    eligibleValue = Int32(duration)
+                }else if let duration = RecordTV.sportDuration{
                     eligibleValue = duration
                 }
                 let hour = eligibleValue / (60 * 60)

@@ -20,6 +20,8 @@
 		32B92CF11EDB272C003212BA /* Alert_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF01EDB272C003212BA /* Alert_Extension.swift */; };
 		32B92CF31EDB2810003212BA /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B92CF21EDB2810003212BA /* Timer.swift */; };
 		32C439BF1EEF99A2001E904D /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439BE1EEF99A2001E904D /* FoodManager.swift */; };
+		32C439C11EF27B32001E904D /* SportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C01EF27B32001E904D /* SportManager.swift */; };
+		32C439C31EF377E8001E904D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C21EF377E8001E904D /* Date+Extension.swift */; };
 		32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094A71ED1BC28008AB5AC /* InitVC.swift */; };
 		32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */; };
 		32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */; };
@@ -118,6 +120,8 @@
 		32B92CF01EDB272C003212BA /* Alert_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert_Extension.swift; sourceTree = "<group>"; };
 		32B92CF21EDB2810003212BA /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		32C439BE1EEF99A2001E904D /* FoodManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
+		32C439C01EF27B32001E904D /* SportManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportManager.swift; sourceTree = "<group>"; };
+		32C439C21EF377E8001E904D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		32D094A71ED1BC28008AB5AC /* InitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitVC.swift; sourceTree = "<group>"; };
 		32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -366,6 +370,7 @@
 				32F563991EC71018001B1946 /* Setting.plist */,
 				32F5639B1EC71024001B1946 /* Setting.swift */,
 				32C439BE1EEF99A2001E904D /* FoodManager.swift */,
+				32C439C01EF27B32001E904D /* SportManager.swift */,
 				32F563A21EC9E2E8001B1946 /* Configure.swift */,
 			);
 			path = SupportingFiles;
@@ -398,6 +403,7 @@
 				32F563A41EC9E45F001B1946 /* Color+Extension.swift */,
 				32F563A61EC9E568001B1946 /* Image+Extension.swift */,
 				32B92CF01EDB272C003212BA /* Alert_Extension.swift */,
+				32C439C21EF377E8001E904D /* Date+Extension.swift */,
 				32B92CF21EDB2810003212BA /* Timer.swift */,
 			);
 			name = Extensions;
@@ -609,6 +615,7 @@
 				32F5639C1EC71024001B1946 /* Setting.swift in Sources */,
 				32251A881EE978E900289D02 /* FoodTypeCell.swift in Sources */,
 				32251A8A1EE9837500289D02 /* SubFoodTypeCell.swift in Sources */,
+				32C439C31EF377E8001E904D /* Date+Extension.swift in Sources */,
 				32D095001ED477A2008AB5AC /* MainRecordButton.swift in Sources */,
 				32F563AC1EC9E671001B1946 /* PopTransition0.swift in Sources */,
 				32D095231ED877E5008AB5AC /* Selector.swift in Sources */,
@@ -640,6 +647,7 @@
 				32D0951C1ED7D9A5008AB5AC /* CD+WaterItem.swift in Sources */,
 				32251A821EE974D700289D02 /* RecordHeader.swift in Sources */,
 				32D0951A1ED7D431008AB5AC /* CD+FoodItem.swift in Sources */,
+				32C439C11EF27B32001E904D /* SportManager.swift in Sources */,
 				32F563961EC60F24001B1946 /* FitFood.xcdatamodeld in Sources */,
 				32F563A71EC9E568001B1946 /* Image+Extension.swift in Sources */,
 				32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */,

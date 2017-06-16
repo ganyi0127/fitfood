@@ -32,10 +32,11 @@ enum RecordSubType {
 //MARK:-配置自定义滑块
 let recordAttributeMap: [RecordType: [RecordSubType]] = [
     .food: [.foodType, .foodSubType, .foodAmountG, .foodDate],
-    .water: [.waterType, .waterAmountG, .waterDate],
+    .water: [.waterAmountG, .waterDate],
     .sport: [.sportType, .sportDate, .sportDuration]
 ]
 
+/*
 //MARK:-运动类型
 enum SportType: Int32{
     case setUp = 0
@@ -49,7 +50,8 @@ let sportNameMap: [SportType: String] = [
     .running: "running",
     .walking: "walking"
 ]
-
+*/
+ 
 //MARK:-水份类型
 enum WaterType: Int32{
     case juice = 0
@@ -147,7 +149,7 @@ class RecordTV: UIView {
     static var waterAmountG: Int32?
     static var waterDate: Date?
     
-    static var sportType: SportType?
+    static var sportType: SportCategory?
     static var sportDate: Date?
     static var sportDuration: Int32?
     
@@ -294,6 +296,21 @@ class RecordTV: UIView {
                     break
                 }
                  */
+                switch cellType as RecordSubType{
+                case .sportDate:
+                    if let date = value as? Date{
+                        self.header?.leftDate = date
+                    }else{
+                        let defaultDate = Date(timeInterval: -30 * 60, since: Date())
+                        self.header?.leftDate = defaultDate
+                    }
+                case .sportDuration:
+                    if let duration = value as? TimeInterval, let header = self.header{
+                        self.header?.rightDate = Date(timeInterval: TimeInterval(duration), since: header.leftDate)
+                    }
+                default:
+                    break
+                }
             }
         }
         

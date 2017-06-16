@@ -26,13 +26,17 @@ class SportVC: SubVC {
     }
     
     override func accept(sender: UIButton) {
-        //存储数据
         guard let sportType = RecordTV.sportType, let sportDuration = RecordTV.sportDuration, let sportDate = RecordTV.sportDate else {
             showNotif(withTitle: "需补全内容", duration: 2, closure: nil)
             return
         }
         
-        _ = coredataHandler.addSportItem(withType: sportType.rawValue, durationSec: sportDuration, date: sportDate)
+        //存储数据
+        if coredataHandler.executable() {
+            _ = coredataHandler.addSportItem(withSportType: sportType.rawValue, durationSec: sportDuration, date: sportDate)
+        }else {
+            showNotif(withTitle: "需添加初始体重", duration: 2, closure: nil)
+        }
         
         super.accept(sender: sender)
     }

@@ -26,13 +26,17 @@ class WaterVC: SubVC {
     }
     
     override func accept(sender: UIButton) {
-        //存储数据
-        guard let waterType = RecordTV.waterType, let waterAmountG = RecordTV.waterAmountG, let waterDate = RecordTV.waterDate else {
+        guard let waterAmountG = RecordTV.waterAmountG, let waterDate = RecordTV.waterDate else {
             showNotif(withTitle: "需补全内容", duration: 2, closure: nil)
             return
         }
         
-        _ = coredataHandler.addWaterItem(withType: waterType.rawValue, amountML: waterAmountG, date: waterDate)
+        //存储数据
+        if coredataHandler.executable() {
+            _ = coredataHandler.addWaterItem(withAmountML: waterAmountG, date: waterDate)
+        }else {
+            showNotif(withTitle: "需添加初始体重", duration: 2, closure: nil)
+        }
         
         super.accept(sender: sender)
     }

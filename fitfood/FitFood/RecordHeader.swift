@@ -83,8 +83,8 @@ class RecordHeader: UIView {
         shapeLayer.lineWidth = 0
         layer.addSublayer(shapeLayer)
         
-        leftDate = Date()
-        rightDate = Date()
+        //leftDate = Date()
+        //rightDate = Date()
     }
     
     private func createContents(){

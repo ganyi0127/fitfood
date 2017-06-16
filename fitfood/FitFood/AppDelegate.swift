@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK:- 状态切换
     func applicationWillResignActive(_ application: UIApplication) {
         debugPrint("__will resign active")
+        
     }
 
     //MARK:- 进入后台
@@ -51,6 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK:- 进入前台
     func applicationWillEnterForeground(_ application: UIApplication) {
         debugPrint("__will enter foreground")
+        
+        //判断跨天问题
+        if !preToday.isToday(){
+            preToday = Date()
+            selectDate = Date()
+            application.reloadInputViews()
+        }
     }
 
     //MARK:-

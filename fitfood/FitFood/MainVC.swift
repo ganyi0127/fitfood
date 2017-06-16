@@ -150,10 +150,28 @@ class MainVC: UIViewController {
             //毫升
             intakeWater = waterValue
         }else{
+            //获取所有condition
+            var tmpCal: CGFloat = 0
+            var tmpWater: CGFloat = 0
+            if let condition = coredateHandler.getCondition(withDate: Date(), insertIfNotExist: false){
+                //饮食
+                for element in condition.foodItemList!{
+                    let foodItem = element as! FoodItem
+                    let calorie = foodItem.intakeCalorie
+                    tmpCal += CGFloat(calorie)
+                }
+                //水份
+                for element in condition.waterItemList!{
+                    let waterItem = element as! WaterItem
+                    let amountML = waterItem.amountML
+                    tmpWater += CGFloat(amountML)
+                }
+            }
+                        
             //千卡
-            caloriaValue = 1000
+            caloriaValue = tmpCal
             //毫升
-            waterValue = 1500
+            waterValue = tmpWater
         }
         
         view.bringSubview(toFront: mainButton)

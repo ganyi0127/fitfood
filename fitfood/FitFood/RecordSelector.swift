@@ -42,7 +42,7 @@ class RecordSelector: UIView {
     static var selectedFoodType: FoodCategory?
     static var selectedSubFoodType: Food?
     static fileprivate var selectedWaterType: WaterType?
-    static fileprivate var selectedSportType: SportType?
+    static fileprivate var selectedSportType: SportCategory?
     
     //MARK:- init **********************************************************************
     init(type: RecordSubType, frame: CGRect){
@@ -61,7 +61,11 @@ class RecordSelector: UIView {
     private func config(){
         isUserInteractionEnabled = true
         
-        fooddata = FoodManager.share().getDocument()
+        if type == .sportType{
+            sportData = SportManager.share().getDocument()
+        }else if type == .foodType || type == .foodSubType{
+            fooddata = FoodManager.share().getDocument()
+        }
     }
     
     //MARK:- 选择活动类型
@@ -77,8 +81,10 @@ class RecordSelector: UIView {
         return pages
     }()
     static var foodSubList = [Food]()
+    
+    fileprivate var sportData: SportData!
     fileprivate var sportPageCount: Int = {
-        let count = sportNameMap.count
+        let count = SportCategory.allCategory.count
         var pages = count / 9
         if count % 9 != 0 {
             pages += 1
@@ -166,7 +172,7 @@ class RecordSelector: UIView {
                 let pageControlFrame = CGRect(x: 0, y: frame.height - pageContolHeight, width: frame.width, height: pageContolHeight)
                 pageControl = UIPageControl(frame: pageControlFrame)
                 pageControl?.currentPage = 0
-                pageControl?.numberOfPages = foodPageCount
+                pageControl?.numberOfPages = type == .foodType ? foodPageCount : sportPageCount
                 pageControl?.currentPageIndicatorTintColor = .gray
                 pageControl?.pageIndicatorTintColor = word_light_color
                 addSubview(pageControl!)
@@ -211,31 +217,26 @@ class RecordSelector: UIView {
         case .foodDate, .waterDate, .sportDate:
             datePickerView = UIDatePicker(frame: frame)
             datePickerView?.addTarget(self, action: #selector(selectDate(sender:)), for: .valueChanged)
+            datePickerView?.datePickerMode = .dateAndTime
             datePickerView?.maximumDate = Date()
+            datePickerView?.minimumDate = Date(timeInterval: -1 * 60 * 60 * 24, since: Date()) //1天前
             addSubview(datePickerView!)
             
-            var minDate = Date(timeInterval: -2 * 360 * 60 * 60 * 24, since: Date())
             var date = Date()
             if type == .foodDate{
-                minDate = Date(timeIntervalSinceNow: -1 * 60 * 60 * 24)         //1天前
-                datePickerView?.datePickerMode = .dateAndTime
                 if let localFoodDate = RecordTV.foodDate{
                     date = localFoodDate
                 }
             }else if type == .waterDate{
-                minDate = Date(timeIntervalSinceNow: -1 * 60 * 60 * 24)
 
-                datePickerView?.datePickerMode = .dateAndTime
                 if let localWaterDate = RecordTV.waterDate{
                     date = localWaterDate
                 }
             }else if type == .sportDate{
-                datePickerView?.datePickerMode = .date
                 if let localSportDate = RecordTV.sportDate{
                     date = localSportDate
                 }
             }
-            datePickerView?.minimumDate = minDate
             datePickerView?.setDate(date, animated: true)
             
             selectedValue = date
@@ -255,8 +256,10 @@ class RecordSelector: UIView {
                     countDownDuration = duration
                 }
             }
+
             datePickerView?.countDownDuration = TimeInterval(countDownDuration)
             selectedValue = countDownDuration
+
         default:
             break
         }
@@ -428,11 +431,11 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch type as RecordSubType {
         case .foodType:
-            return foodPageCount * 9
+            return FoodCategory.allCategory.count
         case .sportType:
-            return sportNameMap.count
+            return SportCategory.allCategory.count
         default:
-            return foodPageCount * 1
+            return 0
         }
     }
     
@@ -457,12 +460,12 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SportTypeCell
             
-            if row >= sportNameMap.count{
+            if row >= SportCategory.allCategory.count{
                 cell.type = nil
                 return cell
             }
             
-            cell.type = SportType(rawValue: Int32(row))
+            cell.type = SportCategory(rawValue: Int32(row))
             return cell
         }
     }
@@ -486,7 +489,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl?.currentPage = Int(scrollView.contentOffset.x) / Int(frame.width)
+        pageControl?.currentPage = Int(ceil(Double(scrollView.contentOffset.x / frame.width)))
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
@@ -518,7 +521,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
     //delegate
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         let row = indexPath.row
-        if row >= (type == .sportType ? sportNameMap.count : FoodCategory.allCategory.count) {
+        if row >= (type == .sportType ? SportCategory.allCategory.count : FoodCategory.allCategory.count) {
             return false
         }
         return true
@@ -542,7 +545,7 @@ extension RecordSelector: UICollectionViewDelegate, UICollectionViewDataSource, 
                 collectionView.reloadData()
             }
         default:
-            if row < sportNameMap.count{
+            if row < SportCategory.allCategory.count{
                 //选择回调
                 let cell = collectionView.cellForItem(at: indexPath) as! SportTypeCell
                 RecordSelector.selectedSportType = cell.type

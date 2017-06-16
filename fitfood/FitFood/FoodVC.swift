@@ -39,8 +39,11 @@ class FoodVC: SubVC {
         }
         
         //存储数据
-        _ = coredataHandler.addFoodItem(withType: foodType.rawValue, subType: foodSubType.serial!, amountG: foodAmountG, date: foodDate)
-        
+        if coredataHandler.executable() {
+            _ = coredataHandler.addFoodItem(withFood: foodSubType, amountG: foodAmountG, date: foodDate)
+        }else {
+            showNotif(withTitle: "需添加初始体重", duration: 2, closure: nil)
+        }
         super.accept(sender: sender)
     }
 }
