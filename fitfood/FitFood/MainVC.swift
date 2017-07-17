@@ -13,6 +13,7 @@ class MainVC: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var targetView: UIView!
     @IBOutlet var mainView: MainView!
+    @IBOutlet weak var historyButton: UIButton!
     
     //切换子页面
     var menuItem: MenuItem?{
@@ -159,6 +160,7 @@ class MainVC: UIViewController {
             waterValue = intoken.water
         }
         
+        view.bringSubview(toFront: targetView)
         view.bringSubview(toFront: mainButton)
     }
     
@@ -198,7 +200,13 @@ class MainVC: UIViewController {
         (navigationController?.parent as! InitVC).hideMenu(false)
     }
     
-    //MARK:-获取记录数据消耗
+    //MARK:-查看历史记录
+    @IBAction func checkHistory(_ sender: Any) {
+        let historyVC = getStoryboard(with: "History").instantiateViewController(withIdentifier: "history") as! HistoryVC
+        navigationController?.pushViewController(historyVC, animated: true)
+    }
+    
+    //MARK:-获取所有记录数据消耗
     private func getIntokenCalorieAndWater() -> (calorie: CGFloat, water: CGFloat){
         //获取所有condition
         var tmpCal: CGFloat = 0
@@ -233,7 +241,7 @@ class MainVC: UIViewController {
 }
 
 
-//MARK:- 触摸时间
+//MARK:- 触摸事件
 extension MainVC{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         

@@ -41,6 +41,11 @@ class MainView: UIView {
     //MARK:-当前摄入卡路里值
     var intakeCaloria: CGFloat = 0{
         didSet{
+            
+            guard intakeCaloria != oldValue else {
+                return
+            }
+            
             let animKey = "novalue"
             if let weightItem = coredateHandler.currentWeightItem(){
                 bottomShape.removeAnimation(forKey: animKey)
@@ -146,6 +151,10 @@ class MainView: UIView {
     private var intakeWater: CGFloat = 0{
         didSet{
             
+            guard intakeWater != oldValue else {
+                return
+            }
+            
             let animKey = "wave"
             var paths: [CGPath]
             if let weightItem = coredateHandler.currentWeightItem(){
@@ -184,10 +193,17 @@ class MainView: UIView {
         }
     }
     
+    private var isInit = false
+    
+    
     //MARK:- init ************************************************************************
     override func didMoveToSuperview() {
-        config()
-        createContents()
+        
+        if !isInit{
+            isInit = true
+            config()
+            createContents()
+        }
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
@@ -313,7 +329,7 @@ class MainView: UIView {
         
         //动画
         strokeAnim.toValue = 0.0
-        frontShape.add(strokeAnim, forKey: nil)
+        frontShape.add(strokeAnim, forKey: nil)        
     }
     
     //MARK:绘制水份进度

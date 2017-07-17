@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        //初始化设置
+        UINavigationBar.appearance().tintColor = .white
+        
         //崩溃处理
         NSSetUncaughtExceptionHandler(customUncaughtExceptionHandler())
         

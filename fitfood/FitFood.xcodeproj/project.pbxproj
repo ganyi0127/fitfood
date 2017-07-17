@@ -23,6 +23,10 @@
 		32C439C11EF27B32001E904D /* SportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C01EF27B32001E904D /* SportManager.swift */; };
 		32C439C31EF377E8001E904D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C21EF377E8001E904D /* Date+Extension.swift */; };
 		32C439C51EF3E33E001E904D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C439C41EF3E33E001E904D /* HealthKit.framework */; };
+		32C439C91EF76FC1001E904D /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439C81EF76FC1001E904D /* HistoryVC.swift */; };
+		32C439CB1EF76FEE001E904D /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C439CA1EF76FEE001E904D /* History.storyboard */; };
+		32C439CD1EF7708B001E904D /* Storyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439CC1EF7708B001E904D /* Storyboard.swift */; };
+		32C439CF1EFA7C81001E904D /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C439CE1EFA7C81001E904D /* HistoryCell.swift */; };
 		32D094A81ED1BC28008AB5AC /* InitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094A71ED1BC28008AB5AC /* InitVC.swift */; };
 		32D094AD1ED1BCCE008AB5AC /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */; };
 		32D094AE1ED1BCCE008AB5AC /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */; };
@@ -125,6 +129,10 @@
 		32C439C21EF377E8001E904D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		32C439C41EF3E33E001E904D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		32C439C61EF3E33E001E904D /* FitFood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitFood.entitlements; sourceTree = "<group>"; };
+		32C439C81EF76FC1001E904D /* HistoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		32C439CA1EF76FEE001E904D /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		32C439CC1EF7708B001E904D /* Storyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storyboard.swift; sourceTree = "<group>"; };
+		32C439CE1EFA7C81001E904D /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		32D094A71ED1BC28008AB5AC /* InitVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitVC.swift; sourceTree = "<group>"; };
 		32D094AA1ED1BCCE008AB5AC /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		32D094AB1ED1BCCE008AB5AC /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -247,6 +255,16 @@
 				32A513CD1EDABD2000411654 /* Info.plist */,
 			);
 			path = FitFoodKeyborad;
+			sourceTree = "<group>";
+		};
+		32C439C71EF76FAA001E904D /* 历史记录 */ = {
+			isa = PBXGroup;
+			children = (
+				32C439CA1EF76FEE001E904D /* History.storyboard */,
+				32C439C81EF76FC1001E904D /* HistoryVC.swift */,
+				32C439CE1EFA7C81001E904D /* HistoryCell.swift */,
+			);
+			name = "历史记录";
 			sourceTree = "<group>";
 		};
 		32D094A91ED1BCBD008AB5AC /* 菜单 */ = {
@@ -411,6 +429,7 @@
 				32B92CF01EDB272C003212BA /* Alert_Extension.swift */,
 				32C439C21EF377E8001E904D /* Date+Extension.swift */,
 				32B92CF21EDB2810003212BA /* Timer.swift */,
+				32C439CC1EF7708B001E904D /* Storyboard.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -429,6 +448,7 @@
 			children = (
 				32F5639D1EC9E178001B1946 /* MainVC.swift */,
 				32EE9EBA1EDB00AF00C77B5F /* MainView.swift */,
+				32C439C71EF76FAA001E904D /* 历史记录 */,
 				32D095011ED5CC85008AB5AC /* 个人 */,
 				32D094FE1ED476CB008AB5AC /* 记录按钮 */,
 				321108831EE6EF220098DBE3 /* 手动记录 */,
@@ -585,6 +605,7 @@
 			files = (
 				32F5639A1EC71018001B1946 /* Setting.plist in Resources */,
 				32F563921EC60EDA001B1946 /* Info.plist in Resources */,
+				32C439CB1EF76FEE001E904D /* History.storyboard in Resources */,
 				32EE9EB91EDAFA9A00C77B5F /* resource in Resources */,
 				32F5636D1EC60DAA001B1946 /* LaunchScreen.storyboard in Resources */,
 				32F5636A1EC60DAA001B1946 /* Assets.xcassets in Resources */,
@@ -627,6 +648,7 @@
 				32251A881EE978E900289D02 /* FoodCategoryCell.swift in Sources */,
 				32251A8A1EE9837500289D02 /* FoodCell.swift in Sources */,
 				32C439C31EF377E8001E904D /* Date+Extension.swift in Sources */,
+				32C439CF1EFA7C81001E904D /* HistoryCell.swift in Sources */,
 				32D095001ED477A2008AB5AC /* MainRecordButton.swift in Sources */,
 				32F563AC1EC9E671001B1946 /* PopTransition0.swift in Sources */,
 				32D095231ED877E5008AB5AC /* Selector.swift in Sources */,
@@ -656,6 +678,7 @@
 				32F563601EC60DA9001B1946 /* AppDelegate.swift in Sources */,
 				32EE9EBB1EDB00AF00C77B5F /* MainView.swift in Sources */,
 				32D0951C1ED7D9A5008AB5AC /* CD+WaterItem.swift in Sources */,
+				32C439C91EF76FC1001E904D /* HistoryVC.swift in Sources */,
 				32251A821EE974D700289D02 /* RecordHeader.swift in Sources */,
 				32D0951A1ED7D431008AB5AC /* CD+FoodItem.swift in Sources */,
 				32C439C11EF27B32001E904D /* SportManager.swift in Sources */,
@@ -666,6 +689,7 @@
 				32F563A11EC9E28F001B1946 /* Navigation+Extension.swift in Sources */,
 				32D095091ED72070008AB5AC /* CD+User.swift in Sources */,
 				32D095031ED5CC98008AB5AC /* InformationVC.swift in Sources */,
+				32C439CD1EF7708B001E904D /* Storyboard.swift in Sources */,
 				32251A861EE9772A00289D02 /* RecordSelector.swift in Sources */,
 				32D095161ED72719008AB5AC /* CD+WeightItem.swift in Sources */,
 				32D094AF1ED1BCCE008AB5AC /* MenuVC.swift in Sources */,

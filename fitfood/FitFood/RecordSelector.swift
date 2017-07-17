@@ -212,7 +212,6 @@ class RecordSelector: UIView {
                 let length: CGFloat = min(levelImageView!.bounds.width, levelImageView!.bounds.height) * 0.8
                 levelImageView?.image = UIImage(named: "resource/sporticons/bigicon/" + name)?.transfromImage(size: CGSize(width: length, height: length))?.withRenderingMode(.alwaysTemplate)
                 backImageView.image = UIImage(named: "resource/sporticons/bigicon/" + name)?.transfromImage(size: CGSize(width: length, height: length))?.withRenderingMode(.alwaysTemplate)
-
             }
         case .foodDate, .waterDate, .sportDate:
             datePickerView = UIDatePicker(frame: frame)
@@ -278,7 +277,7 @@ class RecordSelector: UIView {
     
     //MARK:- 饮水量绘制 0~1
     private var levelMaskView: UIView?
-    fileprivate let maxWaterAmountG: Int32 = 5000       //5000毫升
+    fileprivate let maxWaterAmountG: Int32 = 1500       //5000毫升
     fileprivate var waterAmountG: Int32?                //0..<max
     fileprivate let progressTopHeight: CGFloat = 20
     fileprivate let progressBottomHeight: CGFloat = 20
@@ -300,6 +299,7 @@ class RecordSelector: UIView {
         }
         
         waterAmountG = Int32(lround(Double(maxWaterAmountG) * value))
+        waterAmountG = waterAmountG! - waterAmountG! % 10
         
         //动画
         let moveAnim = CABasicAnimation(keyPath: "position.y")
@@ -320,14 +320,14 @@ extension RecordSelector{
             let currentProgressValue = (imageView.bounds.height - (curLocation.y - progressTopHeight)) / (imageView.bounds.height - progressTopHeight - progressBottomHeight)
             drawWaterAmountG(withProgressValue: currentProgressValue)
             
-            if let amountG = waterAmountG, RecordSelector.selectedWaterType != nil {
+            if let amountG = waterAmountG {
                 closure?(RecordSubType.waterAmountG, amountG)
             }
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if type == RecordSubType.waterAmountG, let amountG = waterAmountG, RecordSelector.selectedWaterType != nil {
+        if type == RecordSubType.waterAmountG, let amountG = waterAmountG {
             closure?(RecordSubType.waterAmountG, amountG)
         }
     }

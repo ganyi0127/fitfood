@@ -19,10 +19,9 @@ extension UINavigationController: UINavigationControllerDelegate{
         //设置title
         navigationBar.titleTextAttributes = [NSFontAttributeName: font_middle,
                                              NSForegroundColorAttributeName: UIColor(red: 42 / 255, green: 42 / 255, blue: 42 / 255, alpha: 1)]
-        
-        
-        navigationBar.backgroundColor = .black
-        isNavigationBarHidden = true        
+        navigationBar.topItem?.title = ""           //设置返回文字为空
+        navigationBar.backgroundColor = .orange     //设置背景颜色
+        isNavigationBarHidden = true                //默认隐藏导航栏
         
         /*
         let image = UIImage(named: "resource/navigation_back")?.transfromImage(size: CGSize(width: view_size.width, height: navigation_height! + 64))
@@ -34,7 +33,15 @@ extension UINavigationController: UINavigationControllerDelegate{
     //切换界面时调用_手环按钮
     public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         
-        
+        if viewControllers.count == 1{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.isNavigationBarHidden = true
+            })
+        }else{
+            UIView.animate(withDuration: 0.3, animations: {
+                self.isNavigationBarHidden = false
+            })
+        }
         return
         //判断是否为根视图
         if viewControllers.count == 1{
@@ -109,6 +116,8 @@ extension UINavigationController: UINavigationControllerDelegate{
             
             //隐藏tabbar
             setTabbar(hidden: true)
+            
+            setNavigation(hidden: false)
         }
     }
 
@@ -163,11 +172,12 @@ extension UINavigationController: UINavigationControllerDelegate{
     //MARK:- 转场代理实现
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        //模版
-        if operation == .push{
-            return PushTransition0()
-        }else{
-            return PopTransition0()
+        if fromVC.isKind(of: SubVC.self) || toVC.isKind(of: SubVC.self){
+            if operation == .push{
+                return PushTransition0()
+            }else{
+                return PopTransition0()
+            }
         }
         return nil
     }

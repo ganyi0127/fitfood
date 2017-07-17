@@ -149,6 +149,13 @@
                                     <constraint firstAttribute="width" constant="64" id="mEp-oJ-8Zd"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhD-3x-Bob">
+                                <rect key="frame" x="312" y="72" width="47" height="30"/>
+                                <state key="normal" title="history"/>
+                                <connections>
+                                    <action selector="checkHistory:" destination="QFd-lK-Xu7" eventType="touchUpInside" id="WRJ-Zd-xJT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -157,11 +164,14 @@
                             <constraint firstItem="FJ7-ue-8h5" firstAttribute="top" secondItem="Opr-qO-5ks" secondAttribute="bottom" constant="8" id="9VJ-AG-g26"/>
                             <constraint firstItem="xF4-1l-Wa6" firstAttribute="top" secondItem="E6d-xe-UGC" secondAttribute="bottom" constant="24" id="FkV-R0-xat"/>
                             <constraint firstItem="EgW-nF-Qrc" firstAttribute="centerX" secondItem="2Vz-h5-9ot" secondAttribute="centerX" id="MRY-m9-bR8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lhD-3x-Bob" secondAttribute="trailing" id="lVf-cv-cKg"/>
+                            <constraint firstItem="lhD-3x-Bob" firstAttribute="top" secondItem="Opr-qO-5ks" secondAttribute="bottom" constant="8" id="msc-Gz-ZQR"/>
                             <constraint firstAttribute="leadingMargin" secondItem="FJ7-ue-8h5" secondAttribute="leading" id="qvf-zi-Zi9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nQQ-Bl-O0q"/>
                     <connections>
+                        <outlet property="historyButton" destination="lhD-3x-Bob" id="Vza-Ky-t6m"/>
                         <outlet property="mainButton" destination="E6d-xe-UGC" id="Uuw-J5-t71"/>
                         <outlet property="mainView" destination="2Vz-h5-9ot" id="mbY-2Z-anq"/>
                         <outlet property="menuButton" destination="FJ7-ue-8h5" id="dVQ-iD-B4h"/>
