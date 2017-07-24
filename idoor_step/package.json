@@ -1,0 +1,26 @@
+{
+  "name": "idsteps",
+  "version": "1.0.1",
+  "description": "record step from our team",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganyi0127/recordsteps.git"
+  },
+  "author": "ganyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganyi0127/recordsteps/issues"
+  },
+  "homepage": "https://github.com/ganyi0127/recordsteps#readme",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.18.1",
+    "mysql": "^2.13.0",
+    "restify": "^5.0.1"
+  }
+}
