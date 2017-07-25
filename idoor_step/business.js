@@ -8,8 +8,9 @@ function update_steps(req,res,next){
 
   var user_id=req.body.userId;
   var steps=req.body.steps;
-  var date=Date(req.body.date);
+  var d=new Date(req.body.date);
 
+  var date=moment(d).format('YYYY-MM-DD');
   console.log('userId:'+user_id+'\ndate:'+date+'\nsteps:'+steps);
 
   //打开数据库
@@ -79,27 +80,34 @@ Date.prototype.Format=function(fmt){
 function get_steps(req,res,next){
   console.log('get steps');
 
-  var isAll=req.body.isAll;
+  var target=req.body.target;
   //var date=Date(req.body.date).Format("yyyy-MM-dd");
-  var d=Date(req.body.date);
-  var date=moment(d).format('YYYY-MM-DD');
-  console.log('isAll:'+isAll+'\ndate:'+date);
+  var d=new Date(req.body.date);
+  var d2=moment(d).format('YYYY-MM-DD');
+  var date=d.toLocaleDateString()+' '+d.toLocaleTimeString();
+  console.log('target:'+target+'\ndate:'+date);
 
   //打开数据库
   var conn=database.connectDB();
 
-  var user_sel_sql="SELECT * FROM user WHERE DATE_FORMAT(date,'%y-%m-%d')=DATE_FORMAT(?,'%y-%m-%d')";
-  if(!isAll){
-    user_sel_sql+=' AND steps>=8000';
-  }
+  var user_sel_sql="SELECT * FROM user WHERE DATE_FORMAT(date,'%y-%m-%d')=DATE_FORMAT(?,'%y-%m-%d') AND steps>=?";
 
-  //查找所有数据
-  conn.query(user_sel_sql,[date],function(err,results,fields){
+  //查找数据
+  conn.query(user_sel_sql,[d2,target],function(err,results,fields){
     if(err){
       console.log('select user err:'+err.code);
       datahandler.sendFailure(res,'查找数据失败');
     }else{
-      datahandler.sendSuccess(res,results);
+      var coustomResult = [];
+      for (var i in results){
+        var result=results[i];
+        coustomResult.push({
+          'userId': result.userid,
+          'steps':result.steps,
+          'date':d2
+        });
+      }
+      datahandler.sendSuccess(res,coustomResult);
     }
     database.closeDB(conn);
   });
